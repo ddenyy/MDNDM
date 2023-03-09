@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{AFFAC193-E0E2-40A1-9309-08BD3E842D05}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Maybe_3D\Maybe_3D.cbproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Maybe_3D">
+        <MSBuild Projects="Maybe_3D\Maybe_3D.cbproj"/>
+    </Target>
+    <Target Name="Maybe_3D:Clean">
+        <MSBuild Projects="Maybe_3D\Maybe_3D.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Maybe_3D:Make">
+        <MSBuild Projects="Maybe_3D\Maybe_3D.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Maybe_3D"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Maybe_3D:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Maybe_3D:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
