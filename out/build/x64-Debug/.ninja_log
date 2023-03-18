@@ -1,0 +1,22 @@
+# ninja log v5
+0	363	7008344497338737	CMakeFiles/CMakeProject1.dir/CMakeProject1.cpp.obj	e3a9e98576f09d7a
+516	707	7008372882425530	CMakeProject1.exe	127101f6f8746af8
+10	482	7008372880429713	CMakeFiles/CMakeProject1.dir/cell/Cell.cpp.obj	4f187ae296fe71f5
+5	495	7008372880659772	CMakeFiles/CMakeProject1.dir/Board/board.cpp.obj	7472228230446e33
+1	516	7008372880875183	CMakeFiles/CMakeProject1.dir/main.cpp.obj	302ba42a3dbf80f7
+14	461	7008377511516949	CMakeFiles/CMakeProject1.dir/Artifact/Artifact.cpp.obj	85a56d2396dd9407
+10	468	7008377511576952	CMakeFiles/CMakeProject1.dir/cell/Cell.cpp.obj	4f187ae296fe71f5
+5	493	7008377511832088	CMakeFiles/CMakeProject1.dir/main.cpp.obj	302ba42a3dbf80f7
+0	494	7008377511842101	CMakeFiles/CMakeProject1.dir/Board/board.cpp.obj	7472228230446e33
+494	639	7008377513019613	CMakeProject1.exe	d6fc2c6871af1eca
+10	495	7008378254835130	CMakeFiles/CMakeProject1.dir/Artifact/Artifact.cpp.obj	85a56d2396dd9407
+10	474	7008379625922464	CMakeFiles/CMakeProject1.dir/Artifact/Artifact.cpp.obj	85a56d2396dd9407
+14	480	7008379626002498	CMakeFiles/CMakeProject1.dir/cell/Cell.cpp.obj	4f187ae296fe71f5
+1	509	7008379626282563	CMakeFiles/CMakeProject1.dir/Board/board.cpp.obj	7472228230446e33
+6	519	7008379626382574	CMakeFiles/CMakeProject1.dir/main.cpp.obj	302ba42a3dbf80f7
+520	652	7008379627405346	CMakeProject1.exe	d6fc2c6871af1eca
+9	662	7008381994925608	CMakeFiles/CMakeProject1.dir/Artifact/Artifact.cpp.obj	85a56d2396dd9407
+5	671	7008381995075662	CMakeFiles/CMakeProject1.dir/Board/board.cpp.obj	7472228230446e33
+16	672	7008381995065657	CMakeFiles/CMakeProject1.dir/cell/Cell.cpp.obj	4f187ae296fe71f5
+1	676	7008381995155659	CMakeFiles/CMakeProject1.dir/main.cpp.obj	302ba42a3dbf80f7
+677	825	7008381996355943	CMakeProject1.exe	d6fc2c6871af1eca
