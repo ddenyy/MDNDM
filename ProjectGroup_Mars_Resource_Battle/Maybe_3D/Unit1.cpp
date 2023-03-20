@@ -48,21 +48,21 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
         }
     }
 
-    Field[0][1] -> Height = 1;
-    Field[0][1] -> Position -> Y = -(0.5 - 0.125);
+	Field[0][1] -> Height = 1;
+	Field[0][1] -> Position -> Y = -(0.5 - 0.125);
 
-    TCube *Hill;
-    Hill = new TCube(Dummy2);
+	TCube *Hill;
+	Hill = new TCube(Dummy2);
 
-    Hill -> Parent = Dummy2;
-    Hill -> Height = 0.97;
-    Hill -> Depth = 1.2;
-    Hill -> Width = 1.2;
+	Hill -> Parent = Dummy2;
+	Hill -> Height = 0.97;
+	Hill -> Depth = 1.2;
+	Hill -> Width = 1.2;
     Hill -> MaterialSource = LightMaterialSource2;
 
-    Hill -> Position -> Z = 2;
-    Hill -> Position -> X = -2;
-    Hill -> Position -> Y = -0.7;
+	Hill -> Position -> Z = 2;
+	Hill -> Position -> X = -2;
+	Hill -> Position -> Y = -0.7;
 
 //    delete Hill;
 //    for (i = 0; i < n; i++) {
@@ -76,9 +76,9 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
 void __fastcall TForm1::Viewport3D1MouseWheel(TObject *Sender, TShiftState Shift,
           int WheelDelta, bool &Handled)
 {
-    Dummy1 -> Scale -> X += (WheelDelta * 0.00125);
+	Dummy1 -> Scale -> X += (WheelDelta * 0.00125);
     Dummy1 -> Scale -> Y += (WheelDelta * 0.00125);
-    Dummy1 -> Scale -> Z += (WheelDelta * 0.00125);
+	Dummy1 -> Scale -> Z += (WheelDelta * 0.00125);
 }
 //---------------------------------------------------------------------------
 
@@ -90,7 +90,7 @@ void __fastcall TForm1::LeftButtonClick(TObject *Sender)
 
 void __fastcall TForm1::RightButtonClick(TObject *Sender)
 {
-    Dummy1 -> RotationAngle -> Y -= 5;
+	Dummy1 -> RotationAngle -> Y -= 5;
 }
 //---------------------------------------------------------------------------
 
@@ -104,8 +104,28 @@ void __fastcall TForm1::PositionButtonMouseWheel(TObject *Sender, TShiftState Sh
 void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, System::WideChar &KeyChar,
           TShiftState Shift)
 {
-    if (KeyChar == 'w') {
-        ShowMessage("success");
+	if (KeyChar == 'a') {
+		Dummy1 -> Position -> X -= 0.6;
+	}
+
+	if (KeyChar == 'd') {
+		Dummy1 -> Position -> X += 0.6;
+	}
+
+	if (KeyChar == 'q') {
+		Dummy1 -> RotationAngle -> Y += 5;
+	}
+
+	if (KeyChar == 'e') {
+		Dummy1 -> RotationAngle -> Y -= 5;
+	}
+
+	if (KeyChar == 'w') {
+		Dummy3 -> RotationAngle -> X -= 5;
+	}
+
+	if (KeyChar == 's') {
+		Dummy3 -> RotationAngle -> X += 5;
     }
 }
 //---------------------------------------------------------------------------

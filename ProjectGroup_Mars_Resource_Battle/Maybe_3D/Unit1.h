@@ -33,6 +33,7 @@ __published:	// IDE-managed Components
 	TToolBar *ToolBar1;
 	TSpeedButton *PositionButton;
 	TToolBar *ToolBar2;
+	TDummy *Dummy3;
 	void __fastcall FormCreate(TObject *Sender);
 	void __fastcall Viewport3D1MouseWheel(TObject *Sender, TShiftState Shift, int WheelDelta,
           bool &Handled);

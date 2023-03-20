@@ -26,43 +26,6 @@ object Form1: TForm1
       Left = 568
       Top = 424
     end
-    object Dummy1: TDummy
-      Scale.X = 2.000000000000000000
-      Scale.Y = 2.000000000000000000
-      Scale.Z = 2.000000000000000000
-      Width = 1.000000000000000000
-      Height = 1.000000000000000000
-      Depth = 1.000000000000000000
-      object Dummy2: TDummy
-        Width = 1.000000000000000000
-        Height = 1.000000000000000000
-        Depth = 1.000000000000000000
-        object FloatAnimation4: TFloatAnimation
-          AutoReverse = True
-          Duration = 1.500000000000000000
-          Loop = True
-          PropertyName = 'Position.Y'
-          StartValue = 0.000000000000000000
-          StopValue = -0.300000011920929000
-        end
-      end
-      object FloatAnimation1: TFloatAnimation
-        Duration = 10.000000000000000000
-        Loop = True
-        PropertyName = 'RotationAngle.Y'
-        StartValue = 0.000000000000000000
-        StopValue = 360.000000000000000000
-      end
-      object Light1: TLight
-        Color = claWhite
-        LightType = Point
-        SpotCutOff = 180.000000000000000000
-        Position.Y = -20.000000000000000000
-        Width = 1.000000000000000000
-        Height = 1.000000000000000000
-        Depth = 1.000000000000000000
-      end
-    end
     object LightMaterialSource2: TLightMaterialSource
       Diffuse = claTurquoise
       Ambient = claSlategray
@@ -71,6 +34,48 @@ object Form1: TForm1
       Shininess = 30
       Left = 304
       Top = 224
+    end
+    object Dummy3: TDummy
+      Width = 1.000000000000000000
+      Height = 1.000000000000000000
+      Depth = 1.000000000000000000
+      object Dummy1: TDummy
+        Scale.X = 2.000000000000000000
+        Scale.Y = 2.000000000000000000
+        Scale.Z = 2.000000000000000000
+        Width = 1.000000000000000000
+        Height = 1.000000000000000000
+        Depth = 1.000000000000000000
+        object Dummy2: TDummy
+          Width = 1.000000000000000000
+          Height = 1.000000000000000000
+          Depth = 1.000000000000000000
+          object FloatAnimation4: TFloatAnimation
+            AutoReverse = True
+            Duration = 1.500000000000000000
+            Loop = True
+            PropertyName = 'Position.Y'
+            StartValue = 0.000000000000000000
+            StopValue = -0.300000011920929000
+          end
+        end
+        object FloatAnimation1: TFloatAnimation
+          Duration = 10.000000000000000000
+          Loop = True
+          PropertyName = 'RotationAngle.Y'
+          StartValue = 0.000000000000000000
+          StopValue = 360.000000000000000000
+        end
+        object Light1: TLight
+          Color = claWhite
+          LightType = Point
+          SpotCutOff = 180.000000000000000000
+          Position.Y = -20.000000000000000000
+          Width = 1.000000000000000000
+          Height = 1.000000000000000000
+          Depth = 1.000000000000000000
+        end
+      end
     end
   end
   object ToolBar1: TToolBar
