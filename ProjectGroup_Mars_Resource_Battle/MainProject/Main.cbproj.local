@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2023.03.20 22:29:44.965,=C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\Unit2.cpp</Transaction>
+    <Transaction>2023.03.20 22:29:45.094,=C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2023.03.20 22:30:22.044,C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\MainPCH1.h=C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2023.03.20 22:30:22.050,C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\Main.cbproj=C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\Project1.cbproj</Transaction>
+    <Transaction>2023.03.20 22:30:33.894,C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\MainUnit.h=C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\Unit2.h</Transaction>
+    <Transaction>2023.03.20 22:30:33.894,C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\MainUnit.cpp=C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\Unit2.cpp</Transaction>
+    <Transaction>2023.03.20 22:30:33.894,C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\MainUnit.fmx=C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\Unit2.fmx</Transaction>
+    <Transaction>2023.03.20 22:46:33.908,D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\MainUnit.h=C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\MainUnit.h</Transaction>
+    <Transaction>2023.03.20 22:46:33.908,D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\MainUnit.cpp=C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\MainUnit.cpp</Transaction>
+    <Transaction>2023.03.20 22:46:33.908,D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\MainUnit.fmx=C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\MainUnit.fmx</Transaction>
+    <Transaction>2023.03.20 22:46:35.634,D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\MainPCH1.h=C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\MainPCH1.h</Transaction>
+    <Transaction>2023.03.20 22:46:36.884,D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\Main.cbproj=C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\Main.cbproj</Transaction>
+  </Transactions>
+</BorlandProject>

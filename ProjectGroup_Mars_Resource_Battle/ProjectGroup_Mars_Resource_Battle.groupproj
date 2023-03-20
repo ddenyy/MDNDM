@@ -3,7 +3,7 @@
         <ProjectGuid>{AFFAC193-E0E2-40A1-9309-08BD3E842D05}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="Maybe_3D\Maybe_3D.cbproj">
+        <Projects Include="MainProject\Main.cbproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -14,23 +14,23 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="Maybe_3D">
-        <MSBuild Projects="Maybe_3D\Maybe_3D.cbproj"/>
+    <Target Name="Main">
+        <MSBuild Projects="MainProject\Main.cbproj"/>
     </Target>
-    <Target Name="Maybe_3D:Clean">
-        <MSBuild Projects="Maybe_3D\Maybe_3D.cbproj" Targets="Clean"/>
+    <Target Name="Main:Clean">
+        <MSBuild Projects="MainProject\Main.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="Maybe_3D:Make">
-        <MSBuild Projects="Maybe_3D\Maybe_3D.cbproj" Targets="Make"/>
+    <Target Name="Main:Make">
+        <MSBuild Projects="MainProject\Main.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="Maybe_3D"/>
+        <CallTarget Targets="Main"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Maybe_3D:Clean"/>
+        <CallTarget Targets="Main:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Maybe_3D:Make"/>
+        <CallTarget Targets="Main:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

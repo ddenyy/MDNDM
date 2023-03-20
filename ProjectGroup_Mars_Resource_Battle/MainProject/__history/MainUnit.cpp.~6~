@@ -1,0 +1,29 @@
+﻿//---------------------------------------------------------------------------
+
+#include <fmx.h>
+#pragma hdrstop
+
+#include "MainUnit.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.fmx"
+TMainForm *MainForm;
+//---------------------------------------------------------------------------
+__fastcall TMainForm::TMainForm(TComponent* Owner)
+	: TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::RulesRectButClick(TObject *Sender)
+{
+    MainTabControl -> ActiveTab = RulesTab;
+    RulesMemo -> Text = "There is no rules!";
+}
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::AuthorsRectButClick(TObject *Sender)
+{
+    MainTabControl -> ActiveTab = AuthorsTab;
+    AuthorsMemo -> Text = "       ____()()\n      /      @@\n`~~~~~\_;m__m._>o";
+}
+//---------------------------------------------------------------------------
+

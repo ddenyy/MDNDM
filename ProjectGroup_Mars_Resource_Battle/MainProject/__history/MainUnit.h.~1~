@@ -1,0 +1,32 @@
+//---------------------------------------------------------------------------
+
+#ifndef MainUnitH
+#define MainUnitH
+//---------------------------------------------------------------------------
+#include <System.Classes.hpp>
+#include <FMX.Controls.hpp>
+#include <FMX.Forms.hpp>
+#include <FMX.Objects.hpp>
+#include <FMX.TabControl.hpp>
+#include <FMX.Types.hpp>
+//---------------------------------------------------------------------------
+class TMainForm : public TForm
+{
+__published:	// IDE-managed Components
+	TTabControl *MainTabControl;
+	TTabItem *StartTab;
+	TTabItem *GameTab;
+	TTabItem *RulesTab;
+	TTabItem *AuthorsTab;
+	TRoundRect *RulesRectBut;
+	TRectangle *BackGroundStartTabRect;
+	TRoundRect *GameRectBut;
+	TRoundRect *AuthorRectBut;
+private:	// User declarations
+public:		// User declarations
+	__fastcall TMainForm(TComponent* Owner);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TMainForm *MainForm;
+//---------------------------------------------------------------------------
+#endif
