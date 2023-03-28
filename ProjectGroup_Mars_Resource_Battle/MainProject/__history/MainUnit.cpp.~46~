@@ -98,6 +98,3 @@ void __fastcall TMainForm::Viewport3DKeyDown(TObject *Sender, WORD &Key, System:
 }
 //---------------------------------------------------------------------------
 
-
-
-

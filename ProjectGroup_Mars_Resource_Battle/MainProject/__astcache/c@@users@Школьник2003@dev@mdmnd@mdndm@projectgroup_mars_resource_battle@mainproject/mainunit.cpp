@@ -1,4 +1,4 @@
-﻿//---------------------------------------------------------------------------
+//---------------------------------------------------------------------------
 
 #include <fmx.h>
 #pragma hdrstop
@@ -97,7 +97,4 @@ void __fastcall TMainForm::Viewport3DKeyDown(TObject *Sender, WORD &Key, System:
         GroundXRotationDummy -> RotationAngle -> X += DeltaRotAngle;
 }
 //---------------------------------------------------------------------------
-
-
-
 
