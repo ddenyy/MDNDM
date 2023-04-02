@@ -20,6 +20,7 @@
 #include <FMX.Controls3D.hpp>
 #include <FMX.Objects3D.hpp>
 #include <System.Math.Vectors.hpp>
+#include <FMX.MaterialSources.hpp>
 //---------------------------------------------------------------------------
 class TMainForm : public TForm
 {
@@ -65,11 +66,17 @@ __published:	// IDE-managed Components
     //манекены для игроков, пока что два потом будет больше
 	TDummy *Player1Dummy;
 	TDummy *Player2Dummy;
+	TLightMaterialSource *LightMaterialSourceGround;
 
+//комменты по функциям в спп файле
 	void __fastcall RulesRectButClick(TObject *Sender);
 	void __fastcall AuthorsRectButClick(TObject *Sender);
 	void __fastcall GameRectButClick(TObject *Sender);
 	void __fastcall FormResize(TObject *Sender);
+	void __fastcall Viewport3DMouseWheel(TObject *Sender, TShiftState Shift, int WheelDelta,
+          bool &Handled);
+	void __fastcall Viewport3DKeyDown(TObject *Sender, WORD &Key, System::WideChar &KeyChar,
+          TShiftState Shift);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TMainForm(TComponent* Owner);

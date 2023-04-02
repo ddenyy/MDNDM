@@ -4,6 +4,8 @@
 #pragma hdrstop
 
 #include "MainUnit.h"
+#include "Additional_Libraries.h"
+#include "Classes/board.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.fmx"
@@ -41,6 +43,26 @@ void __fastcall TMainForm::AuthorsRectButClick(TObject *Sender)
 void __fastcall TMainForm::GameRectButClick(TObject *Sender)
 {
     MainTabControl -> ActiveTab = GameTab;
+
+    Board *Ground;
+    Ground = new Board (3, 3);
+
+    //Ground -> CreateBoard(GroundMainDummy, 2.0, 2.0);
+
+    int i, j, x, y;
+    for (i = 0, y = 2; i < 3; i++, y -= 2) {
+        for (j = 0, x = -2; j < 3; j++, x += 2) {
+            Ground -> Pole[i][j].ground = new TCube(GroundMainDummy);
+
+            Ground -> Pole[i][j].ground -> Parent = GroundMainDummy;
+            Ground -> Pole[i][j].ground -> Height = 0.25;
+            Ground -> Pole[i][j].ground -> Depth = 1.95;
+            Ground -> Pole[i][j].ground -> Width = 1.95;
+
+            Ground -> Pole[i][j].ground -> Position -> Z = y;
+            Ground -> Pole[i][j].ground -> Position -> X = x;
+        }
+    }
 }
 
 //---------------------------------------------------------------------------
@@ -97,4 +119,7 @@ void __fastcall TMainForm::Viewport3DKeyDown(TObject *Sender, WORD &Key, System:
         GroundXRotationDummy -> RotationAngle -> X += DeltaRotAngle;
 }
 //---------------------------------------------------------------------------
+
+
+
 
