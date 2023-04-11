@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.094,=C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.200,=D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\File1.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.969,=D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\main.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.165,=D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\Classes\Artifact.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.908,C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\MainUnit.cpp=D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\MainUnit.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.044,C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\Project1PCH1.h=C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\MainPCH1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.884,C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\Main.cbproj=D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\Main.cbproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.908,C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\MainUnit.h=D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\MainUnit.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.616,=D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\Board\board.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.441,D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\main.h=D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\Additional_Libraries.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.894,C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\Unit2.fmx=C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\MainUnit.fmx</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.908,C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\MainUnit.fmx=D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\MainUnit.fmx</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.894,C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\Unit2.h=C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\MainUnit.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.578,=D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\cell\Cell.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.634,C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\MainPCH1.h=D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\MainPCH1.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.050,C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\Project1.cbproj=C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\Main.cbproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.894,C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\Unit2.cpp=C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\MainUnit.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.965,=C:\Users\Mikhail\Documents\Embarcadero\Studio\Projects\Unit2.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.262,D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\Additional_Libraries.h=D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\Libraries.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.185,D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\Libraries.h=D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\Additional_Libraries.h</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.203,=D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\Classes\board.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.775,=D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\Artifact\Artifact.cpp</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.288,=D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\Classes\Cell.cpp</Transaction>
+    <Transaction>2023.04.02 22:30:13.923,=D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\File1.h</Transaction>
+    <Transaction>2023.04.02 22:30:24.577,D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\Board.h=D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\File1.h</Transaction>
+    <Transaction>2023.04.02 22:30:37.623,=D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\File1.h</Transaction>
+    <Transaction>2023.04.02 22:30:47.032,D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\Artifact.h=D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\File1.h</Transaction>
+    <Transaction>2023.04.02 22:30:57.647,=D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\File1.h</Transaction>
+    <Transaction>2023.04.02 22:31:04.663,D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\Cell.h=D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\File1.h</Transaction>
+    <Transaction>2023.04.02 22:31:19.307,D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\Classes\Artifact.h=D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\Artifact.h</Transaction>
+    <Transaction>2023.04.02 22:31:22.680,D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\Classes\Board.h=D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\Board.h</Transaction>
+    <Transaction>2023.04.02 22:31:25.474,D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\Classes\Cell.h=D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\Cell.h</Transaction>
+  </Transactions>
+</BorlandProject>
