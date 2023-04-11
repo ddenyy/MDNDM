@@ -5,7 +5,7 @@
 
 #include "MainUnit.h"
 #include "Additional_Libraries.h"
-#include "Classes/board.h"
+#include "Classes/Board.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.fmx"
@@ -15,6 +15,40 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
 	: TForm(Owner)
 {
 }
+
+class InterfaceCell
+{
+public:
+    TCube* cube;
+
+	void create_cube(TDummy*& RootDummy)
+    {
+        cube = new TCube(RootDummy);
+        cube -> Parent = RootDummy;
+        cube -> Height = 0.25;
+        cube -> Depth = 1.95;
+        cube -> Width = 1.95;
+    }
+
+    void set_size(float new_height, float new_depth, float new_width)
+    {
+        cube -> Height = new_height;
+        cube -> Depth = new_depth;
+        cube -> Width = new_width;
+    }
+
+    void set_position(float new_x, float new_y, float new_z)
+    {
+        cube -> Position -> X = new_x;
+        cube -> Position -> Y = new_y;
+        cube -> Position -> Z = new_z;
+    }
+
+    void set_material(TLightMaterialSource* Material)
+    {
+        cube -> MaterialSource = Material;
+    }
+};
 
 //---------------------------------------------------------------------------
 /*эта функция переключает вид на страничку с правилами и заполняет текстовое поле
@@ -42,25 +76,29 @@ void __fastcall TMainForm::AuthorsRectButClick(TObject *Sender)
 Функция назначена на прямоугольник*/
 void __fastcall TMainForm::GameRectButClick(TObject *Sender)
 {
+    //turn on game page
     MainTabControl -> ActiveTab = GameTab;
 
-    Board *Ground;
-    Ground = new Board (3, 3);
+    int board_height = 3, board_width = 3;
 
-    //Ground -> CreateBoard(GroundMainDummy, 2.0, 2.0);
+    vector <vector <InterfaceCell> > IBoard(board_height, vector <InterfaceCell>(board_width));
+    LogicBoard LBoard(board_height, board_width);
 
-    int i, j, x, y;
-    for (i = 0, y = 2; i < 3; i++, y -= 2) {
-        for (j = 0, x = -2; j < 3; j++, x += 2) {
-            Ground -> Pole[i][j].ground = new TCube(GroundMainDummy);
+    int i, j;
+    float curr_x, curr_z;
+    float sparse_coef = 2;//distance between two cell's centres
 
-            Ground -> Pole[i][j].ground -> Parent = GroundMainDummy;
-            Ground -> Pole[i][j].ground -> Height = 0.25;
-            Ground -> Pole[i][j].ground -> Depth = 1.95;
-            Ground -> Pole[i][j].ground -> Width = 1.95;
+    //creation of filed's image
+    for (i = 0, curr_z = sparse_coef; i < board_height; i++, curr_z -= sparse_coef) {
+        for (j = 0, curr_x = -sparse_coef; j < board_width; j++, curr_x += sparse_coef) {
+            IBoard[i][j].create_cube(GroundMainDummy);
+            IBoard[i][j].set_position(curr_x, 0.0, curr_z);
+            IBoard[i][j].set_material(LightMaterialSourceGround);
 
-            Ground -> Pole[i][j].ground -> Position -> Z = y;
-            Ground -> Pole[i][j].ground -> Position -> X = x;
+//            if (LBoard->field[i][j].get_type() == "Hill") {
+//                IBoard[i][j].set_size(HillSize);
+//            	  IBoard[i][j].set_material(HillMaterial);
+//            }
         }
     }
 }
@@ -90,10 +128,9 @@ void __fastcall TMainForm::Viewport3DMouseWheel(TObject *Sender, TShiftState Shi
     GroundMainDummy -> Scale -> Z += (WheelDelta * ScaleConst);
 }
 //---------------------------------------------------------------------------
-
-/*функция отвечает за повороты сцены в пространстве
-Привязана к viewport3d*/
-void __fastcall TMainForm::Viewport3DKeyDown(TObject *Sender, WORD &Key, System::WideChar &KeyChar,
+/*Field movement from keyboard*/
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::FormKeyDown(TObject *Sender, WORD &Key, System::WideChar &KeyChar,
           TShiftState Shift)
 {
     //магические константы, установленные экспериментально
@@ -119,7 +156,3 @@ void __fastcall TMainForm::Viewport3DKeyDown(TObject *Sender, WORD &Key, System:
         GroundXRotationDummy -> RotationAngle -> X += DeltaRotAngle;
 }
 //---------------------------------------------------------------------------
-
-
-
-

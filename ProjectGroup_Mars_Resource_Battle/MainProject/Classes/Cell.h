@@ -1,13 +1,13 @@
-#include "Artifact.h"
+ï»¿#include "Artifact.h"
 
-// êëàññ êëåòêè ïîëÿ, ïî êîòîðîé áóäåò õîäèòü ðîáîò
-class Cell
+// ÐºÐ»Ð°ÑÑ ÐºÐ»ÐµÑ‚ÐºÐ¸ Ð¿Ð¾Ð»Ñ, Ð¿Ð¾ ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð¹ Ð±ÑƒÐ´ÐµÑ‚ Ñ…Ð¾Ð´Ð¸Ñ‚ÑŒ Ñ€Ð¾Ð±Ð¾Ñ‚
+class LogicCell
 {
 
 public:
 
-	// êîíñòðóêòîð
-	Cell(string type_cell = "earth", int height_hill = 0, Artifact artifact = Artifact(0,0,0)) {
+	// ÐºÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€
+	LogicCell(string type_cell = "earth", int height_hill = 0, LogicArtifact artifact = LogicArtifact(0,0,0)) {
 		this->type_cell = type_cell;
 		this->height_hill = height_hill;
 		this->artifact = artifact;
@@ -20,29 +20,29 @@ public:
 //		delete &this->artifact;
 //	}
 
-	// âîçâðàùàåò òèï êëåòêè ïîëÿ
+	// Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ Ñ‚Ð¸Ð¿ ÐºÐ»ÐµÑ‚ÐºÐ¸ Ð¿Ð¾Ð»Ñ
 	string getType() {
 		return type_cell;
 	}
 
-	// âîçâðàùàåò âûñîòó êëåòêè ïîëÿ (ïî óìîë÷àíèþ 0, èíà÷å êëåòêà ñòåíà ñ âûñîòîé)
+	// Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ Ð²Ñ‹ÑÐ¾Ñ‚Ñƒ ÐºÐ»ÐµÑ‚ÐºÐ¸ Ð¿Ð¾Ð»Ñ (Ð¿Ð¾ ÑƒÐ¼Ð¾Ð»Ñ‡Ð°Ð½Ð¸ÑŽ 0, Ð¸Ð½Ð°Ñ‡Ðµ ÐºÐ»ÐµÑ‚ÐºÐ° ÑÑ‚ÐµÐ½Ð° Ñ Ð²Ñ‹ÑÐ¾Ñ‚Ð¾Ð¹)
 	int getHeightHill()
 	{
 		return height_hill;
 	}
 
-	// óñòàíàâëèâàåò â êëåòêó íîâûé àðòèôàêò
-	void setArtifact(Artifact new_artifact) {
+	// ÑƒÑÑ‚Ð°Ð½Ð°Ð²Ð»Ð¸Ð²Ð°ÐµÑ‚ Ð² ÐºÐ»ÐµÑ‚ÐºÑƒ Ð½Ð¾Ð²Ñ‹Ð¹ Ð°Ñ€Ñ‚Ð¸Ñ„Ð°ÐºÑ‚
+	void setArtifact(LogicArtifact new_artifact) {
 		this->artifact = new_artifact;
 	}
 
-	// óñòàíàâëèâàåò òèï êëåòêè
+	// ÑƒÑÑ‚Ð°Ð½Ð°Ð²Ð»Ð¸Ð²Ð°ÐµÑ‚ Ñ‚Ð¸Ð¿ ÐºÐ»ÐµÑ‚ÐºÐ¸
 	void setType(string type_cell)
 	{
 		this->type_cell = type_cell;
 	}
 
-	// åñëè êëåòêà òèïà õîëì, ìîæíî óñòàíîâèòü åé âûñîòó
+	// ÐµÑÐ»Ð¸ ÐºÐ»ÐµÑ‚ÐºÐ° Ñ‚Ð¸Ð¿Ð° Ñ…Ð¾Ð»Ð¼, Ð¼Ð¾Ð¶Ð½Ð¾ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ ÐµÐ¹ Ð²Ñ‹ÑÐ¾Ñ‚Ñƒ
 	void setHeight(int height_hill)
 	{
 		if (this->type_cell == "holm")
@@ -55,11 +55,9 @@ public:
 		}
 	}
 
-    TCube *ground;
-
 private:
 	string type_cell;
 	int height_hill;
-	Artifact artifact;
+	LogicArtifact artifact;
 
 };

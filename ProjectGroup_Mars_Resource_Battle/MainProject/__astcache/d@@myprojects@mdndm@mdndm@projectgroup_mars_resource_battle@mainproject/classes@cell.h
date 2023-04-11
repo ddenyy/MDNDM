@@ -1,13 +1,13 @@
 ﻿#include "Artifact.h"
 
 // класс клетки поля, по которой будет ходить робот
-class Cell
+class LogicCell
 {
 
 public:
 
 	// конструктор
-	Cell(string type_cell = "earth", int height_hill = 0, Artifact artifact = Artifact(0,0,0)) {
+	LogicCell(string type_cell = "earth", int height_hill = 0, LogicArtifact artifact = LogicArtifact(0,0,0)) {
 		this->type_cell = type_cell;
 		this->height_hill = height_hill;
 		this->artifact = artifact;
@@ -32,7 +32,7 @@ public:
 	}
 
 	// устанавливает в клетку новый артифакт
-	void setArtifact(Artifact new_artifact) {
+	void setArtifact(LogicArtifact new_artifact) {
 		this->artifact = new_artifact;
 	}
 
@@ -55,11 +55,9 @@ public:
 		}
 	}
 
-    TCube *ground;
-
 private:
 	string type_cell;
 	int height_hill;
-	Artifact artifact;
+	LogicArtifact artifact;
 
 };
