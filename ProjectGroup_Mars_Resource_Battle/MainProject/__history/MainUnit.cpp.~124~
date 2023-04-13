@@ -76,6 +76,7 @@ void __fastcall TMainForm::AuthorsRectButClick(TObject *Sender)
 Функция назначена на прямоугольник*/
 void __fastcall TMainForm::GameRectButClick(TObject *Sender)
 {
+    //turn on game page
     MainTabControl -> ActiveTab = GameTab;
 
     int board_height = 3, board_width = 3;
@@ -84,7 +85,8 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
     LogicBoard LBoard(board_height, board_width);
 
     int i, j;
-    float curr_x, curr_z, sparse_coef = 2;
+    float curr_x, curr_z;
+    float sparse_coef = 2;//distance between two cell's centres
 
     //creation of filed's image
     for (i = 0, curr_z = sparse_coef; i < board_height; i++, curr_z -= sparse_coef) {
@@ -92,6 +94,11 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
             IBoard[i][j].create_cube(GroundMainDummy);
             IBoard[i][j].set_position(curr_x, 0.0, curr_z);
             IBoard[i][j].set_material(LightMaterialSourceGround);
+
+//            if (LBoard->field[i][j].get_type() == "Hill") {
+//                IBoard[i][j].set_size(HillSize);
+//            	  IBoard[i][j].set_material(HillMaterial);
+//            }
         }
     }
 }
@@ -104,6 +111,15 @@ void __fastcall TMainForm::FormResize(TObject *Sender)
 {
 	CardsRect -> Height = MainForm -> Height * (1.0 / 6);
     DeckRect -> Width = MainForm -> Width * (1.0 / 6);
+
+    ScoreTB -> Height = 0.3 * (DeckRect -> Height - BackButGame ->Height);
+    StoreTB -> Height = 0.7 * (DeckRect -> Height - BackButGame ->Height);
+
+    ScoreLabel -> Height = 0.48 * ScoreTB -> Height;
+    ScoreValueLabel -> Height = 0.48 * ScoreTB -> Height;
+//
+//    StoreLabel -> Height = 0.3 * ScoreTB -> Height;
+//    StoreValueRect -> Height = 0.7 * ScoreTB -> Height;
 }
 
 //---------------------------------------------------------------------------

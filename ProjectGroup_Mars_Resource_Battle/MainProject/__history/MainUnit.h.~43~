@@ -3,44 +3,25 @@
 #ifndef MainUnitH
 #define MainUnitH
 //---------------------------------------------------------------------------
-//#include <System.Classes.hpp>
-//#include <FMX.Controls.hpp>
-//#include <FMX.Forms.hpp>
-//#include <FMX.Objects.hpp>
-//#include <FMX.TabControl.hpp>
-//#include <FMX.Types.hpp>
-//#include <FMX.Controls.Presentation.hpp>
-//#include <FMX.StdCtrls.hpp>
-//#include <FMX.Memo.hpp>
-//#include <FMX.Memo.Types.hpp>
-//#include <FMX.ScrollBox.hpp>
-//#include <FMX.Viewport3D.hpp>
-//#include <FMX.ActnList.hpp>
-//#include <System.Actions.hpp>
-//#include <FMX.Controls3D.hpp>
-//#include <FMX.Objects3D.hpp>
-//#include <System.Math.Vectors.hpp>
-//#include <FMX.MaterialSources.hpp>
-
-#include "Additional_Libraries.h"
-#include <FMX.ActnList.hpp>
+#include <System.Classes.hpp>
 #include <FMX.Controls.hpp>
-#include <FMX.Controls.Presentation.hpp>
-#include <FMX.Controls3D.hpp>
-#include <FMX.MaterialSources.hpp>
-#include <FMX.Memo.hpp>
-#include <FMX.Memo.Types.hpp>
+#include <FMX.Forms.hpp>
 #include <FMX.Objects.hpp>
-#include <FMX.Objects3D.hpp>
-#include <FMX.ScrollBox.hpp>
-#include <FMX.StdCtrls.hpp>
 #include <FMX.TabControl.hpp>
 #include <FMX.Types.hpp>
+#include <FMX.Controls.Presentation.hpp>
+#include <FMX.StdCtrls.hpp>
+#include <FMX.Memo.hpp>
+#include <FMX.Memo.Types.hpp>
+#include <FMX.ScrollBox.hpp>
 #include <FMX.Viewport3D.hpp>
+#include <FMX.ActnList.hpp>
 #include <System.Actions.hpp>
-#include <System.Classes.hpp>
+#include <FMX.Controls3D.hpp>
+#include <FMX.Objects3D.hpp>
 #include <System.Math.Vectors.hpp>
-
+#include <FMX.MaterialSources.hpp>
+#include <FMX.Types3D.hpp>
 //---------------------------------------------------------------------------
 class TMainForm : public TForm
 {
@@ -87,6 +68,12 @@ __published:	// IDE-managed Components
 	TDummy *Player1Dummy;
 	TDummy *Player2Dummy;
 	TLightMaterialSource *LightMaterialSourceGround;
+    //свет на 3д сцене
+	TLight *Light;
+	TToolBar *ScoreTB;
+	TToolBar *StoreTB;
+	TLabel *ScoreLabel;
+	TLabel *ScoreValueLabel;
 
 //комменты по функциям в спп файле
 	void __fastcall RulesRectButClick(TObject *Sender);
@@ -95,7 +82,7 @@ __published:	// IDE-managed Components
 	void __fastcall FormResize(TObject *Sender);
 	void __fastcall Viewport3DMouseWheel(TObject *Sender, TShiftState Shift, int WheelDelta,
           bool &Handled);
-	void __fastcall Viewport3DKeyDown(TObject *Sender, WORD &Key, System::WideChar &KeyChar,
+	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, System::WideChar &KeyChar,
           TShiftState Shift);
 private:	// User declarations
 public:		// User declarations

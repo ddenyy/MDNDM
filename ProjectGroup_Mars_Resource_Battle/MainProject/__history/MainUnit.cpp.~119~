@@ -76,6 +76,7 @@ void __fastcall TMainForm::AuthorsRectButClick(TObject *Sender)
 Функция назначена на прямоугольник*/
 void __fastcall TMainForm::GameRectButClick(TObject *Sender)
 {
+    //turn on game page
     MainTabControl -> ActiveTab = GameTab;
 
     int board_height = 3, board_width = 3;
@@ -84,34 +85,22 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
     LogicBoard LBoard(board_height, board_width);
 
     int i, j;
-    float curr_x, curr_z, sparse_coef = 2;
+    float curr_x, curr_z;
+    float sparse_coef = 2;//distance between two cell's centres
+
+    //creation of filed's image
     for (i = 0, curr_z = sparse_coef; i < board_height; i++, curr_z -= sparse_coef) {
         for (j = 0, curr_x = -sparse_coef; j < board_width; j++, curr_x += sparse_coef) {
             IBoard[i][j].create_cube(GroundMainDummy);
             IBoard[i][j].set_position(curr_x, 0.0, curr_z);
             IBoard[i][j].set_material(LightMaterialSourceGround);
+
+//            if (LBoard->field[i][j].get_type() == "Hill") {
+//                IBoard[i][j].set_size(HillSize);
+//            	  IBoard[i][j].set_material(HillMaterial);
+//            }
         }
     }
-
-//    Board *Ground;
-//    Ground = new Board (3, 3);
-//
-//    Ground -> CreateBoard(GroundMainDummy, 2.0, 2.0);
-
-//    int i, j, x, y;
-//    for (i = 0, y = 2; i < 3; i++, y -= 2) {
-//        for (j = 0, x = -2; j < 3; j++, x += 2) {
-//            Ground -> Pole[i][j].ground = new TCube(GroundMainDummy);
-//
-//            Ground -> Pole[i][j].ground -> Parent = GroundMainDummy;
-//            Ground -> Pole[i][j].ground -> Height = 0.25;
-//            Ground -> Pole[i][j].ground -> Depth = 1.95;
-//            Ground -> Pole[i][j].ground -> Width = 1.95;
-//
-//            Ground -> Pole[i][j].ground -> Position -> Z = y;
-//            Ground -> Pole[i][j].ground -> Position -> X = x;
-//        }
-//    }
 }
 
 //---------------------------------------------------------------------------
@@ -122,6 +111,15 @@ void __fastcall TMainForm::FormResize(TObject *Sender)
 {
 	CardsRect -> Height = MainForm -> Height * (1.0 / 6);
     DeckRect -> Width = MainForm -> Width * (1.0 / 6);
+
+    ScoreTB -> Height = 0.5 * (DeckRect -> Height - BackButGame ->Height);
+    StoreTB -> Height = 0.5 * (DeckRect -> Height - BackButGame ->Height);
+
+    ScoreLabel -> Height = 0.5 * ScoreTB -> Height;
+    ScoreValueLabel -> Height = 0.5 * ScoreTB -> Height;
+
+    StoreLabel -> Height = 0.25 * ScoreTB -> Height;
+    StoreValueRect -> Height = 0.72 * ScoreTB -> Height;
 }
 
 //---------------------------------------------------------------------------

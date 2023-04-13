@@ -70,6 +70,12 @@ __published:	// IDE-managed Components
 	TLightMaterialSource *LightMaterialSourceGround;
     //свет на 3д сцене
 	TLight *Light;
+	TToolBar *ScoreTB;
+	TToolBar *StoreTB;
+	TLabel *ScoreLabel;
+	TLabel *ScoreValueLabel;
+	TLabel *StoreLabel;
+	TRectangle *StoreValueRect;
 
 //комменты по функциям в спп файле
 	void __fastcall RulesRectButClick(TObject *Sender);

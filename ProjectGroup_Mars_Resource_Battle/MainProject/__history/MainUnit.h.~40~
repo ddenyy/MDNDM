@@ -70,6 +70,7 @@ __published:	// IDE-managed Components
 	TLightMaterialSource *LightMaterialSourceGround;
     //свет на 3д сцене
 	TLight *Light;
+	TRectangle *Rectangle1;
 
 //комменты по функциям в спп файле
 	void __fastcall RulesRectButClick(TObject *Sender);
@@ -78,8 +79,6 @@ __published:	// IDE-managed Components
 	void __fastcall FormResize(TObject *Sender);
 	void __fastcall Viewport3DMouseWheel(TObject *Sender, TShiftState Shift, int WheelDelta,
           bool &Handled);
-	void __fastcall Viewport3DKeyDown(TObject *Sender, WORD &Key, System::WideChar &KeyChar,
-          TShiftState Shift);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, System::WideChar &KeyChar,
           TShiftState Shift);
 private:	// User declarations
