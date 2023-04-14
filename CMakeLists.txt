@@ -1,9 +1,10 @@
 cmake_minimum_required(VERSION 3.23)
-project(MDNDM C)
+project(_)
 
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 20)
 
-include_directories(.)
-
-add_executable(MDNDM
-        artefact.h)
+add_executable(_ main.cpp
+                 rare.cpp
+                 usually.cpp
+                 frequent.cpp
+                 artefacts_randomization.cpp)

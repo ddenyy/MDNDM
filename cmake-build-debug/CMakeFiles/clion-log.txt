@@ -1,11 +1,4 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja -S /Users/zloy_31/Desktop/ProjectDan/MDNDM -B /Users/zloy_31/Desktop/ProjectDan/MDNDM/cmake-build-debug
--- The C compiler identification is AppleClang 14.0.0.14000029
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Check for working C compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc - skipped
--- Detecting C compile features
--- Detecting C compile features - done
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja -S "/Users/zloy_31/Desktop/Новая папка" -B "/Users/zloy_31/Desktop/Новая папка/cmake-build-debug"
 -- Configuring done
-CMake Error: CMake can not determine linker language for target: MDNDM
 -- Generating done
-CMake Generate step failed.  Build files cannot be regenerated correctly.
+-- Build files have been written to: /Users/zloy_31/Desktop/Новая папка/cmake-build-debug
