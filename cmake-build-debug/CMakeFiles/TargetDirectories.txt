@@ -1,0 +1,3 @@
+/Users/zloy_31/Desktop/ProjectDan/MDNDM/cmake-build-debug/CMakeFiles/MDNDM.dir
+/Users/zloy_31/Desktop/ProjectDan/MDNDM/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/zloy_31/Desktop/ProjectDan/MDNDM/cmake-build-debug/CMakeFiles/rebuild_cache.dir
