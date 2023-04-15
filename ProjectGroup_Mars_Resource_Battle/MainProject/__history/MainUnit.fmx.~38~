@@ -1,0 +1,317 @@
+object MainForm: TMainForm
+  Left = 0
+  Top = 0
+  Caption = 'Mars resource battle'
+  ClientHeight = 480
+  ClientWidth = 640
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnResize = FormResize
+  DesignerMasterStyle = 0
+  object MainTabControl: TTabControl
+    Align = Client
+    Size.Width = 640.000000000000000000
+    Size.Height = 480.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'tabcontrolstyle'
+    TabHeight = 49.000000000000000000
+    TabIndex = 1
+    TabOrder = 0
+    TabPosition = None
+    Sizes = (
+      640s
+      480s
+      640s
+      480s
+      640s
+      480s
+      640s
+      480s)
+    object StartTab: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 8.000000000000000000
+      Size.Height = 8.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
+      object BackGroundStartTabRect: TRectangle
+        Align = Client
+        Fill.Color = claSkyblue
+        Size.Width = 640.000000000000000000
+        Size.Height = 480.000000000000000000
+        Size.PlatformDefault = False
+        object GameRectBut: TRoundRect
+          Align = Center
+          Fill.Color = claBurlywood
+          Margins.Left = 1.000000000000000000
+          Margins.Top = 1.000000000000000000
+          Margins.Right = 1.000000000000000000
+          Margins.Bottom = 1.000000000000000000
+          Size.Width = 180.000000000000000000
+          Size.Height = 100.000000000000000000
+          Size.PlatformDefault = False
+          OnClick = GameRectButClick
+          object GameLabelBut: TLabel
+            Align = Center
+            StyledSettings = [Family, Style, FontColor]
+            Size.Width = 153.000000000000000000
+            Size.Height = 100.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.Size = 30.000000000000000000
+            TextSettings.HorzAlign = Center
+            Text = #1048#1075#1088#1072#1090#1100
+            TabOrder = 0
+          end
+          object RulesRectBut: TRoundRect
+            Fill.Color = claBurlywood
+            Margins.Left = 1.000000000000000000
+            Margins.Top = 1.000000000000000000
+            Margins.Right = 1.000000000000000000
+            Margins.Bottom = 1.000000000000000000
+            Position.X = -185.000000000000000000
+            Size.Width = 180.000000000000000000
+            Size.Height = 100.000000000000000000
+            Size.PlatformDefault = False
+            OnClick = RulesRectButClick
+            object RulesLabelBut: TLabel
+              Align = Center
+              StyledSettings = [Family, Style, FontColor]
+              Margins.Left = 1.000000000000000000
+              Margins.Top = 1.000000000000000000
+              Margins.Right = 1.000000000000000000
+              Margins.Bottom = 1.000000000000000000
+              Size.Width = 153.000000000000000000
+              Size.Height = 100.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Size = 30.000000000000000000
+              TextSettings.HorzAlign = Center
+              Text = #1055#1088#1072#1074#1080#1083#1072
+              TabOrder = 0
+            end
+          end
+          object AuthorsRectBut: TRoundRect
+            Fill.Color = claBurlywood
+            Margins.Left = 1.000000000000000000
+            Margins.Top = 1.000000000000000000
+            Margins.Right = 1.000000000000000000
+            Margins.Bottom = 1.000000000000000000
+            Position.X = 185.000000000000000000
+            Size.Width = 180.000000000000000000
+            Size.Height = 100.000000000000000000
+            Size.PlatformDefault = False
+            OnClick = AuthorsRectButClick
+            object AuthorsLabelBut: TLabel
+              Align = Center
+              StyledSettings = [Family, Style, FontColor]
+              Margins.Left = 1.000000000000000000
+              Margins.Top = 1.000000000000000000
+              Margins.Right = 1.000000000000000000
+              Margins.Bottom = 1.000000000000000000
+              Size.Width = 153.000000000000000000
+              Size.Height = 100.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.Font.Size = 30.000000000000000000
+              TextSettings.HorzAlign = Center
+              Text = #1054#1073' '#1072#1074#1090#1086#1088#1072#1093
+              TabOrder = 0
+            end
+          end
+        end
+      end
+    end
+    object GameTab: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = True
+      Size.Width = 8.000000000000000000
+      Size.Height = 8.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
+      object ViewPort3DToolBar: TToolBar
+        Align = Client
+        Size.Width = 540.000000000000000000
+        Size.Height = 400.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object Viewport3D: TViewport3D
+          Align = Client
+          Color = claSkyblue
+          Size.Width = 540.000000000000000000
+          Size.Height = 400.000000000000000000
+          Size.PlatformDefault = False
+          OnKeyDown = Viewport3DKeyDown
+          OnMouseWheel = Viewport3DMouseWheel
+          object GroundXRotationDummy: TDummy
+            Width = 1.000000000000000000
+            Height = 1.000000000000000000
+            Depth = 1.000000000000000000
+            object GroundMainDummy: TDummy
+              Width = 1.000000000000000000
+              Height = 1.000000000000000000
+              Depth = 1.000000000000000000
+            end
+          end
+          object ArtefactDummy: TDummy
+            Width = 1.000000000000000000
+            Height = 1.000000000000000000
+            Depth = 1.000000000000000000
+          end
+          object Player1Dummy: TDummy
+            Width = 1.000000000000000000
+            Height = 1.000000000000000000
+            Depth = 1.000000000000000000
+          end
+          object Player2Dummy: TDummy
+            Width = 1.000000000000000000
+            Height = 1.000000000000000000
+            Depth = 1.000000000000000000
+          end
+        end
+      end
+      object CardsRect: TRectangle
+        Align = Bottom
+        Position.Y = 400.000000000000000000
+        Sides = []
+        Size.Width = 640.000000000000000000
+        Size.Height = 80.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object DeckRect: TRectangle
+        Align = Right
+        Position.X = 540.000000000000000000
+        Sides = []
+        Size.Width = 100.000000000000000000
+        Size.Height = 400.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object BackButGame: TSpeedButton
+        Action = GoToStartTabAction
+        Anchors = [akTop, akRight]
+        Enabled = True
+        ImageIndex = -1
+        Position.X = 568.000000000000000000
+        Position.Y = 16.000000000000000000
+        Size.Width = 56.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'replytoolbutton'
+      end
+    end
+    object RulesTab: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 8.000000000000000000
+      Size.Height = 8.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
+      object BackGroundRulesTabRect: TRectangle
+        Align = Client
+        Fill.Color = claSkyblue
+        Size.Width = 640.000000000000000000
+        Size.Height = 480.000000000000000000
+        Size.PlatformDefault = False
+        object RulesMemo: TMemo
+          Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+          DataDetectorTypes = []
+          StyledSettings = [Family, Style, FontColor]
+          TextSettings.Font.Size = 30.000000000000000000
+          Align = Client
+          Margins.Left = 40.000000000000000000
+          Margins.Top = 60.000000000000000000
+          Margins.Right = 40.000000000000000000
+          Margins.Bottom = 35.000000000000000000
+          Size.Width = 560.000000000000000000
+          Size.Height = 385.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Viewport.Width = 560.000000000000000000
+          Viewport.Height = 385.000000000000000000
+        end
+      end
+      object BackButRules: TSpeedButton
+        Action = GoToStartTabAction
+        Anchors = [akTop, akRight]
+        Enabled = True
+        ImageIndex = -1
+        Position.X = 568.000000000000000000
+        Position.Y = 16.000000000000000000
+        Size.Width = 56.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'replytoolbutton'
+      end
+    end
+    object AuthorsTab: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 8.000000000000000000
+      Size.Height = 8.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
+      object BackGroundAuthorsTabRect: TRectangle
+        Align = Client
+        Fill.Color = claSkyblue
+        Size.Width = 640.000000000000000000
+        Size.Height = 480.000000000000000000
+        Size.PlatformDefault = False
+        object AuthorsMemo: TMemo
+          Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+          DataDetectorTypes = []
+          StyledSettings = [Family, Style, FontColor]
+          TextSettings.Font.Size = 30.000000000000000000
+          Align = Client
+          Margins.Left = 40.000000000000000000
+          Margins.Top = 60.000000000000000000
+          Margins.Right = 40.000000000000000000
+          Margins.Bottom = 35.000000000000000000
+          Size.Width = 560.000000000000000000
+          Size.Height = 385.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Viewport.Width = 560.000000000000000000
+          Viewport.Height = 385.000000000000000000
+        end
+      end
+      object BackButAuthors: TSpeedButton
+        Action = GoToStartTabAction
+        Anchors = [akTop, akRight]
+        Enabled = True
+        ImageIndex = -1
+        Position.X = 568.000000000000000000
+        Position.Y = 16.000000000000000000
+        Size.Width = 56.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'replytoolbutton'
+      end
+    end
+  end
+  object MainActionList: TActionList
+    Left = 568
+    Top = 424
+    object GoToStartTabAction: TChangeTabAction
+      Category = 'Tab'
+      Tab = StartTab
+    end
+  end
+end
