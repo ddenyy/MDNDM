@@ -1,41 +1,60 @@
-﻿#include "Artifact.h"
-
+﻿#include "./DanyaArtefact/artefact.h"
+#include "./DanyaArtefact/frequent.h"
+#include "./DanyaArtefact/rare.h"
+#include "./DanyaArtefact/usually.h"
 // класс клетки поля, по которой будет ходить робот
 class Cell
 {
-
 public:
 
-	// конструктор
-	Cell(string type_cell = "earth", int height_hill = 0, Artifact artifact = Artifact(0,0,0)) {
-		this->type_cell = type_cell;
-		this->height_hill = height_hill;
-		this->artifact = artifact;
-	};
+	Cell() {
+		type_cell = "earth";
 
-//	~Cell()
-//	{
-//		this->type_cell.clear();
-//		this->height_hill = 0;
-//		delete &this->artifact;
-//	}
+    }
 
 	// возвращает тип клетки поля
 	string getType() {
 		return type_cell;
 	}
-
 	// возвращает высоту клетки поля (по умолчанию 0, иначе клетка стена с высотой)
 	int getHeightHill()
 	{
 		return height_hill;
 	}
-
-	// устанавливает в клетку новый артифакт
-	void setArtifact(Artifact new_artifact) {
-		this->artifact = new_artifact;
+	string getTypeOfArtefact()
+	{
+		  if(is_rare_artefact)
+		  {
+			return "rare";
+		  }
+		  if (is_usually_artefact) {
+			return "usually";
+		  }
+		  if (is_frequent_artefact) {
+				return "frequent";
+		  }
 	}
-
+	// устанавливает в клетку новый артифакт типа rare
+	void setRareArtifact(rare new_artifact) {
+		this->rare_artefact = new_artifact;
+		is_rare_artefact = true;
+		is_usually_artefact = false;
+		is_frequent_artefact = false;
+	}
+	// устанавливает в клетку новый артифакт типа usually
+	void setUsuallyArtifact(usually new_artifact) {
+		this->usually_artefact = new_artifact;
+		is_rare_artefact = false;
+		is_usually_artefact = true;
+		is_frequent_artefact = false;
+	}
+	// устанавливает в клетку новый артифакт типа frequents
+	void setFrequentArtifact(frequent new_artifact) {
+		this->frequent_artefact = new_artifact;
+		is_rare_artefact = false;
+		is_usually_artefact = false;
+		is_frequent_artefact = true;
+	}
 	// устанавливает тип клетки
 	void setType(string type_cell)
 	{
@@ -45,7 +64,7 @@ public:
 	// если клетка типа холм, можно установить ей высоту
 	void setHeight(int height_hill)
 	{
-		if (this->type_cell == "holm")
+		if (this->type_cell == "hill")
 		{
 			this->height_hill = height_hill;
 		}
@@ -55,11 +74,18 @@ public:
 		}
 	}
 
-    TCube *ground;
+	TCube *ground;
 
 private:
 	string type_cell;
 	int height_hill;
-	Artifact artifact;
+	// лысый писал классы с маленькой буквы rare usually frequent
+	rare rare_artefact;
+	usually usually_artefact;
+	frequent frequent_artefact;
+	// костыль чтобы определять какой артефакт лежит в клетке
+	bool is_rare_artefact = false;
+	bool is_usually_artefact = false;
+	bool is_frequent_artefact = false;
 
 };

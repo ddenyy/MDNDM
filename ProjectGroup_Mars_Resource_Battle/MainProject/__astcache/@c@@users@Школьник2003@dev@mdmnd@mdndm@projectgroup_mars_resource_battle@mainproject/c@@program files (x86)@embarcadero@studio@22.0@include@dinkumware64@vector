@@ -1,4 +1,4 @@
-// vector standard header
+﻿// vector standard header
 #ifndef _VECTOR_
 #define _VECTOR_
 #include <stdexcept>

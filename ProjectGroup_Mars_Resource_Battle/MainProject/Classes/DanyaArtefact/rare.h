@@ -41,7 +41,11 @@ public:
 		_lifetime = 0;
 		_buff_lifting = 0;
 	}
-    void print();
+    // вывод для проверки
+	void print() {
+		cout << "Редкость : "<< _availability << "\n";
+		cout << "Координаты : " << _cord_x << " ; " << _cord_y << "\n";
+	}
 
     int lifetime() { return _lifetime; }
     int buff_lifting() { return _buff_lifting; }

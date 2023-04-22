@@ -2,41 +2,19 @@
 #include "./DanyaArtefact/frequent.h"
 #include "./DanyaArtefact/rare.h"
 #include "./DanyaArtefact/usually.h"
-
 // класс клетки поля, по которой будет ходить робот
 class Cell
 {
-
 public:
 
-	// конструктор для rare
-	Cell(string type_cell = "earth", int height_hill = 0, rare item = rare()) {
-		this->type_cell = type_cell;
-		this->height_hill = height_hill;
-		this->rare_artefact = item;
-		is_rare_artefact = true;
-	};
-
-	// конструктор для usually
-	Cell(string type_cell = "earth", int height_hill = 0, usually item = usually()) {
-		this->type_cell = type_cell;
-		this->height_hill = height_hill;
-		this->usually_artefact = item;
-		is_usually_artefact = true;
-	};
-	// конструктор для frequent
-	Cell(string type_cell = "earth", int height_hill = 0, frequent item = frequent()) {
-		this->type_cell = type_cell;
-		this->height_hill = height_hill;
-		this->frequent_artefact = item;
-		is_frequent_artefact = true;
-	};
+	Cell() {
+		type_cell = "earth";
+	}
 
 	// возвращает тип клетки поля
 	string getType() {
 		return type_cell;
 	}
-
 	// возвращает высоту клетки поля (по умолчанию 0, иначе клетка стена с высотой)
 	int getHeightHill()
 	{
@@ -50,22 +28,19 @@ public:
 			return "rare";
 		  }
 		  if (is_usually_artefact) {
-			return "usually"
+			return "usually";
 		  }
 		  if (is_frequent_artefact) {
 				return "frequent";
 		  }
 	}
-
 	// устанавливает в клетку новый артифакт типа rare
 	void setRareArtifact(rare new_artifact) {
 		this->rare_artefact = new_artifact;
 		is_rare_artefact = true;
 		is_usually_artefact = false;
 		is_frequent_artefact = false;
-
 	}
-
 	// устанавливает в клетку новый артифакт типа usually
 	void setUsuallyArtifact(usually new_artifact) {
 		this->usually_artefact = new_artifact;
@@ -80,7 +55,6 @@ public:
 		is_usually_artefact = false;
 		is_frequent_artefact = true;
 	}
-
 	// устанавливает тип клетки
 	void setType(string type_cell)
 	{
@@ -100,7 +74,7 @@ public:
 		}
 	}
 
-    TCube *ground;
+	TCube *ground;
 
 private:
 	string type_cell;
@@ -109,12 +83,9 @@ private:
 	rare rare_artefact;
 	usually usually_artefact;
 	frequent frequent_artefact;
-
 	// костыль чтобы определять какой артефакт лежит в клетке
 	bool is_rare_artefact = false;
 	bool is_usually_artefact = false;
 	bool is_frequent_artefact = false;
-
-
 
 };

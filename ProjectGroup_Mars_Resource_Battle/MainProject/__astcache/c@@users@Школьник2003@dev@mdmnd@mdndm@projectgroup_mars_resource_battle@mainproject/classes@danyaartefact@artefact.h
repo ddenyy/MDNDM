@@ -1,6 +1,5 @@
-#pragma once
-#include <string>
-#include <vector>
+﻿#pragma once
+#include "../../Additional_Libraries.h"
 
 using namespace std;
 
@@ -20,7 +19,7 @@ protected:
 public:
     virtual ~artefact() = default;
 
-    // сеттеры
+	// геттеры
     int cord_x() { return _cord_x; }
     int cord_y() { return _cord_y; }
     int weight() { return _weight; }
@@ -28,7 +27,7 @@ public:
     string availability() { return _availability; }
     string colour() { return _colour; }
 
-    // геттеры
+    // сетеры
     void set_cord_x(int cord_x) { _cord_x = cord_x; }
     void set_cord_y(int cord_y) { _cord_y = cord_y; }
     void set_weight(int weight) { _weight = weight; }
