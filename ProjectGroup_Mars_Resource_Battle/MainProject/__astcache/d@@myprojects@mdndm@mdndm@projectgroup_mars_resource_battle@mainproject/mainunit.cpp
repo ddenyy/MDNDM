@@ -6,6 +6,7 @@
 #include "MainUnit.h"
 #include "Additional_Libraries.h"
 #include "Classes/Board.h"
+#include "Classes/Cards.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.fmx"
@@ -47,6 +48,87 @@ public:
     void set_material(TLightMaterialSource* Material)
     {
         cube -> MaterialSource = Material;
+    }
+};
+
+class InterfaceCard
+{
+public:
+    TRoundRect* rorect;
+    TLabel* sign;
+
+    void create_rorect(TRectangle *& RootRect, TLabel * RootLabel)
+    {
+        rorect = new TRoundRect (RootRect);
+        rorect -> Parent = RootRect;
+        rorect -> Height = RootRect -> Height * 0.8;
+        rorect -> Width = RootRect -> Width * 0.125 * 0.85;
+        rorect -> Fill -> Kind = TBrushKind::Solid;
+
+        sign = new TLabel (rorect);
+        sign -> Parent = rorect;
+        sign -> Align = TAlignLayout::Center;
+        sign -> Height = rorect -> Width;
+        sign -> Width = rorect -> Width;
+        sign -> Text = "";
+        sign -> StyledSettings = RootLabel -> StyledSettings;
+        sign -> Font -> Size = 50;
+        sign -> TextSettings -> HorzAlign = TTextAlign::Center;
+        sign -> TextSettings -> VertAlign = TTextAlign::Center;
+    }
+
+    void set_position(float new_x, float new_y)
+    {
+        rorect -> Position -> X = new_x;
+        rorect -> Position -> Y = new_y;
+    }
+
+    void set_command(string command)
+    {
+        if (command == "stepOne") {
+            sign -> Text = "S";
+            rorect -> Fill -> Color = (TColor)RGB(65, 105, 255);
+        }
+        if (command == "stepToStop") {
+            sign -> Text = "M";
+            rorect -> Fill -> Color = (TColor)RGB(255, 215, 0);
+        }
+        if (command == "jump") {
+            sign -> Text = "J";
+            rorect -> Fill -> Color = (TColor)RGB(255, 140, 0);
+        }
+        if (command == "left") {
+            sign -> Text = "L";
+            rorect -> Fill -> Color = (TColor)RGB(176, 224, 230);
+        }
+        if (command == "right") {
+            sign -> Text = "R";
+            rorect -> Fill -> Color = (TColor)RGB(176, 224, 230);
+        }
+        if (command == "back") {
+            sign -> Text = "B";
+            rorect -> Fill -> Color = (TColor)RGB(30, 144, 255);
+        }
+        if (command == "teleportForOne") {
+            sign -> Text = "T1";
+            rorect -> Fill -> Color = (TColor)RGB(152, 251, 152);
+        }
+        if (command == "teleportForFive") {
+            sign -> Text = "T2";
+            rorect -> Fill -> Color = (TColor)RGB(0, 255, 127);
+        }
+        if (command == "teleportForSeven") {
+            sign -> Text = "T3";
+            rorect -> Fill -> Color = (TColor)RGB(60, 179, 113);
+        }
+        if (command == "setTrap") {
+            sign -> Text = "D";
+            rorect -> Fill -> Color = (TColor)RGB(205, 92, 92);
+        }
+        if (command == "activateTrap") {
+            sign -> Text = "K";
+            rorect -> Fill -> Color = (TColor)RGB(178, 34, 34);
+        }
     }
 };
 
@@ -101,6 +183,26 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
 //            }
         }
     }
+
+    //создание карт
+    DECK Deck;
+    Deck.formDeck(7);
+    Deck.shuffleDeck();
+
+    vector <InterfaceCard> CardsInHand(7);
+
+    sparse_coef = CardsRect -> Width * (1.0 / 7);
+    for (i = 0, curr_x = 5; i < CardsInHand.size(); i++, curr_x += sparse_coef) {
+        CardsInHand[i].create_rorect(CardsRect, StoreLabel);
+        CardsInHand[i].set_position(curr_x, 0);
+        CardsInHand[i].rorect -> Align = TAlignLayout::Vertical;
+    }
+
+    for (i = 0; i < CardsInHand.size(); i++) {
+        CardsInHand[i].set_command(Deck.takeCard());
+    }
+
+//    CardsRect -> Fill -> Color = DeckRect -> Fill -> Color;
 }
 
 //---------------------------------------------------------------------------
@@ -112,12 +214,12 @@ void __fastcall TMainForm::FormResize(TObject *Sender)
 	CardsRect -> Height = MainForm -> Height * (1.0 / 6);
     DeckRect -> Width = MainForm -> Width * (1.0 / 6);
 
+    //меняются объекты на DeckRect
+    //вывод параметров робота
     ScoreTB -> Height = 0.3 * (DeckRect -> Height - BackButGame ->Height);
     StoreTB -> Height = 0.7 * (DeckRect -> Height - BackButGame ->Height);
-
     ScoreLabel -> Height = 0.48 * ScoreTB -> Height;
     ScoreValueLabel -> Height = 0.48 * ScoreTB -> Height;
-
     StoreLabel -> Height = 0.28 * StoreTB -> Height;
     StoreValueRect -> Height = 0.68 * StoreTB -> Height;
 }
@@ -165,3 +267,4 @@ void __fastcall TMainForm::FormKeyDown(TObject *Sender, WORD &Key, System::WideC
         GroundXRotationDummy -> RotationAngle -> X += DeltaRotAngle;
 }
 //---------------------------------------------------------------------------
+

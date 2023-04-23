@@ -70,6 +70,7 @@ __published:	// IDE-managed Components
 	TLightMaterialSource *LightMaterialSourceGround;
     //свет на 3д сцене
 	TLight *Light;
+    //разметка и компоненты для вывода параметров робота(очки, хранилище)
 	TToolBar *ScoreTB;
 	TToolBar *StoreTB;
 	TLabel *ScoreLabel;
