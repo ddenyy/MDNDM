@@ -6,6 +6,7 @@
 #include "MainUnit.h"
 #include "Additional_Libraries.h"
 #include "Classes/Board.h"
+#include "Classes/Cards.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.fmx"
@@ -47,6 +48,35 @@ public:
     void set_material(TLightMaterialSource* Material)
     {
         cube -> MaterialSource = Material;
+    }
+};
+
+class InterfaceCard
+{
+public:
+    TRoundRect* rorect;
+    TLabel* sign;
+
+    void create_rorect(TRectangle *& RootRect)
+    {
+        rorect = new TRoundRect (RootRect);
+        rorect -> Parent = RootRect;
+        rorect -> Height = RootRect -> Height * 0.8;
+        rorect -> Width = RootRect -> Width * 0.125 * 0.85;
+
+        sign = new TLabel (rorect);
+        sign -> Parent = rorect;
+        sign -> Align = TAlignLayout::Center;
+        sign -> Height = rorect -> Width;
+        sign -> Width = rorect -> Width;
+        sign -> Text = "";
+        sign -> StyleLookup = "buttonstylelabel";
+    }
+
+    void set_position(float new_x, float new_y)
+    {
+        rorect -> Position -> X = new_x;
+        rorect -> Position -> Y = new_y;
     }
 };
 
@@ -102,7 +132,18 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
         }
     }
 
+    //создание карт
+    DECK Deck;
+    Deck.formDeck(1);
 
+    vector <InterfaceCard> CardsInHand(7);
+
+    sparse_coef = CardsRect -> Width * 0.125;
+    for (i = 0, curr_x = sparse_coef; i < CardsInHand.size(); i++, curr_x += sparse_coef) {
+        CardsInHand[i].create_rorect(CardsRect);
+        CardsInHand[i].set_position(curr_x, 0);
+        CardsInHand[i].rorect -> Align = TAlignLayout::Vertical;
+    }
 }
 
 //---------------------------------------------------------------------------

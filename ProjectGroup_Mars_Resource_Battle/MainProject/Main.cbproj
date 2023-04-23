@@ -251,6 +251,9 @@
         <None Include="Classes\Board.h">
             <BuildOrder>7</BuildOrder>
         </None>
+        <None Include="Classes\Cards.h">
+            <BuildOrder>7</BuildOrder>
+        </None>
         <None Include="Classes\Cell.h">
             <BuildOrder>9</BuildOrder>
         </None>

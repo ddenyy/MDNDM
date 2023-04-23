@@ -64,6 +64,7 @@ object MainForm: TMainForm
             Size.Width = 153.000000000000000000
             Size.Height = 100.000000000000000000
             Size.PlatformDefault = False
+            StyleLookup = 'buttonstylelabel'
             TextSettings.Font.Size = 30.000000000000000000
             TextSettings.HorzAlign = Center
             Text = #1048#1075#1088#1072#1090#1100
