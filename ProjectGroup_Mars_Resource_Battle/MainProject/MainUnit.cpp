@@ -38,6 +38,11 @@ public:
         cube -> Width = new_width;
     }
 
+    void set_height(float new_height)
+    {
+        cube -> Height = new_height;
+    }
+
     void set_position(float new_x, float new_y, float new_z)
     {
         cube -> Position -> X = new_x;
@@ -161,26 +166,40 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
     //turn on game page
     MainTabControl -> ActiveTab = GameTab;
 
-    int board_height = 3, board_width = 3;
+    int board_height = 20, board_width = 20;
 
+    //интерфейс поля
     vector <vector <InterfaceCell> > IBoard(board_height, vector <InterfaceCell>(board_width));
+
+    //логика поля
     LogicBoard LBoard(board_height, board_width);
+    LBoard.generateAllHills();
 
     int i, j;
-    float curr_x, curr_z;
+    float curr_x, curr_z, start_x, start_z;
     float sparse_coef = 2;//distance between two cell's centres
 
+    if (board_height % 2 == 0) {
+        start_x = -0.5 * 1.95 - (float)((float)board_height * 0.5 - 1) * (1.95 + 0.05);
+        start_z = -start_x;
+    }
+    else
+    {
+        start_x = -0.05 - 1.95 - (float)((float)(board_height - 1) * 0.5 - 1) * (1.95 + 0.05);
+        start_z = -start_x;
+    }
+
     //creation of filed's image
-    for (i = 0, curr_z = sparse_coef; i < board_height; i++, curr_z -= sparse_coef) {
-        for (j = 0, curr_x = -sparse_coef; j < board_width; j++, curr_x += sparse_coef) {
+    for (i = 0, curr_z = start_z; i < board_height; i++, curr_z -= sparse_coef) {
+        for (j = 0, curr_x = start_x; j < board_width; j++, curr_x += sparse_coef) {
             IBoard[i][j].create_cube(GroundMainDummy);
             IBoard[i][j].set_position(curr_x, 0.0, curr_z);
             IBoard[i][j].set_material(LightMaterialSourceGround);
 
-//            if (LBoard->field[i][j].get_type() == "Hill") {
-//                IBoard[i][j].set_size(HillSize);
-//            	  IBoard[i][j].set_material(HillMaterial);
-//            }
+            if (LBoard.field[i][j].getHeightHill() != 0) {
+                IBoard[i][j].set_height(LBoard.field[i][j].getHeightHill());
+                //IBoard[i][j].set_material(HillMaterial);
+            }
         }
     }
 
@@ -198,6 +217,8 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
         CardsInHand[i].create_rorect(CardsRect, StoreLabel);
         CardsInHand[i].set_position(curr_x, 0);
         CardsInHand[i].rorect -> Align = TAlignLayout::Vertical;
+        CardsInHand[i].rorect -> Margins -> Bottom = 5;
+        CardsInHand[i].rorect -> Margins -> Top = 5;
     }
 
     for (i = 0; i < CardsInHand.size(); i++) {
