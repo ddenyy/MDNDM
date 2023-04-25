@@ -2,23 +2,23 @@
 #include <cstdio>
 class Robot {
 public:
-    // Конструктор класса
+    // ┼а┬о┬н├б├в├а├г┬к├в┬о├а ┬к┬л┬а├б├б┬а
     Robot(double startX = 0, double startY = 0, double startZ = 0) : x(startX), y(startY), z(startZ) {}
 
-    // Методы перемещения робота
+    // ┼Т┬е├в┬о┬д├л ┬п┬е├а┬е┬м┬е├й┬е┬н┬и├п ├а┬о┬б┬о├в┬а
     void moveX(double distance) { x += distance; }
     void moveY(double distance) { y += distance; }
     void moveZ(double distance) { z += distance; }
 
-    // Метод получения текущей позиции робота
+    // ┼Т┬е├в┬о┬д ┬п┬о┬л├г├з┬е┬н┬и├п ├в┬е┬к├г├й┬е┬й ┬п┬о┬з┬и├ж┬и┬и ├а┬о┬б┬о├в┬а
     void getPosition(double &posX, double &posY, double &posZ) { posX = x; posY = y; posZ = z; }
-    // атака
+    // ┬а├в┬а┬к┬а
     void attack(Robot& enemy) {
     }
     float getHealthPercent(double health) {
         return (float)health / 100.0f * 100.0f;
     }
-    // Метод выполнения команд
+    // ┼Т┬е├в┬о┬д ┬в├л┬п┬о┬л┬н┬е┬н┬и├п ┬к┬о┬м┬а┬н┬д
     void executeCommand(std::string command) {
         if (command == "moveUp") {
             moveZ(1);
@@ -39,16 +39,16 @@ public:
             moveY(-1);
         }
         if (command == "attack_him"){
-            //атака
+            //┬а├в┬а┬к┬а
         }
         if (command == "get_health"){
             getHealthPercent(NULL);
         }
-        // Добавление других команд
+        // тАЮ┬о┬б┬а┬в┬л┬е┬н┬и┬е ┬д├а├г┬г┬и├е ┬к┬о┬м┬а┬н┬д
         //...
     }
 private:
-    double x, y, z; // Координаты робота в трехмерном пространстве
+    double x, y, z; // ┼а┬о┬о├а┬д┬и┬н┬а├в├л ├а┬о┬б┬о├в┬а ┬в ├в├а┬е├е┬м┬е├а┬н┬о┬м ┬п├а┬о├б├в├а┬а┬н├б├в┬в┬е
 };
 int main() {
     ios_base::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
