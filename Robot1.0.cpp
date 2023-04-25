@@ -38,10 +38,10 @@ public:
         else if (command == "moveBackward") {
             moveY(-1);
         }
-        if (command == "attack_him"){
+        if (command == "attackHim"){
             // â ª 
         }
-        if (command == "get_health"){
+        if (command == "getHealth"){
             getHealthPercent(NULL);
         }
         // „®¡ ¢«¥­¨¥ ¤àã£¨å ª®¬ ­¤
