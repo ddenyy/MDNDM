@@ -189,22 +189,21 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
     Deck.formDeck(7);
     Deck.shuffleDeck();
 
-    vector <InterfaceCard> CardsInHand(7);
+//    vector <InterfaceCard> CardsInHand(7);
+//
+//    sparse_coef = CardsRect -> Width * (1.0 / 7);
+//    for (i = 0, curr_x = 5; i < CardsInHand.size(); i++, curr_x += sparse_coef) {
+//        CardsInHand[i].create_rorect(CardsRect, StoreLabel);
+//        CardsInHand[i].set_position(curr_x, 0);
+//        CardsInHand[i].rorect -> Align = TAlignLayout::Vertical;
+//    }
+//
+//    for (i = 0; i < CardsInHand.size(); i++) {
+//        CardsInHand[i].set_command(Deck.takeCard());
+//    }
 
-    sparse_coef = CardsRect -> Width * (1.0 / 7);
-    for (i = 0, curr_x = 5; i < CardsInHand.size(); i++, curr_x += sparse_coef) {
-        CardsInHand[i].create_rorect(CardsRect, StoreLabel);
-        CardsInHand[i].set_position(curr_x, 0);
-        CardsInHand[i].rorect -> Align = TAlignLayout::Vertical;
-    }
-
-    for (i = 0; i < CardsInHand.size(); i++) {
-        CardsInHand[i].set_command(Deck.takeCard());
-    }
-
-    //CardsRect -> Fill -> Color = TBrush::Color->	Aqua;
-
-    //ShowMessage((CardsInHand[0].sign -> Width));
+    CardsRect -> Fill -> Kind = TBrushKind::Solid;
+    CardsRect -> Fill -> Color = claAntiquewhite;
 }
 
 //---------------------------------------------------------------------------

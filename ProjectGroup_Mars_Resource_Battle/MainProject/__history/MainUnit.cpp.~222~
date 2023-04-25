@@ -202,7 +202,7 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
         CardsInHand[i].set_command(Deck.takeCard());
     }
 
-    CardsRect -> Fill -> Color = DeckRect -> Fill -> Color;
+    CardsRect -> Fill -> Color = claAntiquewhite;
 }
 
 //---------------------------------------------------------------------------

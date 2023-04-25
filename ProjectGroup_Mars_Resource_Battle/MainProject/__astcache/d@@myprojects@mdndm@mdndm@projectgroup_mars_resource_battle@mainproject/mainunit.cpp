@@ -87,47 +87,47 @@ public:
     {
         if (command == "stepOne") {
             sign -> Text = "S";
-            rorect -> Fill -> Color = (TColor)RGB(65, 105, 255);
+            rorect -> Fill -> Color = claRoyalblue;
         }
         if (command == "stepToStop") {
             sign -> Text = "M";
-            rorect -> Fill -> Color = (TColor)RGB(255, 215, 0);
+            rorect -> Fill -> Color = claGold;
         }
         if (command == "jump") {
             sign -> Text = "J";
-            rorect -> Fill -> Color = (TColor)RGB(255, 140, 0);
+            rorect -> Fill -> Color = claDarkorange;
         }
         if (command == "left") {
             sign -> Text = "L";
-            rorect -> Fill -> Color = (TColor)RGB(176, 224, 230);
+            rorect -> Fill -> Color = claLightskyblue;
         }
         if (command == "right") {
             sign -> Text = "R";
-            rorect -> Fill -> Color = (TColor)RGB(176, 224, 230);
+            rorect -> Fill -> Color = claLightskyblue;
         }
         if (command == "back") {
             sign -> Text = "B";
-            rorect -> Fill -> Color = (TColor)RGB(30, 144, 255);
+            rorect -> Fill -> Color = claLightskyblue;
         }
         if (command == "teleportForOne") {
             sign -> Text = "T1";
-            rorect -> Fill -> Color = (TColor)RGB(152, 251, 152);
+            rorect -> Fill -> Color = claLightgreen;
         }
         if (command == "teleportForFive") {
             sign -> Text = "T2";
-            rorect -> Fill -> Color = (TColor)RGB(0, 255, 127);
+            rorect -> Fill -> Color = claMediumseagreen;
         }
         if (command == "teleportForSeven") {
             sign -> Text = "T3";
-            rorect -> Fill -> Color = (TColor)RGB(60, 179, 113);
+            rorect -> Fill -> Color = claDarkgreen;
         }
         if (command == "setTrap") {
             sign -> Text = "D";
-            rorect -> Fill -> Color = (TColor)RGB(205, 92, 92);
+            rorect -> Fill -> Color = claCrimson;
         }
         if (command == "activateTrap") {
             sign -> Text = "K";
-            rorect -> Fill -> Color = (TColor)RGB(178, 34, 34);
+            rorect -> Fill -> Color = claDarkred;
         }
     }
 };
@@ -186,12 +186,14 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
 
     //создание карт
     DECK Deck;
-    Deck.formDeck(7);
+    int num_of_cards;
+    num_of_cards = 7;
+    Deck.formDeck(num_of_cards);
     Deck.shuffleDeck();
 
-    vector <InterfaceCard> CardsInHand(7);
+    vector <InterfaceCard> CardsInHand(num_of_cards);
 
-    sparse_coef = CardsRect -> Width * (1.0 / 7);
+    sparse_coef = CardsRect -> Width * (1.0 / num_of_cards);
     for (i = 0, curr_x = 5; i < CardsInHand.size(); i++, curr_x += sparse_coef) {
         CardsInHand[i].create_rorect(CardsRect, StoreLabel);
         CardsInHand[i].set_position(curr_x, 0);
@@ -201,8 +203,6 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
     for (i = 0; i < CardsInHand.size(); i++) {
         CardsInHand[i].set_command(Deck.takeCard());
     }
-
-//    CardsRect -> Fill -> Color = DeckRect -> Fill -> Color;
 }
 
 //---------------------------------------------------------------------------

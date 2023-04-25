@@ -190,12 +190,13 @@ object MainForm: TMainForm
       end
       object CardsRect: TRectangle
         Align = Bottom
-        Fill.Color = claAntiquewhite
+        Fill.Color = claBurlywood
         Position.Y = 560.000000000000000000
         Sides = []
         Size.Width = 720.000000000000000000
         Size.Height = 80.000000000000000000
         Size.PlatformDefault = False
+        Stroke.Color = claAntiquewhite
       end
       object DeckRect: TRectangle
         Align = Right

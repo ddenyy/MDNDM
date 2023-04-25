@@ -190,15 +190,17 @@ object MainForm: TMainForm
       end
       object CardsRect: TRectangle
         Align = Bottom
-        Fill.Color = claGray
+        Fill.Color = claAntiquewhite
         Position.Y = 560.000000000000000000
         Sides = []
         Size.Width = 720.000000000000000000
         Size.Height = 80.000000000000000000
         Size.PlatformDefault = False
+        Stroke.Color = claAntiquewhite
       end
       object DeckRect: TRectangle
         Align = Right
+        Fill.Color = claAntiquewhite
         Position.X = 620.000000000000000000
         Sides = []
         Size.Width = 100.000000000000000000
