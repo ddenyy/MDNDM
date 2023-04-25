@@ -4,12 +4,12 @@ using namespace std;
 
 class Robot {
 private:
-    double x, y, z; // ª®®à¤¨­ âë à®¡®â 
-    int health; // §¤®à®¢ì¥ à®¡®â 
-    int artifacts; // ª®«¨ç¥áâ¢® á®¡à ­­ëå  àâ¥ä ªâ®¢
-    double trap_x, trap_y, trap_z; // ª®®à¤¨­ âë «®¢ãèª¨
+    double x, y, z; // координаты робота
+    int health; // здоровье робота
+    int artifacts;// количество собранных артефактов
+    double trap_x, trap_y, trap_z; // координаты ловушки
 public:
-    Robot(double x0, double y0, double z0, int health0) { // ª®­áâàãªâ®à á ¯ à ¬¥âà ¬¨
+    Robot(double x0, double y0, double z0, int health0) { // конструктор с параметрами
         x = x0;
         y = y0;
         z = z0;
@@ -20,35 +20,34 @@ public:
         trap_z = -1;
     }
 
-    void walk(double dx, double dy, double dz) { // ¬¥â®¤ å®¤ì¡ë à®¡®â 
+    void walk(double dx, double dy, double dz) { // метод ходьбы робота
         x += dx;
         y += dy;
         z += dz;
     }
 
-    int get_health() { // ¬¥â®¤ ¤«ï ¯®«ãç¥­¨ï §¤®à®¢ìï à®¡®â 
+    int get_health() { // метод для получения здоровья робота
         return health;
     }
 
-    void turn(double angle) { // ¬¥â®¤ ¤«ï ¯®¢®à®â  à®¡®â  ­  ã£®« angle (¢ £à ¤ãá å)
-        double rad = angle * M_PI / 180; // ¯¥à¥¢®¤¨¬ ã£®« ¢ à ¤¨ ­ë
-        double x1 = x * cos(rad) + y * sin(rad); // ¢ëç¨á«ï¥¬ ­®¢ë¥ ª®®à¤¨­ âë
+    void turn(double angle) {  // метод для поворота робота на угол angle (в градусах)
+        double rad = angle * M_PI / 180; // переводим угол в радианы
+        double x1 = x * cos(rad) + y * sin(rad); // вычисляем новые координаты
         double y1 = -x * sin(rad) + y * cos(rad);
         x = x1;
         y = y1;
     }
 
-    void collect_artifact() { // ¬¥â®¤ ¤«ï á¡®à   àâ¥ä ªâ 
+    void collect_artifact() { // метод для сбора артефакта
         artifacts++;
     }
 
-    void jump(double height) { // ¬¥â®¤ ¤«ï ¯àë¦ª  à®¡®â  ­  ¢ëá®âã height
+    void jump(double height) { // метод для прыжка робота на высоту height
         z += height;
-        cout << "Robot jumped to (" << x << ", " << y << ", " << z << ")" << endl;
     }
 
-    void teleport(double tx, double ty, double tz, double destx, double desty, double destz) { // ¬¥â®¤ ¤«ï â¥«¥¯®àâ æ¨¨
-        if (x == tx && y == ty && z == tz) { // ¥á«¨ à®¡®â ­ å®¤¨âáï ­  ¬¥áâ¥ â¥«¥¯®àâ 
+    void teleport(double tx, double ty, double tz, double destx, double desty, double destz) {  // метод для телепортации
+        if (x == tx && y == ty && z == tz) { // если робот находится на месте телепорта
             x = destx;
             y = desty;
             z = destz;
@@ -57,7 +56,7 @@ public:
         }
     }
 
-    void set_trap(double tx, double ty, double tz) { // ¬¥â®¤ ¤«ï ãáâ ­®¢ª¨ «®¢ãèª¨ ­  ª®®à¤¨­ â å (tx, ty, tz)
+    void set_trap(double tx, double ty, double tz) { // метод для установки ловушки на координатах (tx, ty, tz)
         trap_x = tx;
         trap_y = ty;
         trap_z = tz;
