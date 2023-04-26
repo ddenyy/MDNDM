@@ -48,7 +48,6 @@ __published:	// IDE-managed Components
 //интерфейс странички с самой игрой
 	TViewport3D *Viewport3D;
 	TToolBar *ViewPort3DToolBar;
-	TRectangle *CardsRect;
 	TRectangle *DeckRect;
 //кнопки перехода обратно на стартовую страницу
 	TSpeedButton *BackButGame;
@@ -70,9 +69,14 @@ __published:	// IDE-managed Components
 	TLightMaterialSource *LightMaterialSourceGround;
     //свет на 3д сцене
 	TLight *Light;
-	TLabel *Label1;
+    //разметка и компоненты для вывода параметров робота(очки, хранилище)
 	TToolBar *ScoreTB;
 	TToolBar *StoreTB;
+	TLabel *ScoreLabel;
+	TLabel *ScoreValueLabel;
+	TLabel *StoreLabel;
+	TRectangle *StoreValueRect;
+	TRectangle *CardsRect;
 
 //комменты по функциям в спп файле
 	void __fastcall RulesRectButClick(TObject *Sender);

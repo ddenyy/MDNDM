@@ -190,7 +190,7 @@ object MainForm: TMainForm
       end
       object CardsRect: TRectangle
         Align = Bottom
-        Fill.Color = xFFF6D4A8
+        Fill.Color = claAntiquewhite
         Position.Y = 560.000000000000000000
         Sides = []
         Size.Width = 720.000000000000000000
@@ -402,5 +402,14 @@ object MainForm: TMainForm
       Category = 'Tab'
       Tab = StartTab
     end
+  end
+  object LMSRareArtefact: TLightMaterialSource
+    Diffuse = claTurquoise
+    Ambient = xFF202020
+    Emissive = claNull
+    Specular = xFF606060
+    Shininess = 30
+    Left = 8
+    Top = 72
   end
 end

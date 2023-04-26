@@ -38,5 +38,5 @@ public:
     // печать (для проверки)
     virtual void print() = 0;
 
-    void operator=(artefact &ar);
+    //void operator=(artefact &ar);
 };

@@ -48,8 +48,8 @@ __published:	// IDE-managed Components
 //интерфейс странички с самой игрой
 	TViewport3D *Viewport3D;
 	TToolBar *ViewPort3DToolBar;
-	TRectangle *CardsRect;
 	TRectangle *DeckRect;
+    TRectangle *CardsRect;
 //кнопки перехода обратно на стартовую страницу
 	TSpeedButton *BackButGame;
 	TSpeedButton *BackButRules;
@@ -77,6 +77,7 @@ __published:	// IDE-managed Components
 	TLabel *ScoreValueLabel;
 	TLabel *StoreLabel;
 	TRectangle *StoreValueRect;
+
 
 //комменты по функциям в спп файле
 	void __fastcall RulesRectButClick(TObject *Sender);

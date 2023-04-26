@@ -17,10 +17,49 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
 {
 }
 
+class InterfaceArtefact
+{
+public:
+    TSphere * sphere;
+    TLightMaterialSource * material;
+
+    void create_sphere(TCube* root_cube, string &artefact_type)
+    {
+        sphere = new TSphere(root_cube);
+        sphere -> Parent = root_cube;
+        sphere -> Height = 1;
+        sphere -> Width = 1;
+        sphere -> Depth = 1;
+        sphere -> Position -> Y -= (0.05 + root_cube -> Height * 0.5);
+
+        if (artefact_type == "rare") {
+            sphere -> Width = 0.8;
+	        sphere -> Depth = 0.8;
+            material -> Diffuse = claTurquoise;
+            sphere -> MaterialSource = material;
+        }
+
+        if (artefact_type == "usually") {
+            sphere -> Width = 0.5;
+	        sphere -> Depth = 0.5;
+            material -> Diffuse = claIndianred;
+            sphere -> MaterialSource = material;
+        }
+
+        if (artefact_type == "frequent") {
+            sphere -> Width = 0.3;
+	        sphere -> Depth = 0.3;
+            material -> Diffuse = claMediumspringgreen;
+            sphere -> MaterialSource = material;
+        }
+    }
+};
+
 class InterfaceCell
 {
 public:
     TCube* cube;
+    InterfaceArtefact * artefact;
 
 	void create_cube(TDummy*& RootDummy)
     {
@@ -38,8 +77,9 @@ public:
         cube -> Width = new_width;
     }
 
-    void set_height(float new_height)
+    void set_hill(float new_height)
     {
+        cube -> Position -> Y -= (new_height * 0.5 - cube -> Height * 0.5);
         cube -> Height = new_height;
     }
 
@@ -54,6 +94,13 @@ public:
     {
         cube -> MaterialSource = Material;
     }
+
+    void set_artefact(string & artefact_type)
+    {
+        artefact = new InterfaceArtefact;
+        artefact -> create_sphere(cube, artefact_type);
+    }
+
 };
 
 class InterfaceCard
@@ -174,10 +221,12 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
     //логика поля
     LogicBoard LBoard(board_height, board_width);
     LBoard.generateAllHills();
+    LBoard.initAllRandomArtefacts(5);
 
     int i, j;
     float curr_x, curr_z, start_x, start_z;
     float sparse_coef = 2;//distance between two cell's centres
+    string type_of_cell;
 
     if (board_height % 2 == 0) {
         start_x = -0.5 * 1.95 - (float)((float)board_height * 0.5 - 1) * (1.95 + 0.05);
@@ -196,9 +245,12 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
             IBoard[i][j].set_position(curr_x, 0.0, curr_z);
             IBoard[i][j].set_material(LightMaterialSourceGround);
 
-            if (LBoard.field[i][j].getHeightHill() != 0) {
-                IBoard[i][j].set_height(LBoard.field[i][j].getHeightHill());
-                //IBoard[i][j].set_material(HillMaterial);
+            if (LBoard.field[i][j].getHeightHill() != 0)
+                IBoard[i][j].set_hill(LBoard.field[i][j].getHeightHill());
+
+            type_of_cell = LBoard.field[i][j].getTypeOfArtefact();
+            if (type_of_cell != "no") {
+                IBoard[i][j].set_artefact(type_of_cell);
             }
         }
     }

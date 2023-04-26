@@ -62,7 +62,7 @@ public:
 
 		int x_rand = 0;
 		int y_rand = 0;
-        int default_height_hill = 10;
+        float default_height_hill = 1.95;
 
 		// основной цикл заполнения поля горами
 		while(count_hills > 0)

@@ -17,6 +17,28 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
 {
 }
 
+class InterfaceArtefact
+{
+public:
+    TSphere * sphere;
+
+    void create_sphere(TCube* root_cube, string &artefact_type)
+    {
+        sphere = new TSphere(root_cube);
+        sphere -> Parent = root_cube;
+        sphere -> Height = 0.5;
+        sphere -> Width = 0.5;
+        sphere -> Depth = 0.5;
+        sphere -> Position -> Y -= (0.05 + root_cube -> Height * 0.5);
+
+        if (artefact_type == "rare") {
+            sphere -> Width = 0.4;
+	        sphere -> Depth = 0.4;
+            sphere -> MaterialSource = LMSRareArtefact;
+        }
+    }
+};
+
 class InterfaceCell
 {
 public:
@@ -38,8 +60,9 @@ public:
         cube -> Width = new_width;
     }
 
-    void set_height(float new_height)
+    void set_hill(float new_height)
     {
+        cube -> Position -> Y -= (new_height * 0.5 - cube -> Height * 0.5);
         cube -> Height = new_height;
     }
 
@@ -166,7 +189,7 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
     //turn on game page
     MainTabControl -> ActiveTab = GameTab;
 
-    int board_height = 15, board_width = 15;
+    int board_height = 20, board_width = 20;
 
     //интерфейс поля
     vector <vector <InterfaceCell> > IBoard(board_height, vector <InterfaceCell>(board_width));
@@ -174,23 +197,21 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
     //логика поля
     LogicBoard LBoard(board_height, board_width);
     LBoard.generateAllHills();
+    LBoard.initAllRandomArtefacts(5);
 
     int i, j;
     float curr_x, curr_z, start_x, start_z;
     float sparse_coef = 2;//distance between two cell's centres
 
     if (board_height % 2 == 0) {
-        start_x = - 0.5 * 1.95 - (board_height / 2 - 1) * (1.95 + 0.1);
+        start_x = -0.5 * 1.95 - (float)((float)board_height * 0.5 - 1) * (1.95 + 0.05);
         start_z = -start_x;
     }
     else
     {
-        start_x = -0.1 - 1.95 - (float)((float)(board_height - 1) * 0.5 - 1) * (1.95 + 0.1);
+        start_x = -0.05 - 1.95 - (float)((float)(board_height - 1) * 0.5 - 1) * (1.95 + 0.05);
         start_z = -start_x;
     }
-
-//    start_x = -sparse_coef;
-//    start_z = sparse_coef;
 
     //creation of filed's image
     for (i = 0, curr_z = start_z; i < board_height; i++, curr_z -= sparse_coef) {
@@ -199,15 +220,12 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
             IBoard[i][j].set_position(curr_x, 0.0, curr_z);
             IBoard[i][j].set_material(LightMaterialSourceGround);
 
-//            if (LBoard.field[i][j].getHeightHill() != 0) {
-//                IBoard[i][j].set_height(LBoard.field[i][j].getHeightHill());
-//                //IBoard[i][j].set_material(HillMaterial);
-//            }
+            if (LBoard.field[i][j].getHeightHill() != 0)
+                IBoard[i][j].set_hill(LBoard.field[i][j].getHeightHill());
+
+
         }
     }
-
-    ShowMessage(IBoard[7][7].cube -> Position -> X);
-    ShowMessage(IBoard[7][7].cube -> Position -> Z);
 
     //создание карт
     DECK Deck;

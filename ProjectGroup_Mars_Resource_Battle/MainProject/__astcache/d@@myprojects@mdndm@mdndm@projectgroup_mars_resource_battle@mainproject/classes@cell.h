@@ -18,7 +18,7 @@ public:
 		return type_cell;
 	}
 
-	int getHeightHill()
+	float getHeightHill()
 	{
 		return height_hill;
 	}
@@ -35,6 +35,8 @@ public:
 		  if (is_frequent_artefact) {
 				return "frequent";
 		  }
+
+          return "no";
 	}
 
 	void setRareArtifact(rare new_artifact) {
@@ -63,7 +65,7 @@ public:
 		this->type_cell = type_cell;
 	}
 
-	void setHeight(int height_hill)
+	void setHeight(float height_hill)
 	{
 //		if (this->type_cell == "hill")
 //		{
@@ -77,7 +79,7 @@ public:
 
 private:
 	string type_cell;
-	int height_hill;
+	float height_hill;
 
 	rare rare_artefact;
 	usually usually_artefact;
