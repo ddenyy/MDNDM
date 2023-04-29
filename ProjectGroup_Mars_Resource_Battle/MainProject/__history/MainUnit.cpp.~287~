@@ -30,26 +30,30 @@ public:
         sphere -> Height = 1;
         sphere -> Width = 1;
         sphere -> Depth = 1;
-        sphere -> Position -> Y -= (0.05 + root_cube -> Height * 0.5);
+        sphere -> Position -> Y -= (0.05 + root_cube -> Height * 0.5 + 0.5);
+        material = new TLightMaterialSource(root_cube);
 
         if (artefact_type == "rare") {
             sphere -> Width = 0.8;
 	        sphere -> Depth = 0.8;
-            material -> Diffuse = claTurquoise;
+            //material -> Diffuse = claTurquoise;
+            material -> Diffuse = 0x00ff0000;
             sphere -> MaterialSource = material;
         }
 
         if (artefact_type == "usually") {
             sphere -> Width = 0.5;
 	        sphere -> Depth = 0.5;
-            material -> Diffuse = claIndianred;
+            //material -> Diffuse = claIndianred;
+            material -> Diffuse = 0x0000ff00;
             sphere -> MaterialSource = material;
         }
 
         if (artefact_type == "frequent") {
             sphere -> Width = 0.3;
 	        sphere -> Depth = 0.3;
-            material -> Diffuse = claMediumspringgreen;
+            //material -> Diffuse = claMediumspringgreen;
+            material -> Diffuse = 0x000000ff;
             sphere -> MaterialSource = material;
         }
     }
@@ -59,6 +63,7 @@ class InterfaceCell
 {
 public:
     TCube* cube;
+    InterfaceArtefact * artefact;
 
 	void create_cube(TDummy*& RootDummy)
     {
@@ -93,6 +98,13 @@ public:
     {
         cube -> MaterialSource = Material;
     }
+
+    void set_artefact(string & artefact_type)
+    {
+        artefact = new InterfaceArtefact;
+        artefact -> create_sphere(cube, artefact_type);
+    }
+
 };
 
 class InterfaceCard
@@ -205,7 +217,7 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
     //turn on game page
     MainTabControl -> ActiveTab = GameTab;
 
-    int board_height = 20, board_width = 20;
+    int board_height = 10, board_width = 10;
 
     //интерфейс поля
     vector <vector <InterfaceCell> > IBoard(board_height, vector <InterfaceCell>(board_width));
@@ -218,6 +230,7 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
     int i, j;
     float curr_x, curr_z, start_x, start_z;
     float sparse_coef = 2;//distance between two cell's centres
+    string type_of_cell;
 
     if (board_height % 2 == 0) {
         start_x = -0.5 * 1.95 - (float)((float)board_height * 0.5 - 1) * (1.95 + 0.05);
@@ -239,7 +252,10 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
             if (LBoard.field[i][j].getHeightHill() != 0)
                 IBoard[i][j].set_hill(LBoard.field[i][j].getHeightHill());
 
-
+            type_of_cell = LBoard.field[i][j].getTypeOfArtefact();
+            if (type_of_cell != "no") {
+                IBoard[i][j].set_artefact(type_of_cell);
+            }
         }
     }
 
