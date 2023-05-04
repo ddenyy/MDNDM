@@ -6,9 +6,6 @@
         <Projects Include="MainProject\Main.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="Maybe_3D\Maybe_3D.cbproj">
-            <Dependencies/>
-        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -26,23 +23,14 @@
     <Target Name="Main:Make">
         <MSBuild Projects="MainProject\Main.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="Maybe_3D">
-        <MSBuild Projects="Maybe_3D\Maybe_3D.cbproj"/>
-    </Target>
-    <Target Name="Maybe_3D:Clean">
-        <MSBuild Projects="Maybe_3D\Maybe_3D.cbproj" Targets="Clean"/>
-    </Target>
-    <Target Name="Maybe_3D:Make">
-        <MSBuild Projects="Maybe_3D\Maybe_3D.cbproj" Targets="Make"/>
-    </Target>
     <Target Name="Build">
-        <CallTarget Targets="Main;Maybe_3D"/>
+        <CallTarget Targets="Main"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Main:Clean;Maybe_3D:Clean"/>
+        <CallTarget Targets="Main:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Main:Make;Maybe_3D:Make"/>
+        <CallTarget Targets="Main:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

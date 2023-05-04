@@ -1,17 +1,16 @@
-#include "../Additional_Libraries.h"
-//#include "MainUnit.h"
+ï»¿#include "../Additional_Libraries.h"
 
-// áàçîâûé êëàññ äëÿ àðòåôàêòà. Ñäåëàë êàê çàãëóøêó ïîêà ÷òî
-class Artifact
+// Ð±Ð°Ð·Ð¾Ð²Ñ‹Ð¹ ÐºÐ»Ð°ÑÑ Ð´Ð»Ñ Ð°Ñ€Ñ‚ÐµÑ„Ð°ÐºÑ‚Ð°. Ð¡Ð´ÐµÐ»Ð°Ð» ÐºÐ°Ðº Ð·Ð°Ð³Ð»ÑƒÑˆÐºÑƒ Ð¿Ð¾ÐºÐ° Ñ‡Ñ‚Ð¾
+class LogicArtifact
 {
 public:
-	Artifact()
+	LogicArtifact()
 	{
 		this->color = 0;
 		this->value = 0;
 		this->weight = 0;
 	};
-	Artifact(int color, int value, int weight) {
+	LogicArtifact(int color, int value, int weight) {
 		this->color = color;
 		this->value = value;
 		this->weight = weight;

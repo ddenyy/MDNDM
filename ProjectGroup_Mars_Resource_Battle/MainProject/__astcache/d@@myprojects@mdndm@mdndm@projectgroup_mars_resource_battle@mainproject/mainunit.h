@@ -21,6 +21,7 @@
 #include <FMX.Objects3D.hpp>
 #include <System.Math.Vectors.hpp>
 #include <FMX.MaterialSources.hpp>
+#include <FMX.Types3D.hpp>
 //---------------------------------------------------------------------------
 class TMainForm : public TForm
 {
@@ -47,8 +48,8 @@ __published:	// IDE-managed Components
 //интерфейс странички с самой игрой
 	TViewport3D *Viewport3D;
 	TToolBar *ViewPort3DToolBar;
-	TRectangle *CardsRect;
 	TRectangle *DeckRect;
+    TRectangle *CardsRect;
 //кнопки перехода обратно на стартовую страницу
 	TSpeedButton *BackButGame;
 	TSpeedButton *BackButRules;
@@ -67,6 +68,16 @@ __published:	// IDE-managed Components
 	TDummy *Player1Dummy;
 	TDummy *Player2Dummy;
 	TLightMaterialSource *LightMaterialSourceGround;
+    //свет на 3д сцене
+	TLight *Light;
+    //разметка и компоненты для вывода параметров робота(очки, хранилище)
+	TToolBar *ScoreTB;
+	TToolBar *StoreTB;
+	TLabel *ScoreLabel;
+	TLabel *ScoreValueLabel;
+	TLabel *StoreLabel;
+	TRectangle *StoreValueRect;
+
 
 //комменты по функциям в спп файле
 	void __fastcall RulesRectButClick(TObject *Sender);
@@ -75,7 +86,7 @@ __published:	// IDE-managed Components
 	void __fastcall FormResize(TObject *Sender);
 	void __fastcall Viewport3DMouseWheel(TObject *Sender, TShiftState Shift, int WheelDelta,
           bool &Handled);
-	void __fastcall Viewport3DKeyDown(TObject *Sender, WORD &Key, System::WideChar &KeyChar,
+	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, System::WideChar &KeyChar,
           TShiftState Shift);
 private:	// User declarations
 public:		// User declarations

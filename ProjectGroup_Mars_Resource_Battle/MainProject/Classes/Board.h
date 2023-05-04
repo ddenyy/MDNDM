@@ -1,45 +1,24 @@
-#include "Cell.h"
-#include "./DanyaArtefact/rare.h"
-#include "./DanyaArtefact/usually.h"
-#include "./DanyaArtefact/frequent.h"
-#include "./DanyaArtefact/artefact.h"
-#include "./DanyaArtefact/artefacts_randomization.h"
-// нужны для рандомизации генерации холмов
-#include <set>
-#include <random>
+п»ї#include "Cell.h"
+#include "Classes/Artefact_Classes/artefacts_randomization.h"
 
-class Board
+class LogicBoard
 {
 public:
-	Board(int width, int height) {
+	LogicBoard(int width, int height) {
 		this->width = width;
 		this->height = height;
-		Pole.resize(width, vector<Cell> (height));
+		field.resize(width, vector<Cell> (height));
 	};
-	~Board() {
-		for (size_t i = 0; i < Pole.size(); i++)
+
+	~LogicBoard() {
+		for (size_t i = 0; i < field.size(); i++)
 		{            
-			Pole[i].clear();
+			field[i].clear();
 		}
-		Pole.clear();
+        field.clear();
 	}
-	void CreateBoard(TDummy * RootDummy, float delta_x, float delta_y)
-	{
-        float x, y;
-        delta_x *= -1;
-		for (size_t i = 0, y = delta_y; i < this->width; i++, y -= delta_y) {
-			for (size_t j = 0, x = delta_x; j < this->height; j++, x -= delta_x) {
-				Pole[i][j].ground = new TCube(RootDummy);
-				Pole[i][j].ground -> Parent = RootDummy;
-				Pole[i][j].ground -> Height = 0.25;
-				Pole[i][j].ground -> Depth = 1.95;
-				Pole[i][j].ground -> Width = 1.95;
-				Pole[i][j].ground -> Position -> Z = y;
-				Pole[i][j].ground -> Position -> X = x;
-			}
-		}
-	}
-    // создает все эти рандомные артефакты и сует их в ячейки поля.
+
+    // СЃРѕР·РґР°РµС‚ РІСЃРµ СЌС‚Рё СЂР°РЅРґРѕРјРЅС‹Рµ Р°СЂС‚РµС„Р°РєС‚С‹ Рё СЃСѓРµС‚ РёС… РІ СЏС‡РµР№РєРё РїРѕР»СЏ.
 	void initAllRandomArtefacts(int quantity_artefacts)
 	{
 		int size_Board = min(this->width, this->height);
@@ -47,65 +26,75 @@ public:
 
 		for (int i = 0; i < Vector_Random_Artefacts.size(); i++)
 		{
-			 // координаты х у чтобы на поле поместить объект
+			 // РєРѕРѕСЂРґРёРЅР°С‚С‹ С… Сѓ С‡С‚РѕР±С‹ РЅР° РїРѕР»Рµ РїРѕРјРµСЃС‚РёС‚СЊ РѕР±СЉРµРєС‚
 			 int x, y;
 			 x = Vector_Random_Artefacts[i]->cord_x();
 			 y = Vector_Random_Artefacts[i]->cord_y();
-			 // редкость артефакта. чтобы понять какой конструктор использовать в cell
+			 // СЂРµРґРєРѕСЃС‚СЊ Р°СЂС‚РµС„Р°РєС‚Р°. С‡С‚РѕР±С‹ РїРѕРЅСЏС‚СЊ РєР°РєРѕР№ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РІ cell
 			 string ability = Vector_Random_Artefacts[i]->availability();
 
 			 if (ability == "rare")
 			 {
-				  Pole[x][y].setRareArtifact(*Vector_Random_Artefacts[i]);
+				  field[x][y].setRareArtifact(*Vector_Random_Artefacts[i]);
 			 }
 			 else if (ability == "usually")
 			 {
-				  Pole[x][y].setUsuallyArtifact(*Vector_Random_Artefacts[i]);
+				  field[x][y].setUsuallyArtifact(*Vector_Random_Artefacts[i]);
 			 }
 			 else if (ability == "frequent")
 			 {
-				  Pole[x][y].setFrequentArtifact(*Vector_Random_Artefacts[i]);
+				  field[x][y].setFrequentArtifact(*Vector_Random_Artefacts[i]);
 			 }
 		}
 	}
 
-	void generateAllHills() {
-		// множество координат х.у которые были уже заняты сгенерированными
-        // клетками
-		set<pair<int,int>> Busy_cells;
-		// количество холмов которые мы сгенерируем
+    void generateAllHills() {
+		// РєРѕР»РёС‡РµСЃС‚РІРѕ С…РѕР»РјРѕРІ РєРѕС‚РѕСЂС‹Рµ РјС‹ СЃРіРµРЅРµСЂРёСЂСѓРµРј
 		int count_hills = (min(width,height) / 2) - 1;
-		// размер квадрата в котором будем генерировать поле
 
-		int sizeBoardHills = min(width,height);
 
 		int x_rand = 0;
 		int y_rand = 0;
-        int default_height_hill = 10;
+        float default_height_hill = 1.95;
 
-		// основной цикл заполнения поля горами
+		// РѕСЃРЅРѕРІРЅРѕР№ С†РёРєР» Р·Р°РїРѕР»РЅРµРЅРёСЏ РїРѕР»СЏ РіРѕСЂР°РјРё
 		while(count_hills > 0)
 		{
-			// генерируем рандомно координаты горы
-			x_rand = rand() / sizeBoardHills;
-			y_rand = rand() / sizeBoardHills;
+			bool flag_create_hill = false;
+			// РіРµРЅРµСЂРёСЂСѓРµРј СЂР°РЅРґРѕРјРЅРѕ РєРѕРѕСЂРґРёРЅР°С‚С‹ РіРѕСЂС‹
+			x_rand = rand() * rand() % width;
+			y_rand = rand() * rand() % height;
 
-			// если горы с такими координатами не было найдено, создаем
-			if (Busy_cells.find({x_rand, y_rand}) != Busy_cells.end()) {
-			   Busy_cells.insert({x_rand, y_rand});
-			   count_hills-=1;
+			// РіРµРЅРµСЂРёСЂСѓРµРј СЃР»СѓС‡Р°Р№РЅСѓСЋ С€РёСЂРёРЅСѓ РіРѕСЂС‹
+			int width_hill = (rand() * rand() % width);
+			// РіРµРЅРµСЂРёСЂСѓРµРј СЃР»СѓС‡Р°Р№РЅСѓСЋ РІС‹СЃРѕС‚Сѓ РіРѕСЂС‹ (РїРѕ Сѓ)
+			int height_hill = (rand()*rand() % height);
+
+			for (int i = x_rand; i <= width_hill; i++)
+			{
+				for (int j = y_rand; j <= height_hill; j++)
+				{
+					int cur_height = field[i][j].getHeightHill();
+					field[i][j].setHeight(cur_height + 1);
+					flag_create_hill = true;
+				}
 			}
-		}
 
-        // заполняем поле горами с высотой 10
-		for(auto i: Busy_cells) {
-			 Pole[i.first][i.second].setHeight(default_height_hill);
+			if (flag_create_hill == true)
+			{
+				count_hills -= 1;
+			}
 		}
 
 	}
 
-	vector<vector<Cell>> Pole;
+    vector<vector<Cell>> field;
+
 private:
+
+    //vector<vector<Cell>> field;
+
 	int width;
 	int height;
 };
+

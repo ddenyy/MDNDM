@@ -13,25 +13,6 @@
 #include <math.h>
 #include <fstream>
 
-#include <System.Classes.hpp>
-#include <FMX.Controls.hpp>
-#include <FMX.Forms.hpp>
-#include <FMX.Objects.hpp>
-#include <FMX.TabControl.hpp>
-#include <FMX.Types.hpp>
-#include <FMX.Controls.Presentation.hpp>
-#include <FMX.StdCtrls.hpp>
-#include <FMX.Memo.hpp>
-#include <FMX.Memo.Types.hpp>
-#include <FMX.ScrollBox.hpp>
-#include <FMX.Viewport3D.hpp>
-#include <FMX.ActnList.hpp>
-#include <System.Actions.hpp>
-#include <FMX.Controls3D.hpp>
-#include <FMX.Objects3D.hpp>
-#include <System.Math.Vectors.hpp>
-#include <FMX.MaterialSources.hpp>
-
 using namespace std;
 typedef long long ll;
 #define all(x) x.begin(), x.end()
