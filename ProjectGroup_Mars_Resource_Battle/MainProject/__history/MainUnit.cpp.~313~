@@ -62,6 +62,8 @@ public:
     TCube* cube;
     InterfaceArtefact * artefact;
 
+    ~InterfaceCell() = default;
+
 	void create_cube(TDummy*& RootDummy)
     {
         cube = new TCube(RootDummy);
@@ -110,6 +112,8 @@ class InterfaceCard
 public:
     TRoundRect* rorect;
     TLabel* sign;
+
+    ~InterfaceCard() = default;
 
     void create_rorect(TRectangle *& RootRect, TLabel * RootLabel)
     {
@@ -348,9 +352,29 @@ void __fastcall TMainForm::FormKeyDown(TObject *Sender, WORD &Key, System::WideC
 
 void __fastcall TMainForm::BackButGameClick(TObject *Sender)
 {
+    int i, j;
+    vector<InterfaceCell> MemoryDestVecCell;
+    vector<vector<InterfaceCell>> MemoryDestVecVecCell;
+    for (i = 0; i < IBoard.size(); i++) {
+        for (j = 0; j < IBoard[i].size(); j++) {
+            delete IBoard[i][j].cube;
+            delete IBoard[i][j].artefact;
+            IBoard[i][j].~InterfaceCell();
+        }
+        IBoard[i] = MemoryDestVecCell;
+    }
+    IBoard = MemoryDestVecVecCell;
 
+    delete LBoard;
 
-    MainTabControl -> ActiveTab = GameTab;
+    vector<InterfaceCard> MemoryDestVecCards;
+    for (j = 0; j < CardsInHand.size(); j++) {
+        delete CardsInHand[j].rorect;
+        CardsInHand[j].~InterfaceCard();
+    }
+    CardsInHand = MemoryDestVecCards;
+
+    MainTabControl -> ActiveTab = StartTab;
 }
 //---------------------------------------------------------------------------
 

@@ -141,80 +141,96 @@ object MainForm: TMainForm
       ExplicitSize.cy = 8.000000000000000000
       object ViewPort3DToolBar: TToolBar
         Align = Client
-        Size.Width = 620.000000000000000000
-        Size.Height = 560.000000000000000000
+        Size.Width = 720.000000000000000000
+        Size.Height = 640.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
-        object Viewport3D: TViewport3D
+        object GameBackGroundRect: TRectangle
           Align = Client
-          Color = claSkyblue
-          Size.Width = 620.000000000000000000
-          Size.Height = 560.000000000000000000
+          Fill.Color = claSkyblue
+          Size.Width = 720.000000000000000000
+          Size.Height = 640.000000000000000000
           Size.PlatformDefault = False
-          OnMouseWheel = Viewport3DMouseWheel
-          object GroundXRotationDummy: TDummy
-            Width = 1.000000000000000000
-            Height = 1.000000000000000000
-            Depth = 1.000000000000000000
-            object GroundMainDummy: TDummy
+          object Viewport3D: TViewport3D
+            Align = Client
+            Color = claSkyblue
+            Size.Width = 720.000000000000000000
+            Size.Height = 560.000000000000000000
+            Size.PlatformDefault = False
+            OnMouseWheel = Viewport3DMouseWheel
+            object GroundXRotationDummy: TDummy
+              Width = 1.000000000000000000
+              Height = 1.000000000000000000
+              Depth = 1.000000000000000000
+              object GroundMainDummy: TDummy
+                Width = 1.000000000000000000
+                Height = 1.000000000000000000
+                Depth = 1.000000000000000000
+              end
+            end
+            object ArtefactDummy: TDummy
+              Width = 1.000000000000000000
+              Height = 1.000000000000000000
+              Depth = 1.000000000000000000
+            end
+            object Player1Dummy: TDummy
+              Width = 1.000000000000000000
+              Height = 1.000000000000000000
+              Depth = 1.000000000000000000
+            end
+            object Player2Dummy: TDummy
+              Width = 1.000000000000000000
+              Height = 1.000000000000000000
+              Depth = 1.000000000000000000
+            end
+            object Light: TLight
+              Color = claWhite
+              LightType = Point
+              SpotCutOff = 180.000000000000000000
+              Position.Y = -20.000000000000000000
               Width = 1.000000000000000000
               Height = 1.000000000000000000
               Depth = 1.000000000000000000
             end
           end
-          object ArtefactDummy: TDummy
-            Width = 1.000000000000000000
-            Height = 1.000000000000000000
-            Depth = 1.000000000000000000
-          end
-          object Player1Dummy: TDummy
-            Width = 1.000000000000000000
-            Height = 1.000000000000000000
-            Depth = 1.000000000000000000
-          end
-          object Player2Dummy: TDummy
-            Width = 1.000000000000000000
-            Height = 1.000000000000000000
-            Depth = 1.000000000000000000
-          end
-          object Light: TLight
-            Color = claWhite
-            LightType = Point
-            SpotCutOff = 180.000000000000000000
-            Position.Y = -20.000000000000000000
-            Width = 1.000000000000000000
-            Height = 1.000000000000000000
-            Depth = 1.000000000000000000
+          object CardsBackGroundRect: TRectangle
+            Align = Bottom
+            Fill.Color = claSkyblue
+            Position.Y = 560.000000000000000000
+            Sides = []
+            Size.Width = 720.000000000000000000
+            Size.Height = 80.000000000000000000
+            Size.PlatformDefault = False
+            object CardsRect: TRectangle
+              Align = Center
+              Fill.Color = claAntiquewhite
+              Sides = []
+              Size.Width = 720.000000000000000000
+              Size.Height = 80.000000000000000000
+              Size.PlatformDefault = False
+              Stroke.Color = claAntiquewhite
+              Visible = False
+            end
           end
         end
       end
-      object CardsRect: TRectangle
-        Align = Bottom
-        Fill.Color = claAntiquewhite
-        Position.Y = 560.000000000000000000
-        Sides = []
-        Size.Width = 720.000000000000000000
-        Size.Height = 80.000000000000000000
-        Size.PlatformDefault = False
-        Stroke.Color = claAntiquewhite
-      end
       object DeckRect: TRectangle
-        Align = Right
         Fill.Color = claAntiquewhite
         Position.X = 620.000000000000000000
+        Position.Y = 80.000000000000000000
         Sides = []
         Size.Width = 100.000000000000000000
         Size.Height = 560.000000000000000000
         Size.PlatformDefault = False
+        Visible = False
         object BackButGame: TSpeedButton
-          Action = GoToStartTabAction
           Align = Top
-          Enabled = True
-          ImageIndex = -1
           Size.Width = 100.000000000000000000
           Size.Height = 49.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = 'replytoolbutton'
+          Text = 'Go to '
+          OnClick = BackButGameClick
         end
         object ScoreTB: TToolBar
           Position.Y = 49.000000000000000000

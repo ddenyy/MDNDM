@@ -77,6 +77,9 @@ __published:	// IDE-managed Components
 	TLabel *ScoreValueLabel;
 	TLabel *StoreLabel;
 	TRectangle *StoreValueRect;
+	TRectangle *GameBackGroundRect;
+	TRectangle *CardsBackGroundRect;
+	TRectangle *DeckBackGroundRect;
 
 
 //комменты по функциям в спп файле

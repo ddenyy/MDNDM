@@ -292,9 +292,9 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
 функция выполняется автоматически при изменении размеров окна*/
 void __fastcall TMainForm::FormResize(TObject *Sender)
 {
-	CardsRect -> Height = MainForm -> Height * (1.0 / 6);
-    CardsRect -> Width = MainForm -> Height * (1.0 / 6);
-    DeckRect -> Width = MainForm -> Width * (1.0 / 6);
+	CardsBackGroundRect -> Height = MainForm -> Height * (1.0 / 6);
+    CardsBackGroundRect -> Width = MainForm -> Height * (1.0 / 6);
+    DeckBackGroundRect -> Width = MainForm -> Width * (1.0 / 6);
 
     //меняются объекты на DeckRect
     //вывод параметров робота

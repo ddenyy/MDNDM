@@ -188,16 +188,6 @@ object MainForm: TMainForm
           end
         end
       end
-      object CardsRect: TRectangle
-        Align = Bottom
-        Fill.Color = claAntiquewhite
-        Position.Y = 560.000000000000000000
-        Sides = []
-        Size.Width = 720.000000000000000000
-        Size.Height = 80.000000000000000000
-        Size.PlatformDefault = False
-        Stroke.Color = claAntiquewhite
-      end
       object DeckRect: TRectangle
         Align = Right
         Fill.Color = claAntiquewhite
@@ -207,14 +197,13 @@ object MainForm: TMainForm
         Size.Height = 560.000000000000000000
         Size.PlatformDefault = False
         object BackButGame: TSpeedButton
-          Action = GoToStartTabAction
           Align = Top
-          Enabled = True
-          ImageIndex = -1
           Size.Width = 100.000000000000000000
           Size.Height = 49.000000000000000000
           Size.PlatformDefault = False
           StyleLookup = 'replytoolbutton'
+          Text = 'Go to '
+          OnClick = BackButGameClick
         end
         object ScoreTB: TToolBar
           Position.Y = 49.000000000000000000
@@ -285,6 +274,16 @@ object MainForm: TMainForm
             Size.PlatformDefault = False
           end
         end
+      end
+      object CardsRect: TRectangle
+        Align = Bottom
+        Fill.Color = claAntiquewhite
+        Position.Y = 560.000000000000000000
+        Sides = []
+        Size.Width = 720.000000000000000000
+        Size.Height = 80.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Color = claAntiquewhite
       end
     end
     object RulesTab: TTabItem

@@ -48,8 +48,8 @@ __published:	// IDE-managed Components
 //интерфейс странички с самой игрой
 	TViewport3D *Viewport3D;
 	TToolBar *ViewPort3DToolBar;
-	TRectangle *CardsRect;
 	TRectangle *DeckRect;
+    TRectangle *CardsRect;
 //кнопки перехода обратно на стартовую страницу
 	TSpeedButton *BackButGame;
 	TSpeedButton *BackButRules;
@@ -70,11 +70,14 @@ __published:	// IDE-managed Components
 	TLightMaterialSource *LightMaterialSourceGround;
     //свет на 3д сцене
 	TLight *Light;
+    //разметка и компоненты для вывода параметров робота(очки, хранилище)
 	TToolBar *ScoreTB;
 	TToolBar *StoreTB;
 	TLabel *ScoreLabel;
 	TLabel *ScoreValueLabel;
 	TLabel *StoreLabel;
+	TRectangle *StoreValueRect;
+
 
 //комменты по функциям в спп файле
 	void __fastcall RulesRectButClick(TObject *Sender);
@@ -85,6 +88,7 @@ __published:	// IDE-managed Components
           bool &Handled);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, System::WideChar &KeyChar,
           TShiftState Shift);
+	void __fastcall BackButGameClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TMainForm(TComponent* Owner);
