@@ -79,7 +79,7 @@ public:
 
 private:
 	string type_cell;
-	float height_hill;
+	int height_hill;
 
 	rare rare_artefact;
 	usually usually_artefact;

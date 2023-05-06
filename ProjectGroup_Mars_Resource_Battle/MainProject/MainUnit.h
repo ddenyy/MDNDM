@@ -88,6 +88,7 @@ __published:	// IDE-managed Components
           bool &Handled);
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, System::WideChar &KeyChar,
           TShiftState Shift);
+	void __fastcall BackButGameClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TMainForm(TComponent* Owner);

@@ -62,6 +62,8 @@ public:
     TCube* cube;
     InterfaceArtefact * artefact;
 
+    ~InterfaceCell() = default;
+
 	void create_cube(TDummy*& RootDummy)
     {
         cube = new TCube(RootDummy);
@@ -78,8 +80,9 @@ public:
         cube -> Width = new_width;
     }
 
-    void set_hill(float new_height)
+    void set_hill(int height_value)
     {
+        float new_height = (height_value + 1) * .95;
         cube -> Position -> Y -= (new_height * 0.5 - cube -> Height * 0.5);
         cube -> Height = new_height;
     }
@@ -109,6 +112,8 @@ class InterfaceCard
 public:
     TRoundRect* rorect;
     TLabel* sign;
+
+    ~InterfaceCard() = default;
 
     void create_rorect(TRectangle *& RootRect, TLabel * RootLabel)
     {
@@ -185,6 +190,10 @@ public:
     }
 };
 
+vector <vector <InterfaceCell> > IBoard;
+LogicBoard *LBoard;
+vector <InterfaceCard> CardsInHand;
+
 //---------------------------------------------------------------------------
 /*эта функция переключает вид на страничку с правилами и заполняет текстовое поле
 этими правилами. Пока там стоит заглушка, потом будет считывание из файла
@@ -215,14 +224,13 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
     MainTabControl -> ActiveTab = GameTab;
 
     int board_height = 15, board_width = 15;
-
     //интерфейс поля
-    vector <vector <InterfaceCell> > IBoard(board_height, vector <InterfaceCell>(board_width));
+    IBoard.resize(board_height, vector <InterfaceCell>(board_width));
 
     //логика поля
-    LogicBoard LBoard(board_height, board_width);
-    LBoard.generateAllHills();
-    LBoard.initAllRandomArtefacts(5);
+    LBoard = new LogicBoard(board_height, board_width);
+    LBoard -> generateAllHills();
+    LBoard -> initAllRandomArtefacts(40);
 
     int i, j;
     float curr_x, curr_z, start_x, start_z;
@@ -246,10 +254,10 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
             IBoard[i][j].set_position(curr_x, 0.0, curr_z);
             IBoard[i][j].set_material(LightMaterialSourceGround);
 
-            if (LBoard.field[i][j].getHeightHill() != 0)
-                IBoard[i][j].set_hill(LBoard.field[i][j].getHeightHill());
+            if (LBoard -> field[i][j].getHeightHill() != 0)
+                IBoard[i][j].set_hill(LBoard-> field[i][j].getHeightHill());
 
-            type_of_cell = LBoard.field[i][j].getTypeOfArtefact();
+            type_of_cell = LBoard -> field[i][j].getTypeOfArtefact();
             if (type_of_cell != "no") {
                 IBoard[i][j].set_artefact(type_of_cell);
             }
@@ -263,7 +271,7 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
     Deck.formDeck(num_of_cards);
     Deck.shuffleDeck();
 
-    vector <InterfaceCard> CardsInHand(num_of_cards);
+    CardsInHand.resize(num_of_cards);
 
     sparse_coef = CardsRect -> Width * (1.0 / num_of_cards);
     for (i = 0, curr_x = 5; i < CardsInHand.size(); i++, curr_x += sparse_coef) {
@@ -274,9 +282,8 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
         CardsInHand[i].rorect -> Margins -> Top = 5;
     }
 
-    for (i = 0; i < CardsInHand.size(); i++) {
+    for (i = 0; i < CardsInHand.size(); i++)
         CardsInHand[i].set_command(Deck.takeCard());
-    }
 }
 
 //---------------------------------------------------------------------------
@@ -286,6 +293,7 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
 void __fastcall TMainForm::FormResize(TObject *Sender)
 {
 	CardsRect -> Height = MainForm -> Height * (1.0 / 6);
+    CardsRect -> Width = MainForm -> Height * (1.0 / 6);
     DeckRect -> Width = MainForm -> Width * (1.0 / 6);
 
     //меняются объекты на DeckRect
@@ -339,6 +347,34 @@ void __fastcall TMainForm::FormKeyDown(TObject *Sender, WORD &Key, System::WideC
         GroundXRotationDummy -> RotationAngle -> X -= DeltaRotAngle;
     if (KeyChar == 's')
         GroundXRotationDummy -> RotationAngle -> X += DeltaRotAngle;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TMainForm::BackButGameClick(TObject *Sender)
+{
+    int i, j;
+    vector<InterfaceCell> MemoryDestVecCell;
+    vector<vector<InterfaceCell>> MemoryDestVecVecCell;
+    for (i = 0; i < IBoard.size(); i++) {
+        for (j = 0; j < IBoard[i].size(); j++) {
+            delete IBoard[i][j].cube;
+            delete IBoard[i][j].artefact;
+            IBoard[i][j].~InterfaceCell();
+        }
+        IBoard[i] = MemoryDestVecCell;
+    }
+    IBoard = MemoryDestVecVecCell;
+
+    delete LBoard;
+
+    vector<InterfaceCard> MemoryDestVecCards;
+    for (j = 0; j < CardsInHand.size(); j++) {
+        delete CardsInHand[j].rorect;
+        CardsInHand[j].~InterfaceCard();
+    }
+    CardsInHand = MemoryDestVecCards;
+
+    MainTabControl -> ActiveTab = StartTab;
 }
 //---------------------------------------------------------------------------
 
