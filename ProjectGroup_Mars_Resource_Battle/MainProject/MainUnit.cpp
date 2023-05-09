@@ -283,7 +283,7 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
     }
 
     for (i = 0; i < CardsInHand.size(); i++)
-        CardsInHand[i].set_command(Deck.takeCard());
+		CardsInHand[i].set_command(Deck.takeCard());
 }
 
 //---------------------------------------------------------------------------
