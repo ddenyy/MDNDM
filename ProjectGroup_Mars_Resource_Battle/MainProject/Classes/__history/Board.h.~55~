@@ -49,37 +49,45 @@ public:
 	}
 
     void generateAllHills() {
-		// множество координат х.у которые были уже заняты сгенерированными
-        // клетками
-		set<pair<int,int>> Busy_cells;
 		// количество холмов которые мы сгенерируем
 		int count_hills = (min(width,height) / 2) - 1;
-		// размер квадрата в котором будем генерировать поле
 
-		int sizeBoardHills = min(width,height);
 
 		int x_rand = 0;
 		int y_rand = 0;
-        int default_height_hill = 10;
+        float default_height_hill = 1.95;
+
+        srand(time(NULL));
 
 		// основной цикл заполнения поля горами
 		while(count_hills > 0)
 		{
+			bool flag_create_hill = false;
 			// генерируем рандомно координаты горы
-			x_rand = rand() % sizeBoardHills;
-			y_rand = rand() % sizeBoardHills;
+			x_rand = rand() * rand() % width;
+			y_rand = rand() * rand() % height;
 
-			// если горы с такими координатами не было найдено, создаем
-			if (Busy_cells.find({x_rand, y_rand}) != Busy_cells.end()) {
-			   Busy_cells.insert({x_rand, y_rand});
-			   count_hills-=1;
+			// генерируем случайную ширину горы
+			int width_hill = (rand() * rand() % width);
+			// генерируем случайную высоту горы (по у)
+			int height_hill = (rand()*rand() % height);
+
+			for (int i = x_rand; i <= width_hill; i++)
+			{
+				for (int j = y_rand; j <= height_hill; j++)
+				{
+					int cur_height = field[i][j].getHeightHill();
+					field[i][j].setHeight(cur_height + 1);
+					flag_create_hill = true;
+				}
+			}
+
+			if (flag_create_hill == true)
+			{
+				count_hills -= 1;
 			}
 		}
 
-        // заполняем поле горами с высотой 10
-		for(auto i: Busy_cells) {
-			 field[i.first][i.second].setHeight(default_height_hill);
-		}
 	}
 
     vector<vector<Cell>> field;

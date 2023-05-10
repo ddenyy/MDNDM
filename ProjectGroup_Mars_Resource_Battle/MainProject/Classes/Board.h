@@ -18,6 +18,12 @@ public:
         field.clear();
 	}
 
+	pair <int, int> get_field_size()
+	{
+		return make_pair(width, height);
+	}//поле если че квадратное
+
+
     // создает все эти рандомные артефакты и сует их в ячейки поля.
 	void initAllRandomArtefacts(int quantity_artefacts)
 	{
