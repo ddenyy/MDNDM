@@ -298,8 +298,8 @@ void __fastcall TMainForm::FormResize(TObject *Sender)
 
     //меняются объекты на DeckRect
     //вывод параметров робота
-    ScoreTB -> Height = 0.3 * (DeckRect -> Height - BackButGame ->Height);
-    StoreTB -> Height = 0.7 * (DeckRect -> Height - BackButGame ->Height);
+	ScoreTB -> Height = 0.3 * (DeckRect -> Height - BackButGame -> Height);
+    StoreTB -> Height = 0.7 * (DeckRect -> Height - BackButGame -> Height);
     ScoreLabel -> Height = 0.48 * ScoreTB -> Height;
     ScoreValueLabel -> Height = 0.48 * ScoreTB -> Height;
     StoreLabel -> Height = 0.28 * StoreTB -> Height;
