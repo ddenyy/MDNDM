@@ -6,21 +6,21 @@
 using namespace std;
 class Artefact {
 protected:
-    // координаты
+    // ┬к┬о┬о├а┬д┬и┬н┬а├в├л
     int _cord_x;
     int _cord_y;
-    // вес
+    // ┬в┬е├б
     int _weight;
-    // стоимость(очки за доставку на базу)
+    // ├б├в┬о┬и┬м┬о├б├в├м(┬о├з┬к┬и ┬з┬а ┬д┬о├б├в┬а┬в┬к├г ┬н┬а ┬б┬а┬з├г)
     int _cost;
-    // редкость
+    // ├а┬е┬д┬к┬о├б├в├м
     string _availability;
-    // цвет
+    // ├ж┬в┬е├в
     string _colour;
 public:
     virtual ~Artefact() = default;
 
-    // сеттеры
+    // ├б┬е├в├в┬е├а├л
     int cord_x() { return _cord_x; }
     int cord_y() { return _cord_y; }
     int weight() { return _weight; }
@@ -28,7 +28,7 @@ public:
     string availability() { return _availability; }
     string colour() { return _colour; }
 
-    // геттеры
+    // ┬г┬е├в├в┬е├а├л
     void set_cord_x(int cord_x) { _cord_x = cord_x; }
     void set_cord_y(int cord_y) { _cord_y = cord_y; }
     void set_weight(int weight) { _weight = weight; }
@@ -36,7 +36,7 @@ public:
     void set_availability(string availability) { _availability = availability; }
     void set_colour(string colour) { _colour = colour; }
 
-    // печать (для проверки)
+    // ┬п┬е├з┬а├в├м (┬д┬л├п ┬п├а┬о┬в┬е├а┬к┬и)
     virtual void print() = 0;
 
     void operator=(Artefact &ar);
@@ -75,14 +75,14 @@ frequent::~frequent() {
     _colour = "";
 }
 void frequent::print() {
-    cout << "Редкость : "<< _availability << "\n";
-    cout << "Координаты : " << _cord_x << " ; " << _cord_y << "\n";
+    cout << "┬Р┬е┬д┬к┬о├б├в├м : "<< _availability << "\n";
+    cout << "┼а┬о┬о├а┬д┬и┬н┬а├в├л : " << _cord_x << " ; " << _cord_y << "\n";
 }
 class rare : public Artefact {
 private:
-    // время видимости
+    // ┬в├а┬е┬м├п ┬в┬и┬д┬и┬м┬о├б├в┬и
     int _lifetime = 15;
-    // увеличение грузоподъемности робота
+    // ├г┬в┬е┬л┬и├з┬е┬н┬и┬е ┬г├а├г┬з┬о┬п┬о┬д├к┬е┬м┬н┬о├б├в┬и ├а┬о┬б┬о├в┬а
     int _buff_lifting = 100;
 public:
     rare();
@@ -96,7 +96,7 @@ public:
     void set_lifetime(int lifetime) { _lifetime = lifetime; }
     void set_buff_lifting(int buff_lifting) { _buff_lifting = buff_lifting; }
 };
-// конструктор
+// ┬к┬о┬н├б├в├а├г┬к├в┬о├а
 rare::rare() {
     _cord_x = 0;
     _cord_y = 0;
@@ -106,7 +106,7 @@ rare::rare() {
     _colour = "orange";
 }
 
-// конструктор копирования
+// ┬к┬о┬н├б├в├а├г┬к├в┬о├а ┬к┬о┬п┬и├а┬о┬в┬а┬н┬и├п
 rare::rare(Artefact &ar) {
     _cord_x = ar.cord_x();
     _cord_y = ar.cord_y();
@@ -116,7 +116,7 @@ rare::rare(Artefact &ar) {
     _colour = ar.colour();
 }
 
-// деструктор
+// ┬д┬е├б├в├а├г┬к├в┬о├а
 rare::~rare() {
     _cord_x = 0;
     _cord_y = 0;
@@ -128,10 +128,10 @@ rare::~rare() {
     _buff_lifting = 0;
 }
 
-// вывод для проверки
+// ┬в├л┬в┬о┬д ┬д┬л├п ┬п├а┬о┬в┬е├а┬к┬и
 void rare::print() {
-    cout << "Редкость : "<< _availability << "\n";
-    cout << "Координаты : " << _cord_x << " ; " << _cord_y << "\n";
+    cout << "┬Р┬е┬д┬к┬о├б├в├м : "<< _availability << "\n";
+    cout << "┼а┬о┬о├а┬д┬и┬н┬а├в├л : " << _cord_x << " ; " << _cord_y << "\n";
 }
 class usually : public Artefact {
 public:
@@ -168,8 +168,8 @@ usually::~usually() {
 }
 
 void usually::print() {
-    cout << "Редкость : "<< _availability << "\n";
-    cout << "Координаты : " << _cord_x << " ; " << _cord_y << "\n";
+    cout << "┬Р┬е┬д┬к┬о├б├в├м : "<< _availability << "\n";
+    cout << "┼а┬о┬о├а┬д┬и┬н┬а├в├л : " << _cord_x << " ; " << _cord_y << "\n";
 }
 class Cell
 {
@@ -275,7 +275,7 @@ public:
     }
 
     void generateAllHills() {
-        // количество холмов которые мы сгенерируем
+        // ┬к┬о┬л┬и├з┬е├б├в┬в┬о ├е┬о┬л┬м┬о┬в ┬к┬о├в┬о├а├л┬е ┬м├л ├б┬г┬е┬н┬е├а┬и├а├г┬е┬м
         int count_hills = (min(width,height) / 2) - 1;
 
 
@@ -283,17 +283,17 @@ public:
         int y_rand = 0;
         float default_height_hill = 1.95;
 
-        // основной цикл заполнения поля горами
+        // ┬о├б┬н┬о┬в┬н┬о┬й ├ж┬и┬к┬л ┬з┬а┬п┬о┬л┬н┬е┬н┬и├п ┬п┬о┬л├п ┬г┬о├а┬а┬м┬и
         while(count_hills > 0)
         {
             bool flag_create_hill = false;
-            // генерируем рандомно координаты горы
+            // ┬г┬е┬н┬е├а┬и├а├г┬е┬м ├а┬а┬н┬д┬о┬м┬н┬о ┬к┬о┬о├а┬д┬и┬н┬а├в├л ┬г┬о├а├л
             x_rand = rand() * rand() % width;
             y_rand = rand() * rand() % height;
 
-            // генерируем случайную ширину горы
+            // ┬г┬е┬н┬е├а┬и├а├г┬е┬м ├б┬л├г├з┬а┬й┬н├г├о ├и┬и├а┬и┬н├г ┬г┬о├а├л
             int width_hill = (rand() * rand() % width);
-            // генерируем случайную высоту горы (по у)
+            // ┬г┬е┬н┬е├а┬и├а├г┬е┬м ├б┬л├г├з┬а┬й┬н├г├о ┬в├л├б┬о├в├г ┬г┬о├а├л (┬п┬о ├г)
             int height_hill = (rand()*rand() % height);
 
             for (int i = x_rand; i <= width_hill; i++)
@@ -325,13 +325,13 @@ private:
 };
 class Robot {
 private:
-    int x, y, z; // координаты робота
-    int rotation; // текущее направление робота (0-3 соответственно "вперед", "направо", "назад", "налево")
-    bool hasArtifact; // есть ли у робота артефакт (да/нет)
-    int score; // количество очков игрока
-    int numArtifacts;  // количество артефактов на роботе
-    int health; // здоровье робота
-    int load_capacity; // грузоподъемность робота, по дефолту 100
+    int x, y, z; // ┬к┬о┬о├а┬д┬и┬н┬а├в├л ├а┬о┬б┬о├в┬а
+    int rotation; // ├в┬е┬к├г├й┬е┬е ┬н┬а┬п├а┬а┬в┬л┬е┬н┬и┬е ├а┬о┬б┬о├в┬а (0-3 ├б┬о┬о├в┬в┬е├в├б├в┬в┬е┬н┬н┬о "┬в┬п┬е├а┬е┬д", "┬н┬а┬п├а┬а┬в┬о", "┬н┬а┬з┬а┬д", "┬н┬а┬л┬е┬в┬о")
+    bool hasArtifact; // ┬е├б├в├м ┬л┬и ├г ├а┬о┬б┬о├в┬а ┬а├а├в┬е├д┬а┬к├в (┬д┬а/┬н┬е├в)
+    int score; // ┬к┬о┬л┬и├з┬е├б├в┬в┬о ┬о├з┬к┬о┬в ┬и┬г├а┬о┬к┬а
+    int numArtifacts;  // ┬к┬о┬л┬и├з┬е├б├в┬в┬о ┬а├а├в┬е├д┬а┬к├в┬о┬в ┬н┬а ├а┬о┬б┬о├в┬е
+    int health; // ┬з┬д┬о├а┬о┬в├м┬е ├а┬о┬б┬о├в┬а
+    int load_capacity; // ┬г├а├г┬з┬о┬п┬о┬д├к┬е┬м┬н┬о├б├в├м ├а┬о┬б┬о├в┬а, ┬п┬о ┬д┬е├д┬о┬л├в├г 100
     int counter_usually_Artifacts = 0;
     int counter_rare_Aritfacts = 0;
     int counter_frequent_Artifacts = 0;
@@ -341,10 +341,10 @@ private:
     LogicBoard board_computer_on_robot;
 public:
 
-    //Пустой конструктор
+    //┬П├г├б├в┬о┬й ┬к┬о┬н├б├в├а├г┬к├в┬о├а
     Robot() : x(0), y(0), z(0), rotation(0), hasArtifact(false), score(2), numArtifacts(0), health(100), load_capacity(100), counter_frequent_Artifacts(0), counter_rare_Aritfacts(0), counter_usually_Artifacts(0), now_cell(),
               board_computer_on_robot(20, 20){}
-    // Функция переносит робота на dx, dy, dz
+    // тАЭ├г┬н┬к├ж┬и├п ┬п┬е├а┬е┬н┬о├б┬и├в ├а┬о┬б┬о├в┬а ┬н┬а dx, dy, dz
     void walk(int dx, int dy, int dz) {
         x += dx;
         y += dy;
