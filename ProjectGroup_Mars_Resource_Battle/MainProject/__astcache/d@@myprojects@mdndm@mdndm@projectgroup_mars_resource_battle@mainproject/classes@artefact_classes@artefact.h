@@ -15,7 +15,7 @@ protected:
     // редкость
     string _availability;
     // цвет
-    string _colour;
+	string _colour ;
 public:
     virtual ~artefact() = default;
 
