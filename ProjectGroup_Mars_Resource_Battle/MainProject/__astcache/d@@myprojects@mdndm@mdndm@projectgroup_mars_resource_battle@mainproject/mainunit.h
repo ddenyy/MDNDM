@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------
 
 #ifndef MainUnitH
 #define MainUnitH
@@ -80,6 +80,10 @@ __published:	// IDE-managed Components
 	TRectangle *GameBackGroundRect;
 	TRectangle *CardsBackGroundRect;
 	TRectangle *DeckBackGroundRect;
+	TLightMaterialSource *LightMaterialSourceRobot1;
+	TLightMaterialSource *LightMaterialSourceBase;
+	TLabel *LabelForExecuteCommandFunc;
+	TRoundRect *RoundRectForExecuteCommandFunc;
 
 
 //комменты по функциям в спп файле
@@ -92,8 +96,11 @@ __published:	// IDE-managed Components
 	void __fastcall FormKeyDown(TObject *Sender, WORD &Key, System::WideChar &KeyChar,
           TShiftState Shift);
 	void __fastcall BackButGameClick(TObject *Sender);
+	void __fastcall RoundRectForExecuteCommandFuncClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
+    void __fastcall ExecuteCommand(TLabel* CardLabel);
+
 	__fastcall TMainForm(TComponent* Owner);
 };
 //---------------------------------------------------------------------------

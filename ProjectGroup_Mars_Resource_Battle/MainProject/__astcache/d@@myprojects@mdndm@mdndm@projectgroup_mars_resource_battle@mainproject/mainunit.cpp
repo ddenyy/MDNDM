@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------
 
 #include <fmx.h>
 #pragma hdrstop
@@ -7,6 +7,7 @@
 #include "Additional_Libraries.h"
 #include "Classes/Board.h"
 #include "Classes/Cards.h"
+#include "Classes/Robot.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.fmx"
@@ -107,6 +108,24 @@ public:
 
 };
 
+AnsiString ToAnsiString(string Str)
+{
+	AnsiString aStr = "";
+	for (int i = 0; i < Str.size(); i++)
+		aStr += Str[i];
+
+    return aStr;
+}
+
+string AnsiToStr(AnsiString NewRoute)
+{
+    string NewRouteStr = "";
+	for (int i = 1; i < NewRoute.Length(); i++)
+		NewRouteStr += NewRoute[i];
+
+	return NewRouteStr;
+}
+
 class InterfaceCard
 {
 public:
@@ -141,58 +160,96 @@ public:
         rorect -> Position -> Y = new_y;
     }
 
-    void set_command(string command)
+    void set_command(pair<string, int> command)
     {
-        if (command == "stepOne") {
+        rorect -> Name = ToAnsiString(command.first) + IntToStr(command.second);
+        //ShowMessage(rorect -> Name);
+
+        if (command.first == "stepOne") {
             sign -> Text = "S";
             rorect -> Fill -> Color = claRoyalblue;
         }
-        if (command == "stepToStop") {
+        if (command.first == "stepToStop") {
             sign -> Text = "M";
             rorect -> Fill -> Color = claGold;
         }
-        if (command == "jump") {
+        if (command.first == "jump") {
             sign -> Text = "J";
             rorect -> Fill -> Color = claDarkorange;
         }
-        if (command == "left") {
+        if (command.first == "left") {
             sign -> Text = "L";
             rorect -> Fill -> Color = claLightskyblue;
         }
-        if (command == "right") {
+        if (command.first == "right") {
             sign -> Text = "R";
             rorect -> Fill -> Color = claLightskyblue;
         }
-        if (command == "back") {
+        if (command.first == "back") {
             sign -> Text = "B";
             rorect -> Fill -> Color = claLightskyblue;
         }
-        if (command == "teleportForOne") {
+        if (command.first == "teleportForOne") {
             sign -> Text = "T1";
             rorect -> Fill -> Color = claLightgreen;
         }
-        if (command == "teleportForFive") {
+        if (command.first == "teleportForFive") {
             sign -> Text = "T2";
             rorect -> Fill -> Color = claMediumseagreen;
         }
-        if (command == "teleportForSeven") {
+        if (command.first == "teleportForSeven") {
             sign -> Text = "T3";
             rorect -> Fill -> Color = claDarkgreen;
         }
-        if (command == "setTrap") {
+        if (command.first == "setTrap") {
             sign -> Text = "D";
             rorect -> Fill -> Color = claCrimson;
         }
-        if (command == "activateTrap") {
+        if (command.first == "activateTrap") {
             sign -> Text = "K";
             rorect -> Fill -> Color = claDarkred;
         }
     }
 };
 
+class InterfaceRobot
+{
+public:
+    TCone* cone;
+
+    void create_robot(TDummy* RootDummy)
+    {
+        cone = new TCone(RootDummy);
+        cone -> Parent = RootDummy;
+        cone -> Height = 1.8;
+        cone -> Width = 1.8;
+        cone -> Depth = 1.8;
+        cone -> RotationAngle -> X = 270;
+    }
+
+    void set_position(float new_x, float new_y, float new_z)
+    {
+        cone -> Position -> X = new_x;
+        cone -> Position -> Y = new_y;
+        cone -> Position -> Z = new_z;
+    }
+
+    void set_material(TLightMaterialSource* Material)
+    {
+        cone -> MaterialSource = Material;
+    }
+};
+
+void __fastcall TMainForm::ExecuteCommand(TLabel* CardLabel)
+{
+    ShowMessage("Success");
+}
+
 vector <vector <InterfaceCell> > IBoard;
 LogicBoard *LBoard;
 vector <InterfaceCard> CardsInHand;
+InterfaceRobot* IRobot;
+LogicRobot* LRobot;
 
 //---------------------------------------------------------------------------
 /*эта функция переключает вид на страничку с правилами и заполняет текстовое поле
@@ -223,7 +280,7 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
     //turn on game page
     MainTabControl -> ActiveTab = GameTab;
 
-    int board_height = 15, board_width = 15;
+    int board_height = 20, board_width = 20;
     //интерфейс поля
     IBoard.resize(board_height, vector <InterfaceCell>(board_width));
 
@@ -264,12 +321,17 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
         }
     }
 
+    IBoard[board_height - 1][0].set_material(LightMaterialSourceBase);
+    IBoard[0][board_width - 1].set_material(LightMaterialSourceBase);
+    IBoard[0][0].set_material(LightMaterialSourceBase);
+    IBoard[board_height - 1][board_width - 1].set_material(LightMaterialSourceBase);
+
     //создание карт
     DECK Deck;
     int num_of_cards;
     num_of_cards = 7;
     Deck.formDeck(num_of_cards);
-    Deck.shuffleDeck();
+    //Deck.shuffleDeck();
 
     CardsInHand.resize(num_of_cards);
 
@@ -280,10 +342,61 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
         CardsInHand[i].rorect -> Align = TAlignLayout::Vertical;
         CardsInHand[i].rorect -> Margins -> Bottom = 5;
         CardsInHand[i].rorect -> Margins -> Top = 5;
+
+        CardsInHand[i].rorect -> OnClick = RoundRectForExecuteCommandFuncClick;
     }
 
     for (i = 0; i < CardsInHand.size(); i++)
 		CardsInHand[i].set_command(Deck.takeCard());
+
+    IRobot = new InterfaceRobot;
+    IRobot -> create_robot(Player1Dummy);
+    IRobot -> set_position(IBoard[19][0].cube->Position->X, IBoard[19][0].cube->Position->Y - 0.9 - IBoard[19][0].cube->Height, IBoard[19][0].cube->Position->Z);
+    IRobot -> set_material(LightMaterialSourceRobot1);
+
+    LRobot = new LogicRobot;
+    LRobot -> x = 19;
+    LRobot -> y = 0;
+    LRobot -> z = 0;
+    LRobot -> rotation = 0;
+    LRobot -> score = 0;
+    LRobot -> board_computer_on_robot = LBoard;
+    LRobot -> now_cell = LBoard -> field[LRobot -> x][LRobot -> y];
+}
+
+void DisplayRobotMovement()
+{
+    IRobot -> set_position(IBoard[LRobot -> x][LRobot -> y].cube -> Position -> X,
+				      	 IBoard[LRobot -> x][LRobot -> y].cube -> Position -> Y - 0.9 - IBoard[LRobot -> x][LRobot -> y].cube->Height,
+                         IBoard[LRobot -> x][LRobot -> y].cube -> Position -> Z);
+    IRobot -> cone -> RotationAngle -> Z = 90 * LRobot -> rotation;
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::RoundRectForExecuteCommandFuncClick(TObject *Sender)
+{
+    AnsiString ansi_command_type;
+
+    if (Sender->ClassNameIs("TRoundRect")) {
+        ansi_command_type = GetPropValue(Sender, "Name", true);
+    }
+    else
+        return;
+
+    //ShowMessage(ansi_command_type);
+    string command_type = AnsiToStr(ansi_command_type);
+    while(command_type.size() > 0 && command_type.back() >= '1' && command_type.back() <= '9')
+        command_type.pop_back();
+    //ShowMessage(ToAnsiString(command_type));
+
+    if (command_type == "stepOne")
+        LRobot -> make_step_forward();
+    if (command_type == "left")
+        LRobot -> command_to_turn(command_type);
+    if (command_type == "right")
+        LRobot -> command_to_turn(command_type);
+
+    DisplayRobotMovement();
 }
 
 //---------------------------------------------------------------------------
@@ -373,6 +486,12 @@ void __fastcall TMainForm::BackButGameClick(TObject *Sender)
         CardsInHand[j].~InterfaceCard();
     }
     CardsInHand = MemoryDestVecCards;
+
+    if (IRobot != NULL) {
+        if (IRobot -> cone != NULL)
+            delete IRobot -> cone;
+        delete IRobot;
+    }
 
     MainTabControl -> ActiveTab = StartTab;
 }

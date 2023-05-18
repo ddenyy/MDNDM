@@ -49,7 +49,7 @@ public:
     void shuffleDeck();
 
     //берем карту из конца колода
-    string takeCard();
+    pair<string, int> takeCard();
 
 private:
     vector<string> cards;
@@ -63,58 +63,61 @@ void DECK::formDeck(int id)
     {
         cards.push_back(stepOne);
     }
-    for (int i = 0; i < 45; ++i)
-    {
-        cards.push_back(stepToStop);
-    }
-    for (int i = 0; i < 90; ++i)
-    {
-        cards.push_back(jump);
-    }
-    for (int i = 0; i < 120; ++i)
-    {
-        cards.push_back(left);
-    }
-    for (int i = 0; i < 120; ++i)
-    {
-        cards.push_back(right);
-    }
-    for (int i = 0; i < 60; ++i)
-    {
-        cards.push_back(back);
-    }
-    if (id <= 2)
-        return;
-
-    for (int i = 0; i < 25; ++i)
-    {
-        cards.push_back(teleportForOne);
-    }
-    if (id == 3)
-        return;
-
-    for (int i = 0; i < 35; ++i)
-    {
-        cards.push_back(teleportForFive);
-    }
-    if (id <= 5)
-        return;
-
-    for (int i = 0; i < 35; ++i)
-    {
-        cards.push_back(teleportForSeven);
-    }
-    if (id == 6)
-        return;
-
-    for (int i = 0; i < 15; ++i)
-    {
-        cards.push_back(setTrap);
-    }
-    for (int i = 0; i < 15; ++i)
-    {
-        cards.push_back(activateTrap);
-    }
+    cards.push_back(stepOne);
+    cards.push_back(left);
+    cards.push_back(right);
+//    for (int i = 0; i < 45; ++i)
+//    {
+//        cards.push_back(stepToStop);
+//    }
+//    for (int i = 0; i < 90; ++i)
+//    {
+//        cards.push_back(jump);
+//    }
+//    for (int i = 0; i < 120; ++i)
+//    {
+//        cards.push_back(left);
+//    }
+//    for (int i = 0; i < 120; ++i)
+//    {
+//        cards.push_back(right);
+//    }
+//    for (int i = 0; i < 60; ++i)
+//    {
+//        cards.push_back(back);
+//    }
+//    if (id <= 2)
+//        return;
+//
+//    for (int i = 0; i < 25; ++i)
+//    {
+//        cards.push_back(teleportForOne);
+//    }
+//    if (id == 3)
+//        return;
+//
+//    for (int i = 0; i < 35; ++i)
+//    {
+//        cards.push_back(teleportForFive);
+//    }
+//    if (id <= 5)
+//        return;
+//
+//    for (int i = 0; i < 35; ++i)
+//    {
+//        cards.push_back(teleportForSeven);
+//    }
+//    if (id == 6)
+//        return;
+//
+//    for (int i = 0; i < 15; ++i)
+//    {
+//        cards.push_back(setTrap);
+//    }
+//    for (int i = 0; i < 15; ++i)
+//    {
+//        cards.push_back(activateTrap);
+//    }
 }
 
 //рандомно мешаем колоду
@@ -131,14 +134,14 @@ void DECK::shuffleDeck()
 }
 
 //берем карту из конца колода
-string DECK::takeCard()
+pair<string, int> DECK::takeCard()
 {
     if (cards.size() == 0)
-        return "";
+        return make_pair("", 0);
 
     string currCard;
     currCard = cards[cards.size() - 1];
     cards.pop_back();
-    return currCard;
+    return make_pair(currCard, int(cards.size()));
 }
 

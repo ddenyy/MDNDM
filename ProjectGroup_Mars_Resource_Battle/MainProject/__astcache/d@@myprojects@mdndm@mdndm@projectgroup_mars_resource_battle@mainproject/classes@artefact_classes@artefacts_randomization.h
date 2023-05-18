@@ -52,13 +52,15 @@ vector <artefact*> get_list_of_artefacts(int cnt, int size) {
 
     for (int i = 1; i < cnt; ++i) {
         // флаг будет проверять есть ли уже такая пара координат в ранее инициализированных артефактах
+        //или если артефакт попал в угол
         bool flag = true;
         Random_cords[i].first = Random_pos[i];
         int rand_x = rand() % size;
         int rand_y = rand() % size;
         pair <int, int> cords = {rand_x, rand_y};
         for (int j = 0; j < i; ++j) {
-            if (cords == Random_cords[j].second)
+            if (cords == Random_cords[j].second || cords == make_pair(0, size - 1)
+            || cords == make_pair(size - 1, 0)|| cords == make_pair(0, 0) || cords == make_pair(size - 1, size - 1))
                 flag = false;
         }
         if (flag) {

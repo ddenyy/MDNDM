@@ -166,14 +166,14 @@ object MainForm: TMainForm
                 Width = 1.000000000000000000
                 Height = 1.000000000000000000
                 Depth = 1.000000000000000000
+                object Player1Dummy: TDummy
+                  Width = 1.000000000000000000
+                  Height = 1.000000000000000000
+                  Depth = 1.000000000000000000
+                end
               end
             end
             object ArtefactDummy: TDummy
-              Width = 1.000000000000000000
-              Height = 1.000000000000000000
-              Depth = 1.000000000000000000
-            end
-            object Player1Dummy: TDummy
               Width = 1.000000000000000000
               Height = 1.000000000000000000
               Depth = 1.000000000000000000
@@ -308,6 +308,19 @@ object MainForm: TMainForm
           end
         end
       end
+      object LabelForExecuteCommandFunc: TLabel
+        Text = 'LabelForExecuteCommandFunc'
+        Visible = False
+        TabOrder = 1
+      end
+      object RoundRectForExecuteCommandFunc: TRoundRect
+        Position.X = 32.000000000000000000
+        Size.Width = 50.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        Visible = False
+        OnClick = RoundRectForExecuteCommandFuncClick
+      end
     end
     object RulesTab: TTabItem
       CustomIcon = <
@@ -424,5 +437,23 @@ object MainForm: TMainForm
       Category = 'Tab'
       Tab = StartTab
     end
+  end
+  object LightMaterialSourceRobot1: TLightMaterialSource
+    Diffuse = claOrangered
+    Ambient = xFF202020
+    Emissive = claNull
+    Specular = xFF606060
+    Shininess = 30
+    Left = 24
+    Top = 80
+  end
+  object LightMaterialSourceBase: TLightMaterialSource
+    Diffuse = claSlategray
+    Ambient = xFF202020
+    Emissive = claNull
+    Specular = xFF606060
+    Shininess = 30
+    Left = 24
+    Top = 136
   end
 end
