@@ -367,8 +367,8 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
 void DisplayRobotMovement()
 {
     IRobot -> set_position(IBoard[LRobot -> x][LRobot -> y].cube -> Position -> X,
-				      	 IBoard[LRobot -> x][LRobot -> y].cube -> Position -> Y - 0.9 - IBoard[LRobot -> x][LRobot -> y].cube->Height,
-                         IBoard[LRobot -> x][LRobot -> y].cube -> Position -> Z);
+				      	   IBoard[LRobot -> x][LRobot -> y].cube -> Position -> Y - 0.9 - IBoard[LRobot -> x][LRobot -> y].cube->Height,
+                           IBoard[LRobot -> x][LRobot -> y].cube -> Position -> Z);
     IRobot -> cone -> RotationAngle -> Z = 90 * LRobot -> rotation;
 }
 
