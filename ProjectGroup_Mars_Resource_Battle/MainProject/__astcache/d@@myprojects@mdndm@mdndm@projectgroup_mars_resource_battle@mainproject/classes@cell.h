@@ -60,6 +60,13 @@ public:
 		is_frequent_artefact = true;
 	}
 
+    void get_artefact_in_hell()
+    {
+        is_rare_artefact = false;
+		is_usually_artefact = false;
+		is_frequent_artefact = false;
+    }
+
 	void setType(string type_cell)
 	{
 		this->type_cell = type_cell;

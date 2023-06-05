@@ -17,7 +17,7 @@ object MainForm: TMainForm
     Size.PlatformDefault = False
     StyleLookup = 'tabcontrolstyle'
     TabHeight = 49.000000000000000000
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 0
     TabPosition = None
     Sizes = (
@@ -33,7 +33,7 @@ object MainForm: TMainForm
       CustomIcon = <
         item
         end>
-      IsSelected = True
+      IsSelected = False
       Size.Width = 8.000000000000000000
       Size.Height = 8.000000000000000000
       Size.PlatformDefault = False
@@ -131,7 +131,7 @@ object MainForm: TMainForm
       CustomIcon = <
         item
         end>
-      IsSelected = False
+      IsSelected = True
       Size.Width = 8.000000000000000000
       Size.Height = 8.000000000000000000
       Size.PlatformDefault = False
@@ -302,6 +302,16 @@ object MainForm: TMainForm
                   Size.Width = 90.000000000000000000
                   Size.Height = 159.000000000000000000
                   Size.PlatformDefault = False
+                  object StoreValueLabel: TLabel
+                    Align = Client
+                    StyledSettings = [Family, Style, FontColor]
+                    Size.Width = 90.000000000000000000
+                    Size.Height = 159.000000000000000000
+                    Size.PlatformDefault = False
+                    TextSettings.Font.Size = 21.000000000000000000
+                    TextSettings.HorzAlign = Center
+                    TabOrder = 0
+                  end
                 end
               end
             end

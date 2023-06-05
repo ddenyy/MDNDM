@@ -74,7 +74,7 @@ __published:	// IDE-managed Components
 	TToolBar *ScoreTB;
 	TToolBar *StoreTB;
 	TLabel *ScoreLabel;
-	TLabel *ScoreValueLabel;
+    TLabel *ScoreValueLabel;
 	TLabel *StoreLabel;
 	TRectangle *StoreValueRect;
 	TRectangle *GameBackGroundRect;
@@ -84,6 +84,7 @@ __published:	// IDE-managed Components
 	TLightMaterialSource *LightMaterialSourceBase;
 	TLabel *LabelForExecuteCommandFunc;
 	TRoundRect *RoundRectForExecuteCommandFunc;
+	TLabel *StoreValueLabel;
 
 
 //комменты по функциям в спп файле
@@ -100,6 +101,7 @@ __published:	// IDE-managed Components
 private:	// User declarations
 public:		// User declarations
     void __fastcall ExecuteCommand(TLabel* CardLabel);
+
 
 	__fastcall TMainForm(TComponent* Owner);
 };

@@ -359,17 +359,29 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
     LRobot -> y = 0;
     LRobot -> z = 0;
     LRobot -> rotation = 0;
+    LRobot -> curr_score = 0;
     LRobot -> score = 0;
     LRobot -> board_computer_on_robot = LBoard;
     LRobot -> now_cell = LBoard -> field[LRobot -> x][LRobot -> y];
+
+    ScoreValueLabel -> Text = "0";
+    StoreValueLabel -> Text = "0";
 }
 
 void DisplayRobotMovement()
 {
+  	MainForm -> StoreValueLabel -> Text = IntToStr(LRobot->curr_score) + "(" + IntToStr(LRobot->num_of_artefacts) + ")";
+    MainForm -> ScoreValueLabel -> Text = IntToStr(LRobot->score);
+
     IRobot -> set_position(IBoard[LRobot -> x][LRobot -> y].cube -> Position -> X,
 				      	   IBoard[LRobot -> x][LRobot -> y].cube -> Position -> Y - 0.9 - IBoard[LRobot -> x][LRobot -> y].cube->Height,
                            IBoard[LRobot -> x][LRobot -> y].cube -> Position -> Z);
     IRobot -> cone -> RotationAngle -> Z = 90 * LRobot -> rotation;
+
+    if (LRobot->delete_inter_artef) {
+        delete IBoard[LRobot -> x][LRobot -> y].artefact->sphere;
+        LRobot->delete_inter_artef = false;
+    }
 }
 
 //---------------------------------------------------------------------------

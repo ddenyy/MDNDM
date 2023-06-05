@@ -6,16 +6,20 @@ public:
     int x, y, z; // координаты робота
     int rotation = 0; // текущее направление робота (0-3 соответственно "вперед", "направо", "назад", "налево")
     bool hasArtifact; // есть ли у робота артефакт (да/нет)
-    int score; // количество очков игрока
+    int curr_score = 0; // количество очков игрока
+    int score = 0;
     int numArtifacts;  // количество артефактов на роботе
     int health = 1; // здоровье робота
     int load_capacity = 100; // грузоподъемность робота, по дефолту 100
     int counter_usually_Artifacts = 0;
     int counter_rare_Aritfacts = 0;
     int counter_frequent_Artifacts = 0;
+    int num_of_artefacts = 0;
     int base_coordinate_x;
     int base_coordinate_y;
+    pair<int, int> base_pos;
     pair<int, int> enemy_pos;
+    bool delete_inter_artef = false;
     Cell now_cell;
     LogicBoard *board_computer_on_robot;
     //Пустой конструктор
@@ -30,14 +34,23 @@ public:
     }
     void is_there_an_Artefact(){
         tuple<int, int, int> now_coordinates = get_coordinates();
-        if (now_cell.getTypeOfArtefact() == "rare"){
-            counter_rare_Aritfacts++;
-        }
-        if (now_cell.getTypeOfArtefact() == "frequents"){
-            counter_frequent_Artifacts++;
-        }
-        if (now_cell.getTypeOfArtefact() == "usually"){
-            counter_usually_Artifacts++;
+
+        if (now_cell.getTypeOfArtefact() != "no") {
+            if (num_of_artefacts <= 2) {
+                num_of_artefacts++;
+
+                if (now_cell.getTypeOfArtefact() == "rare")
+                    curr_score += 3;
+                if (now_cell.getTypeOfArtefact() == "frequent")
+                    curr_score += 1;
+                if (now_cell.getTypeOfArtefact() == "usually")
+                    curr_score += 2;
+
+                now_cell.get_artefact_in_hell();
+                board_computer_on_robot->field[x][y].get_artefact_in_hell();
+
+                delete_inter_artef = true;
+            }
         }
     }
     tuple<int, int, int> get_coordinates(){
@@ -127,6 +140,17 @@ public:
             set_score(100);
         }
     }
+
+    void is_this_base()
+    {
+        int n = board_computer_on_robot->field[get_coordinate_x()].size();
+        if ((x == 0 && y == n - 1) || (x == 0 && y == 0) || (x == n - 1 && y == 0) || (x == n - 1 && y == n - 1)) {
+            score += curr_score;
+            num_of_artefacts = 0;
+            curr_score = 0;
+        }
+    }
+
     void make_step_forward(){
         if (rotation < 0 || rotation > 3) {
             rotation = 0;
@@ -136,6 +160,7 @@ public:
                 now_cell = board_computer_on_robot->field[get_coordinate_x()][get_coordinate_y() + 1];
                 walk(0, 1, 0);
                 is_there_an_Artefact();
+                is_this_base();
                 quest_ok_rare();
                 quest_frequents_ok();
                 quest_usually_ok();
@@ -146,6 +171,7 @@ public:
                 now_cell = board_computer_on_robot->field[get_coordinate_x()][get_coordinate_y() - 1];
                 walk(0, -1, 0);
                 is_there_an_Artefact();
+                is_this_base();
                 quest_ok_rare();
                 quest_frequents_ok();
                 quest_usually_ok();
@@ -156,6 +182,7 @@ public:
                 now_cell = board_computer_on_robot->field[get_coordinate_x() + 1][get_coordinate_y()];
                 walk(1, 0, 0);
                 is_there_an_Artefact();
+                is_this_base();
                 quest_ok_rare();
                 quest_frequents_ok();
                 quest_usually_ok();
@@ -166,6 +193,7 @@ public:
                 now_cell = board_computer_on_robot->field[get_coordinate_x() - 1][get_coordinate_y()];
                 walk(-1, 0, 0);
                 is_there_an_Artefact();
+                is_this_base();
                 quest_ok_rare();
                 quest_frequents_ok();
                 quest_usually_ok();
