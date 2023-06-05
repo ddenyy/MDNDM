@@ -302,6 +302,16 @@ object MainForm: TMainForm
                   Size.Width = 90.000000000000000000
                   Size.Height = 159.000000000000000000
                   Size.PlatformDefault = False
+                  object StoreValueLabel: TLabel
+                    Align = Client
+                    StyledSettings = [Family, Style, FontColor]
+                    Size.Width = 90.000000000000000000
+                    Size.Height = 159.000000000000000000
+                    Size.PlatformDefault = False
+                    TextSettings.Font.Size = 21.000000000000000000
+                    TextSettings.HorzAlign = Center
+                    TabOrder = 0
+                  end
                 end
               end
             end
@@ -425,7 +435,7 @@ object MainForm: TMainForm
     Diffuse = claBurlywood
     Ambient = xFF202020
     Emissive = claNull
-    Specular = xFF606060
+    Specular = claBurlywood
     Shininess = 30
     Left = 8
     Top = 16

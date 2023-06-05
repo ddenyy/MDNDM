@@ -166,6 +166,7 @@ object MainForm: TMainForm
                 Width = 1.000000000000000000
                 Height = 1.000000000000000000
                 Depth = 1.000000000000000000
+                Visible = False
                 object Player1Dummy: TDummy
                   Width = 1.000000000000000000
                   Height = 1.000000000000000000
@@ -302,6 +303,16 @@ object MainForm: TMainForm
                   Size.Width = 90.000000000000000000
                   Size.Height = 159.000000000000000000
                   Size.PlatformDefault = False
+                  object StoreValueLabel: TLabel
+                    Align = Client
+                    StyledSettings = [Family, Style, FontColor]
+                    Size.Width = 90.000000000000000000
+                    Size.Height = 159.000000000000000000
+                    Size.PlatformDefault = False
+                    TextSettings.Font.Size = 21.000000000000000000
+                    TextSettings.HorzAlign = Center
+                    TabOrder = 0
+                  end
                 end
               end
             end
@@ -425,18 +436,10 @@ object MainForm: TMainForm
     Diffuse = claBurlywood
     Ambient = xFF202020
     Emissive = claNull
-    Specular = xFF606060
+    Specular = claBurlywood
     Shininess = 30
     Left = 8
     Top = 16
-  end
-  object MainActionList: TActionList
-    Left = 64
-    Top = 24
-    object GoToStartTabAction: TChangeTabAction
-      Category = 'Tab'
-      Tab = StartTab
-    end
   end
   object LightMaterialSourceRobot1: TLightMaterialSource
     Diffuse = claOrangered
@@ -455,5 +458,13 @@ object MainForm: TMainForm
     Shininess = 30
     Left = 24
     Top = 136
+  end
+  object MainActionList: TActionList
+    Left = 64
+    Top = 24
+    object GoToStartTabAction: TChangeTabAction
+      Category = 'Tab'
+      Tab = StartTab
+    end
   end
 end
