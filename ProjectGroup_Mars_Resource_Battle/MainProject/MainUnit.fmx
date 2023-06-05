@@ -430,14 +430,6 @@ object MainForm: TMainForm
     Left = 8
     Top = 16
   end
-  object MainActionList: TActionList
-    Left = 64
-    Top = 24
-    object GoToStartTabAction: TChangeTabAction
-      Category = 'Tab'
-      Tab = StartTab
-    end
-  end
   object LightMaterialSourceRobot1: TLightMaterialSource
     Diffuse = claOrangered
     Ambient = xFF202020
@@ -455,5 +447,13 @@ object MainForm: TMainForm
     Shininess = 30
     Left = 24
     Top = 136
+  end
+  object MainActionList: TActionList
+    Left = 64
+    Top = 24
+    object GoToStartTabAction: TChangeTabAction
+      Category = 'Tab'
+      Tab = StartTab
+    end
   end
 end

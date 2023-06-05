@@ -395,6 +395,8 @@ void __fastcall TMainForm::RoundRectForExecuteCommandFuncClick(TObject *Sender)
         LRobot -> command_to_turn(command_type);
     if (command_type == "right")
         LRobot -> command_to_turn(command_type);
+    if (command_type == "stepToStop")
+        LRobot -> move_until_stop();
 
     DisplayRobotMovement();
 }

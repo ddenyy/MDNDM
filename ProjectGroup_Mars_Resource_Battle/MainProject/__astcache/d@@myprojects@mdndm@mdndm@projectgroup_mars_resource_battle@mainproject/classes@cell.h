@@ -18,7 +18,7 @@ public:
 		return type_cell;
 	}
 
-	float getHeightHill()
+	int getHeightHill()
 	{
 		return height_hill;
 	}

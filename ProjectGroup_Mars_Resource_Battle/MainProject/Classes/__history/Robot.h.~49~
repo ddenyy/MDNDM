@@ -1,3 +1,6 @@
+#define fi first
+#define se second
+
 class LogicRobot {
 public:
     int x, y, z; // координаты робота
@@ -12,13 +15,12 @@ public:
     int counter_frequent_Artifacts = 0;
     int base_coordinate_x;
     int base_coordinate_y;
+    pair<int, int> enemy_pos;
     Cell now_cell;
     LogicBoard *board_computer_on_robot;
-
     //Пустой конструктор
      LogicRobot() : x(0), y(0), z(0), rotation(0), hasArtifact(false), score(2), numArtifacts(0), health(100), load_capacity(100),
      counter_frequent_Artifacts(0), counter_rare_Aritfacts(0), counter_usually_Artifacts(0){}
-
     // Функция переносит робота на dx, dy, dz
     void walk(int dx, int dy, int dz) {
         x += dx;
@@ -61,15 +63,12 @@ public:
         if (rotation == 0){
             rotate = "forward";
         }
-
         if (rotation == 1){
             rotate = "right";
         }
-
         if (rotation == 2){
             rotate = "back";
         }
-
         if (rotation == 3){
             rotate = "left";
         }
@@ -132,14 +131,13 @@ public:
         if (rotation < 0 || rotation > 3) {
             rotation = 0;
         }
-
         if (get_rotation() == "right"){
             if (get_coordinate_y() + 1 < board_computer_on_robot->field[get_coordinate_x()].size()) {
                 now_cell = board_computer_on_robot->field[get_coordinate_x()][get_coordinate_y() + 1];
                 walk(0, 1, 0);
                 is_there_an_Artefact();
                 quest_ok_rare();
-                quest_ok_rare();
+                quest_frequents_ok();
                 quest_usually_ok();
             }
         }
@@ -149,7 +147,7 @@ public:
                 walk(0, -1, 0);
                 is_there_an_Artefact();
                 quest_ok_rare();
-                quest_ok_rare();
+                quest_frequents_ok();
                 quest_usually_ok();
             }
         }
@@ -159,18 +157,72 @@ public:
                 walk(1, 0, 0);
                 is_there_an_Artefact();
                 quest_ok_rare();
-                quest_ok_rare();
+                quest_frequents_ok();
                 quest_usually_ok();
             }
         }
         if (get_rotation() == "forward"){
-            if (get_coordinate_x() - 1 >= 1) {
+            if (get_coordinate_x() - 1 >= 0) {
                 now_cell = board_computer_on_robot->field[get_coordinate_x() - 1][get_coordinate_y()];
                 walk(-1, 0, 0);
                 is_there_an_Artefact();
                 quest_ok_rare();
-                quest_ok_rare();
+                quest_frequents_ok();
                 quest_usually_ok();
+            }
+        }
+    }
+
+    bool correct_move(pair<int, int> pos)
+    {
+        if (pos.fi < 0 || pos.se < 0 || pos.fi >= board_computer_on_robot->field.size() || pos.se >= board_computer_on_robot->field.size())
+            return false;
+
+        if (pos == enemy_pos)
+            return false;
+
+
+    }
+
+    void move_until_stop()
+    {
+        bool we_are_moving = true;
+
+        pair<int, int> next_pos = {x, y};
+
+        while(we_are_moving)
+        {
+            we_are_moving = false;
+            if (get_rotation() == "forward") {
+                next_pos = {next_pos.fi - 1, next_pos.se};
+                if (correct_move(next_pos)) {
+                    we_are_moving = true;
+                    make_step_forward();
+                }
+            }
+
+            if (get_rotation() == "back") {
+                next_pos = {next_pos.fi + 1, next_pos.se};
+                if (correct_move(next_pos)) {
+                    we_are_moving = true;
+                    make_step_forward();
+                }
+            }
+
+            if (get_rotation() == "left") {
+                next_pos = {next_pos.fi, next_pos.se - 1};
+                if (correct_move(next_pos)) {
+                    we_are_moving = true;
+                    make_step_forward();
+                }
+            }
+
+            if (get_rotation() == "right") {
+                next_pos = {next_pos.fi, next_pos.se + 1};
+                if (correct_move(next_pos)) {
+                    we_are_moving = true;
+                    make_step_forward();
+                }
             }
         }
     }
