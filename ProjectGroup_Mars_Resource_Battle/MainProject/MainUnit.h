@@ -68,8 +68,7 @@ __published:	// IDE-managed Components
 	TDummy *Player1Dummy;
 	TDummy *Player2Dummy;
 	TLightMaterialSource *LightMaterialSourceGround;
-    //свет на 3д сцене
-	TLight *Light;
+	TLight *Light00;
     //разметка и компоненты для вывода параметров робота(очки, хранилище)
 	TToolBar *ScoreTB;
 	TToolBar *StoreTB;
@@ -85,6 +84,10 @@ __published:	// IDE-managed Components
 	TLabel *LabelForExecuteCommandFunc;
 	TRoundRect *RoundRectForExecuteCommandFunc;
 	TLabel *StoreValueLabel;
+	TLightMaterialSource *LightMaterialSourceHill;
+	TLightMaterialSource *LightMaterialSourcePike;
+	TLightMaterialSource *LightMaterialSourceGrass;
+	TLightMaterialSource *LightMaterialSourceLowGrass;
 
 
 //комменты по функциям в спп файле

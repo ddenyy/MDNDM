@@ -183,7 +183,7 @@ object MainForm: TMainForm
               Height = 1.000000000000000000
               Depth = 1.000000000000000000
             end
-            object Light: TLight
+            object Light00: TLight
               Color = claWhite
               LightType = Point
               SpotCutOff = 180.000000000000000000
@@ -435,7 +435,7 @@ object MainForm: TMainForm
     Diffuse = claBurlywood
     Ambient = xFF202020
     Emissive = claNull
-    Specular = xFF606060
+    Specular = claSlategray
     Shininess = 30
     Left = 8
     Top = 16

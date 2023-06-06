@@ -183,7 +183,7 @@ object MainForm: TMainForm
               Height = 1.000000000000000000
               Depth = 1.000000000000000000
             end
-            object Light: TLight
+            object Light00: TLight
               Color = claWhite
               LightType = Point
               SpotCutOff = 180.000000000000000000
@@ -435,7 +435,7 @@ object MainForm: TMainForm
     Diffuse = claBurlywood
     Ambient = xFF202020
     Emissive = claNull
-    Specular = claBurlywood
+    Specular = claSlategray
     Shininess = 30
     Left = 8
     Top = 16
@@ -465,5 +465,41 @@ object MainForm: TMainForm
       Category = 'Tab'
       Tab = StartTab
     end
+  end
+  object LightMaterialSourceHill: TLightMaterialSource
+    Diffuse = claPeru
+    Ambient = xFF202020
+    Emissive = claNull
+    Specular = xFF606060
+    Shininess = 30
+    Left = 112
+    Top = 80
+  end
+  object LightMaterialSourcePike: TLightMaterialSource
+    Diffuse = claSienna
+    Ambient = xFF202020
+    Emissive = claNull
+    Specular = xFF606060
+    Shininess = 30
+    Left = 104
+    Top = 136
+  end
+  object LightMaterialSourceGrass: TLightMaterialSource
+    Diffuse = claSeagreen
+    Ambient = xFF202020
+    Emissive = claNull
+    Specular = xFF606060
+    Shininess = 30
+    Left = 16
+    Top = 184
+  end
+  object LightMaterialSource1: TLightMaterialSource
+    Diffuse = claDarkgreen
+    Ambient = xFF202020
+    Emissive = claNull
+    Specular = xFF606060
+    Shininess = 30
+    Left = 104
+    Top = 192
   end
 end

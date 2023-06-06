@@ -17,7 +17,7 @@ object MainForm: TMainForm
     Size.PlatformDefault = False
     StyleLookup = 'tabcontrolstyle'
     TabHeight = 49.000000000000000000
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
     TabPosition = None
     Sizes = (
@@ -33,7 +33,7 @@ object MainForm: TMainForm
       CustomIcon = <
         item
         end>
-      IsSelected = False
+      IsSelected = True
       Size.Width = 8.000000000000000000
       Size.Height = 8.000000000000000000
       Size.PlatformDefault = False
@@ -131,7 +131,7 @@ object MainForm: TMainForm
       CustomIcon = <
         item
         end>
-      IsSelected = True
+      IsSelected = False
       Size.Width = 8.000000000000000000
       Size.Height = 8.000000000000000000
       Size.PlatformDefault = False
@@ -183,11 +183,12 @@ object MainForm: TMainForm
               Height = 1.000000000000000000
               Depth = 1.000000000000000000
             end
-            object Light: TLight
+            object Light00: TLight
               Color = claWhite
               LightType = Point
               SpotCutOff = 180.000000000000000000
-              Position.Y = -20.000000000000000000
+              Position.Y = -30.000000000000000000
+              Position.Z = -25.500000000000000000
               Width = 1.000000000000000000
               Height = 1.000000000000000000
               Depth = 1.000000000000000000
@@ -435,7 +436,7 @@ object MainForm: TMainForm
     Diffuse = claBurlywood
     Ambient = xFF202020
     Emissive = claNull
-    Specular = claBurlywood
+    Specular = claSlategray
     Shininess = 30
     Left = 8
     Top = 16

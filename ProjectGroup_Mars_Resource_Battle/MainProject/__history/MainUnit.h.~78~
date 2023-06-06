@@ -68,12 +68,12 @@ __published:	// IDE-managed Components
 	TDummy *Player1Dummy;
 	TDummy *Player2Dummy;
 	TLightMaterialSource *LightMaterialSourceGround;
-    //свет на 3д сцене
-	TLight *Light;
+	TLight *Light00;
     //разметка и компоненты для вывода параметров робота(очки, хранилище)
 	TToolBar *ScoreTB;
 	TToolBar *StoreTB;
 	TLabel *ScoreLabel;
+    TLabel *ScoreValueLabel;
 	TLabel *StoreLabel;
 	TRectangle *StoreValueRect;
 	TRectangle *GameBackGroundRect;
@@ -83,6 +83,7 @@ __published:	// IDE-managed Components
 	TLightMaterialSource *LightMaterialSourceBase;
 	TLabel *LabelForExecuteCommandFunc;
 	TRoundRect *RoundRectForExecuteCommandFunc;
+	TLabel *StoreValueLabel;
 
 
 //комменты по функциям в спп файле
@@ -99,7 +100,7 @@ __published:	// IDE-managed Components
 private:	// User declarations
 public:		// User declarations
     void __fastcall ExecuteCommand(TLabel* CardLabel);
-    TLabel *ScoreValueLabel;
+
 
 	__fastcall TMainForm(TComponent* Owner);
 };

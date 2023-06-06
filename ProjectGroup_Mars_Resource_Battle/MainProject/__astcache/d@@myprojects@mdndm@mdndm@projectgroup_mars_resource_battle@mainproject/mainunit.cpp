@@ -331,11 +331,12 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
     LBoard -> generateAllHills();
     LBoard -> initAllRandomArtefacts(40);
 
-    int i, j;
+    int i, j, k, l, max_hill_height = -1;
     float curr_x, curr_z, start_x, start_z;
     float sparse_coef = 2;//distance between two cell's centres
     string type_of_cell;
 
+    //находим координаты первой клетки
     if (board_height % 2 == 0) {
         start_x = -0.5 * 1.95 - (float)((float)board_height * 0.5 - 1) * (1.95 + 0.05);
         start_z = -start_x;
@@ -346,19 +347,44 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
         start_z = -start_x;
     }
 
-    //creation of filed's image
+    //creation of field's image
     for (i = 0, curr_z = start_z; i < board_height; i++, curr_z -= sparse_coef) {
         for (j = 0, curr_x = start_x; j < board_width; j++, curr_x += sparse_coef) {
             IBoard[i][j].create_cube(GroundMainDummy);
             IBoard[i][j].set_position(curr_x, 0.0, curr_z);
-            IBoard[i][j].set_material(LightMaterialSourceGround);
+            IBoard[i][j].set_material(LightMaterialSourceGrass);
+        	if (LBoard-> field[i][j].getHeightHill() == 0)
+            	IBoard[i][j].set_material(LightMaterialSourceLowGrass);
 
-            if (LBoard -> field[i][j].getHeightHill() != 0)
+            if (LBoard -> field[i][j].getHeightHill() != 0) {
                 IBoard[i][j].set_hill(LBoard-> field[i][j].getHeightHill());
+                max_hill_height = max(max_hill_height, LBoard-> field[i][j].getHeightHill());
+            }
 
             type_of_cell = LBoard -> field[i][j].getTypeOfArtefact();
             if (type_of_cell != "no") {
                 IBoard[i][j].set_artefact(type_of_cell);
+            }
+        }
+    }
+
+    for (i = 0; i < board_height; i++) {
+        for (j = 0; j < board_width; j++) {
+            if (LBoard-> field[i][j].getHeightHill() != max_hill_height)
+                continue;
+            for (k = 0; k < board_height; k++) {
+                for (l = 0; l < board_width; l++) {
+                    if (IBoard[k][l].cube -> MaterialSource != NULL && IBoard[k][l].cube -> MaterialSource != LightMaterialSourceGrass
+                    && IBoard[k][l].cube -> MaterialSource != LightMaterialSourceLowGrass)
+                        continue;
+
+                    if (abs(k - i) + abs(l - j) <= 8)
+                        IBoard[k][l].set_material(LightMaterialSourceGround);
+                    if (abs(k - i) + abs(l - j) <= 5)
+                        IBoard[k][l].set_material(LightMaterialSourceHill);
+                    if (abs(k - i) + abs(l - j) <= 3)
+                        IBoard[k][l].set_material(LightMaterialSourcePike);
+                }
             }
         }
     }

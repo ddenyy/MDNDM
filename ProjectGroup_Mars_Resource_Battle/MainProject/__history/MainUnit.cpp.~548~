@@ -83,7 +83,7 @@ public:
 
     void set_hill(int height_value)
     {
-        float new_height = 0.75 * height_value + 0.25;
+        float new_height = 0.9 * height_value + 0.25;
         cube -> Position -> Y -= (new_height * 0.5 - cube -> Height * 0.5);
         cube -> Height = new_height;
     }
@@ -234,7 +234,7 @@ public:
         sphere -> Height = 1.5;
         sphere -> Width = 0.65;
         sphere -> Depth = 0.35;
-        sphere -> Position -> Y -= 0.28;
+        sphere -> Position -> Y -= 0.27;
         sphere -> SubdivisionsAxes = 36;
 
         cone = new TCone(rdummy);
@@ -249,7 +249,7 @@ public:
         cylin1 -> Parent = rdummy;
         cylin1 -> RotationAngle -> X = -270;
         cylin1 -> RotationAngle -> Z = 27;
-        cylin1 -> Position -> Y -= 0.28;
+        cylin1 -> Position -> Y -= 0.27;
         cylin1 -> Height = 0.035;
         cylin1 -> Width = 1.3;
         cylin1 -> Depth = 1.4;
@@ -259,7 +259,7 @@ public:
         cylin2 -> Parent = rdummy;
         cylin2 -> RotationAngle -> X = -270;
         cylin2 -> RotationAngle -> Z = -27;
-        cylin2 -> Position -> Y -= 0.28;
+        cylin2 -> Position -> Y -= 0.27;
         cylin2 -> Height = 0.035;
         cylin2 -> Width = 1.3;
         cylin2 -> Depth = 1.4;
@@ -331,11 +331,12 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
     LBoard -> generateAllHills();
     LBoard -> initAllRandomArtefacts(40);
 
-    int i, j;
+    int i, j, k, l, max_hill_height = -1;
     float curr_x, curr_z, start_x, start_z;
     float sparse_coef = 2;//distance between two cell's centres
     string type_of_cell;
 
+    //находим координаты первой клетки
     if (board_height % 2 == 0) {
         start_x = -0.5 * 1.95 - (float)((float)board_height * 0.5 - 1) * (1.95 + 0.05);
         start_z = -start_x;
@@ -346,19 +347,45 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
         start_z = -start_x;
     }
 
-    //creation of filed's image
+    //creation of field's image
     for (i = 0, curr_z = start_z; i < board_height; i++, curr_z -= sparse_coef) {
         for (j = 0, curr_x = start_x; j < board_width; j++, curr_x += sparse_coef) {
             IBoard[i][j].create_cube(GroundMainDummy);
             IBoard[i][j].set_position(curr_x, 0.0, curr_z);
-            IBoard[i][j].set_material(LightMaterialSourceGround);
+            IBoard[i][j].set_material(LightMaterialSourceGrass);
+        	if (LBoard-> field[i][j].getHeightHill() == 0)
+            	IBoard[k][l].set_material(LightMaterialSourceLowGrass);
 
-            if (LBoard -> field[i][j].getHeightHill() != 0)
+            if (LBoard -> field[i][j].getHeightHill() != 0) {
                 IBoard[i][j].set_hill(LBoard-> field[i][j].getHeightHill());
+                max_hill_height = max(max_hill_height, LBoard-> field[i][j].getHeightHill());
+            }
 
             type_of_cell = LBoard -> field[i][j].getTypeOfArtefact();
             if (type_of_cell != "no") {
                 IBoard[i][j].set_artefact(type_of_cell);
+            }
+        }
+    }
+
+    for (i = 0; i < board_height; i++) {
+        for (j = 0; j < board_width; j++) {
+            if (LBoard-> field[i][j].getHeightHill() != max_hill_height)
+                continue;
+
+            for (k = 0; k < board_height; k++) {
+                for (l = 0; l < board_width; l++) {
+                    if (IBoard[k][l].cube -> MaterialSource != NULL && IBoard[k][l].cube -> MaterialSource != LightMaterialSourceGrass
+                    && IBoard[k][l].cube -> MaterialSource != LightMaterialSourceLowGrass)
+                        continue;
+
+                    if (abs(k - i) + abs(l - j) <= 8)
+                        IBoard[k][l].set_material(LightMaterialSourceGround);
+                    if (abs(k - i) + abs(l - j) <= 5)
+                        IBoard[k][l].set_material(LightMaterialSourceHill);
+                    if (abs(k - i) + abs(l - j) <= 3)
+                        IBoard[k][l].set_material(LightMaterialSourcePike);
+                }
             }
         }
     }
@@ -392,8 +419,7 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
 		CardsInHand[i].set_command(Deck.takeCard());
 
     IRobot = new InterfaceRobot(Player1Dummy);
-    //IRobot -> create_robot(Player1Dummy);
-    IRobot -> set_position(IBoard[19][0].cube->Position->X, IBoard[19][0].cube->Position->Y - 0.9, IBoard[19][0].cube->Position->Z);
+    IRobot -> set_position(IBoard[19][0].cube->Position->X, IBoard[19][0].cube->Position->Y - 0.9 - IBoard[19][0].cube -> Height * 0.5, IBoard[19][0].cube->Position->Z);
     IRobot -> set_material(LightMaterialSourceRobot1);
 
     LRobot = new LogicRobot;
