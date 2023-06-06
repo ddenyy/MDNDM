@@ -8,8 +8,22 @@ public:
     TCylinder * cylin;
     TLightMaterialSource * material;
 
+    string art_form;
+
+    void delete_interface()
+    {
+        if (art_form == "TCube")
+            delete cube;
+        if (art_form == "TSphere")
+            delete sphere;
+        if (art_form == "TCylinder")
+            delete cylin;
+    }
+
     void create_sphere(TCube* root_cube, string &artefact_type, string &artefact_form)
     {
+        art_form = artefact_form;
+
         if (artefact_form == "TCube") {
             cube = new TCube(root_cube);
             cube -> Parent = root_cube;
@@ -102,7 +116,5 @@ public:
                 cylin -> MaterialSource = material;
             }
         }
-
-
     }
 };

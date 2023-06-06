@@ -68,13 +68,13 @@ vector <artefact*> get_list_of_artefacts(int cnt, int size) {
         usually_artefact->set_cord_y(Random_cords[0].second.second);
         /////////////////////////////
         if (Random_form[0] == 1) {
-            rare_artefact->set_form("TCube");
+            usually_artefact->set_form("TCube");
         }
         else if (Random_form[0] == 2) {
-            rare_artefact->set_form("TSphere");
+            usually_artefact->set_form("TSphere");
         }
         else if (Random_form[0] == 3) {
-            rare_artefact->set_form("TCylinder");
+            usually_artefact->set_form("TCylinder");
         }
         //////////////////////////////
         Artefacts.push_back(usually_artefact);
@@ -85,13 +85,13 @@ vector <artefact*> get_list_of_artefacts(int cnt, int size) {
         frequent_artefact->set_cord_y(Random_cords[0].second.second);
         /////////////////////////////
         if (Random_form[0] == 1) {
-            rare_artefact->set_form("TCube");
+            frequent_artefact->set_form("TCube");
         }
         else if (Random_form[0] == 2) {
-            rare_artefact->set_form("TSphere");
+            frequent_artefact->set_form("TSphere");
         }
         else if (Random_form[0] == 3) {
-            rare_artefact->set_form("TCylinder");
+            frequent_artefact->set_form("TCylinder");
         }
         //////////////////////////////
         Artefacts.push_back(frequent_artefact);
@@ -136,14 +136,14 @@ vector <artefact*> get_list_of_artefacts(int cnt, int size) {
                 usually_artefact->set_cord_x(Random_cords[i].second.first);
                 usually_artefact->set_cord_y(Random_cords[i].second.second);
                 /////////////////////////////
-                if (Random_form[0] == 1) {
-                    rare_artefact->set_form("TCube");
+                if (Random_form[i] == 1) {
+                    usually_artefact->set_form("TCube");
                 }
-                else if (Random_form[0] == 2) {
-                    rare_artefact->set_form("TSphere");
+                else if (Random_form[i] == 2) {
+                    usually_artefact->set_form("TSphere");
                 }
-                else if (Random_form[0] == 3) {
-                    rare_artefact->set_form("TCylinder");
+                else if (Random_form[i] == 3) {
+                    usually_artefact->set_form("TCylinder");
                 }
                 //////////////////////////////
                 Artefacts.push_back(usually_artefact);
@@ -153,14 +153,14 @@ vector <artefact*> get_list_of_artefacts(int cnt, int size) {
                 frequent_artefact->set_cord_x(Random_cords[i].second.first);
                 frequent_artefact->set_cord_y(Random_cords[i].second.second);
                 /////////////////////////////
-                if (Random_form[0] == 1) {
-                    rare_artefact->set_form("TCube");
+                if (Random_form[i] == 1) {
+                    frequent_artefact->set_form("TCube");
                 }
-                else if (Random_form[0] == 2) {
-                    rare_artefact->set_form("TSphere");
+                else if (Random_form[i] == 2) {
+                    frequent_artefact->set_form("TSphere");
                 }
-                else if (Random_form[0] == 3) {
-                    rare_artefact->set_form("TCylinder");
+                else if (Random_form[i] == 3) {
+                    frequent_artefact->set_form("TCylinder");
                 }
                 //////////////////////////////
                 Artefacts.push_back(frequent_artefact);

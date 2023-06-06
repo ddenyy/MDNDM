@@ -61,19 +61,19 @@ private:
 void DECK::formDeck(int id)
 {
     cards.clear();
-    for (int i = 0; i < 50; ++i)
+    for (int i = 0; i < 180; ++i)
     {
         cards.push_back(stepOne);
     }
-    for (int i = 0; i < 50; ++i)
+    for (int i = 0; i < 120; ++i)
     {
         cards.push_back(left);
     }
-    for (int i = 0; i < 50; ++i)
+    for (int i = 0; i < 120; ++i)
     {
         cards.push_back(right);
     }
-    for (int i = 0; i < 50; ++i)
+    for (int i = 0; i < 70; ++i)
     {
         cards.push_back(stepToStop);
     }

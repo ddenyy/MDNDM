@@ -98,7 +98,8 @@ void DisplayRobotMovement()
     Players[curr_turn].I -> rdummy -> RotationAngle -> Z = 90 * Players[curr_turn].L -> rotation;
 
     if (Players[curr_turn].L->delete_inter_artef) {
-        delete IBoard[Players[curr_turn].L -> x][Players[curr_turn].L -> y].artefact->sphere;
+        IBoard[Players[curr_turn].L -> x][Players[curr_turn].L -> y].artefact->delete_interface();
+
         Players[curr_turn].L->delete_inter_artef = false;
     }
 }
@@ -286,7 +287,7 @@ void __fastcall TMainForm::RoundRectForExecuteCommandFuncClick(TObject *Sender)
     string command_type = AnsiToStr(ansi_command_type);
     string number = "";
 
-    while(command_type.size() > 0 && command_type.back() >= '1' && command_type.back() <= '9'){
+    while(command_type.size() > 0 && command_type.back() >= '0' && command_type.back() <= '9'){
         number += command_type.back();
         command_type.pop_back();
     }
@@ -389,8 +390,8 @@ void __fastcall TMainForm::BackButGameClick(TObject *Sender)
     vector<vector<InterfaceCell>> MemoryDestVecVecCell;
     for (i = 0; i < IBoard.size(); i++) {
         for (j = 0; j < IBoard[i].size(); j++) {
-            delete IBoard[i][j].cube;
             delete IBoard[i][j].artefact;
+            delete IBoard[i][j].cube;
             IBoard[i][j].~InterfaceCell();
         }
         IBoard[i] = MemoryDestVecCell;

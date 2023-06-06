@@ -1,4 +1,4 @@
-// iosfwd standard header
+﻿// iosfwd standard header
 #ifndef _IOSFWD_
 #define _IOSFWD_
 #include <cstdio>
