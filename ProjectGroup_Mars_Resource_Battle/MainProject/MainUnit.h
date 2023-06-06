@@ -69,13 +69,12 @@ __published:	// IDE-managed Components
 	TDummy *Player2Dummy;
 	TLightMaterialSource *LightMaterialSourceGround;
 	TLight *Light00;
-    //разметка и компоненты для вывода параметров робота(очки, хранилище)
-	TToolBar *ScoreTB;
-	TToolBar *StoreTB;
-	TLabel *ScoreLabel;
-    TLabel *ScoreValueLabel;
-	TLabel *StoreLabel;
-	TRectangle *StoreValueRect;
+	TToolBar *ScoreTB1;
+	TToolBar *StoreTB1;
+	TLabel *ScoreLabel1;
+	TLabel *ScoreValueLabel1;
+	TLabel *StoreLabel1;
+	TRectangle *StoreValueRect1;
 	TRectangle *GameBackGroundRect;
 	TRectangle *CardsBackGroundRect;
 	TRectangle *DeckBackGroundRect;
@@ -83,11 +82,20 @@ __published:	// IDE-managed Components
 	TLightMaterialSource *LightMaterialSourceBase;
 	TLabel *LabelForExecuteCommandFunc;
 	TRoundRect *RoundRectForExecuteCommandFunc;
-	TLabel *StoreValueLabel;
+	TLabel *StoreValueLabel1;
 	TLightMaterialSource *LightMaterialSourceHill;
 	TLightMaterialSource *LightMaterialSourcePike;
 	TLightMaterialSource *LightMaterialSourceGrass;
 	TLightMaterialSource *LightMaterialSourceLowGrass;
+	TButton *TurnButton;
+	TLightMaterialSource *LightMaterialSourceRobot2;
+	TToolBar *ScoreTB2;
+	TLabel *ScoreLabel2;
+	TLabel *ScoreValueLabel2;
+	TToolBar *StoreTB2;
+	TLabel *StoreLabel2;
+	TRectangle *StoreValueRect2;
+	TLabel *StoreValueLabel2;
 
 
 //комменты по функциям в спп файле
@@ -101,6 +109,7 @@ __published:	// IDE-managed Components
           TShiftState Shift);
 	void __fastcall BackButGameClick(TObject *Sender);
 	void __fastcall RoundRectForExecuteCommandFuncClick(TObject *Sender);
+	void __fastcall TurnButtonClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
     void __fastcall ExecuteCommand(TLabel* CardLabel);

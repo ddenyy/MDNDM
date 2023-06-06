@@ -1,0 +1,15 @@
+#oragma once
+
+struct sct_ultimate_robot
+{
+    InterfaceRobot* I;
+    LogicRobot* L;
+
+    void create_robot(TDummy *& RootDummy, int board_size, )
+    {
+        I = new InterfaceRobot(RootDummy);
+        IRobot -> set_position(IBoard[19][0].cube->Position->X,
+        					   IBoard[19][0].cube->Position->Y - 0.9 - IBoard[19][0].cube -> Height * 0.5,
+        					   IBoard[19][0].cube->Position->Z);
+    }
+};

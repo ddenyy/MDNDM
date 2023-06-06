@@ -1,0 +1,13 @@
+#oragma once
+
+struct sct_ultimate_robot
+{
+    InterfaceRobot* I;
+    LogicRobot* L;
+
+    void create_robot(TDummy *& RootDummy, )
+    {
+        I = new InterfaceRobot(Player1Dummy);
+
+    }
+};

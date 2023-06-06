@@ -53,20 +53,31 @@ public:
 
 private:
     vector<string> cards;
+
+    int number = 0;
 };
 
 
 void DECK::formDeck(int id)
 {
     cards.clear();
-    for (int i = 0; i < 225; ++i)
+    for (int i = 0; i < 50; ++i)
     {
         cards.push_back(stepOne);
     }
-    cards.push_back(stepOne);
-    cards.push_back(left);
-    cards.push_back(right);
-    cards.push_back(stepToStop);
+    for (int i = 0; i < 50; ++i)
+    {
+        cards.push_back(left);
+    }
+    for (int i = 0; i < 50; ++i)
+    {
+        cards.push_back(right);
+    }
+    for (int i = 0; i < 50; ++i)
+    {
+        cards.push_back(stepToStop);
+    }
+
 //    for (int i = 0; i < 45; ++i)
 //    {
 //        cards.push_back(stepToStop);
@@ -143,6 +154,7 @@ pair<string, int> DECK::takeCard()
     string currCard;
     currCard = cards[cards.size() - 1];
     cards.pop_back();
-    return make_pair(currCard, int(cards.size()));
+    number++;
+    return make_pair(currCard, number);
 }
 

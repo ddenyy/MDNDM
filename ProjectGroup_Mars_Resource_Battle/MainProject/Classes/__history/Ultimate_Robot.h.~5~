@@ -1,0 +1,12 @@
+#oragma once
+
+struct sct_ultimate_robot
+{
+    InterfaceRobot* I;
+    LogicRobot* L;
+
+    void create_robot()
+    {
+
+    }
+};

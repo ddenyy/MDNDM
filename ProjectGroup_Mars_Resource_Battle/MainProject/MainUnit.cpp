@@ -8,6 +8,11 @@
 #include "Classes/Board.h"
 #include "Classes/Cards.h"
 #include "Classes/Robot.h"
+#include "Classes/Interfaces/InterfaceArtefact.h"
+#include "Classes/Interfaces/InterfaceCell.h"
+#include "Classes/Interfaces/InterfaceCard.h"
+#include "Classes/Interfaces/Interfacerobot.h"
+#include "Classes/Ultimate_Robot.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.fmx"
@@ -18,270 +23,6 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
 {
 }
 
-class InterfaceArtefact
-{
-public:
-    TSphere * sphere;
-    TLightMaterialSource * material;
-
-    void create_sphere(TCube* root_cube, string &artefact_type)
-    {
-        sphere = new TSphere(root_cube);
-        sphere -> Parent = root_cube;
-        sphere -> Height = 1;
-        sphere -> Width = 1;
-        sphere -> Depth = 1;
-        sphere -> Position -> Y -= (0.05 + root_cube -> Height * 0.5 + 0.5);
-        material = new TLightMaterialSource(root_cube);
-
-        if (artefact_type == "rare") {
-            sphere -> Width = 0.8;
-	        sphere -> Depth = 0.8;
-            material -> Diffuse = 0x00ff0000;
-            sphere -> MaterialSource = material;
-        }
-
-        if (artefact_type == "usually") {
-            sphere -> Width = 0.5;
-	        sphere -> Depth = 0.5;
-            material -> Diffuse = 0x000000ff;
-            sphere -> MaterialSource = material;
-        }
-
-        if (artefact_type == "frequent") {
-            sphere -> Width = 0.3;
-	        sphere -> Depth = 0.3;
-            material -> Diffuse = 0x0000ff00;
-            sphere -> MaterialSource = material;
-        }
-    }
-};
-
-class InterfaceCell
-{
-public:
-    TCube* cube;
-    InterfaceArtefact * artefact;
-
-    ~InterfaceCell() = default;
-
-	void create_cube(TDummy*& RootDummy)
-    {
-        cube = new TCube(RootDummy);
-        cube -> Parent = RootDummy;
-        cube -> Height = 0.25;
-        cube -> Depth = 1.95;
-        cube -> Width = 1.95;
-    }
-
-    void set_size(float new_height, float new_depth, float new_width)
-    {
-        cube -> Height = new_height;
-        cube -> Depth = new_depth;
-        cube -> Width = new_width;
-    }
-
-    void set_hill(int height_value)
-    {
-        float new_height = 0.9 * height_value + 0.25;
-        cube -> Position -> Y -= (new_height * 0.5 - cube -> Height * 0.5);
-        cube -> Height = new_height;
-    }
-
-    void set_position(float new_x, float new_y, float new_z)
-    {
-        cube -> Position -> X = new_x;
-        cube -> Position -> Y = new_y;
-        cube -> Position -> Z = new_z;
-    }
-
-    void set_material(TLightMaterialSource* Material)
-    {
-        cube -> MaterialSource = Material;
-    }
-
-    void set_artefact(string & artefact_type)
-    {
-        artefact = new InterfaceArtefact;
-        artefact -> create_sphere(cube, artefact_type);
-    }
-
-};
-
-AnsiString ToAnsiString(string Str)
-{
-	AnsiString aStr = "";
-	for (int i = 0; i < Str.size(); i++)
-		aStr += Str[i];
-
-    return aStr;
-}
-
-string AnsiToStr(AnsiString NewRoute)
-{
-    string NewRouteStr = "";
-	for (int i = 1; i < NewRoute.Length(); i++)
-		NewRouteStr += NewRoute[i];
-
-	return NewRouteStr;
-}
-
-class InterfaceCard
-{
-public:
-    TRoundRect* rorect;
-    TLabel* sign;
-
-    ~InterfaceCard() = default;
-
-    void create_rorect(TRectangle *& RootRect, TLabel * RootLabel)
-    {
-        rorect = new TRoundRect (RootRect);
-        rorect -> Parent = RootRect;
-        rorect -> Height = RootRect -> Height * 0.8;
-        rorect -> Width = RootRect -> Width * 0.125 * 0.85;
-        rorect -> Fill -> Kind = TBrushKind::Solid;
-
-        sign = new TLabel (rorect);
-        sign -> Parent = rorect;
-        sign -> Align = TAlignLayout::Center;
-        sign -> Height = rorect -> Width;
-        sign -> Width = rorect -> Width;
-        sign -> Text = "";
-        sign -> StyledSettings = RootLabel -> StyledSettings;
-        sign -> Font -> Size = 50;
-        sign -> TextSettings -> HorzAlign = TTextAlign::Center;
-        sign -> TextSettings -> VertAlign = TTextAlign::Center;
-    }
-
-    void set_position(float new_x, float new_y)
-    {
-        rorect -> Position -> X = new_x;
-        rorect -> Position -> Y = new_y;
-    }
-
-    void set_command(pair<string, int> command)
-    {
-        rorect -> Name = ToAnsiString(command.first) + IntToStr(command.second);
-        //ShowMessage(rorect -> Name);
-
-        if (command.first == "stepOne") {
-            sign -> Text = "S";
-            rorect -> Fill -> Color = claRoyalblue;
-        }
-        if (command.first == "stepToStop") {
-            sign -> Text = "M";
-            rorect -> Fill -> Color = claGold;
-        }
-        if (command.first == "jump") {
-            sign -> Text = "J";
-            rorect -> Fill -> Color = claDarkorange;
-        }
-        if (command.first == "left") {
-            sign -> Text = "L";
-            rorect -> Fill -> Color = claLightskyblue;
-        }
-        if (command.first == "right") {
-            sign -> Text = "R";
-            rorect -> Fill -> Color = claLightskyblue;
-        }
-        if (command.first == "back") {
-            sign -> Text = "B";
-            rorect -> Fill -> Color = claLightskyblue;
-        }
-        if (command.first == "teleportForOne") {
-            sign -> Text = "T1";
-            rorect -> Fill -> Color = claLightgreen;
-        }
-        if (command.first == "teleportForFive") {
-            sign -> Text = "T2";
-            rorect -> Fill -> Color = claMediumseagreen;
-        }
-        if (command.first == "teleportForSeven") {
-            sign -> Text = "T3";
-            rorect -> Fill -> Color = claDarkgreen;
-        }
-        if (command.first == "setTrap") {
-            sign -> Text = "D";
-            rorect -> Fill -> Color = claCrimson;
-        }
-        if (command.first == "activateTrap") {
-            sign -> Text = "K";
-            rorect -> Fill -> Color = claDarkred;
-        }
-    }
-};
-
-class InterfaceRobot
-{
-public:
-    TDummy* rdummy;
-    TSphere* sphere;
-    TCone* cone;
-    TCylinder* cylin1;
-    TCylinder* cylin2;
-
-    //InterfaceRobot() = default;
-
-    InterfaceRobot(TDummy* RootDummy)
-    {
-        rdummy = new TDummy(RootDummy);
-        rdummy -> Parent = RootDummy;
-        rdummy -> RotationAngle -> X = 270;
-
-        sphere = new TSphere(rdummy);
-        sphere -> Parent = rdummy;
-        sphere -> Height = 1.5;
-        sphere -> Width = 0.65;
-        sphere -> Depth = 0.35;
-        sphere -> Position -> Y -= 0.27;
-        sphere -> SubdivisionsAxes = 36;
-
-        cone = new TCone(rdummy);
-        cone -> Parent = rdummy;
-        cone -> Height = 0.7;
-        cone -> Width = 0.5;
-        cone -> Depth = 0.4;
-        cone -> Position -> Y += 0.65;
-        cone -> SubdivisionsAxes = 36;
-
-        cylin1 = new TCylinder(rdummy);
-        cylin1 -> Parent = rdummy;
-        cylin1 -> RotationAngle -> X = -270;
-        cylin1 -> RotationAngle -> Z = 27;
-        cylin1 -> Position -> Y -= 0.27;
-        cylin1 -> Height = 0.035;
-        cylin1 -> Width = 1.3;
-        cylin1 -> Depth = 1.4;
-        cylin1 -> SubdivisionsAxes = 36;
-
-        cylin2 = new TCylinder(rdummy);
-        cylin2 -> Parent = rdummy;
-        cylin2 -> RotationAngle -> X = -270;
-        cylin2 -> RotationAngle -> Z = -27;
-        cylin2 -> Position -> Y -= 0.27;
-        cylin2 -> Height = 0.035;
-        cylin2 -> Width = 1.3;
-        cylin2 -> Depth = 1.4;
-        cylin2 -> SubdivisionsAxes = 36;
-    }
-
-    void set_position(float new_x, float new_y, float new_z)
-    {
-        rdummy -> Position -> X = new_x;
-        rdummy -> Position -> Y = new_y;
-        rdummy -> Position -> Z = new_z;
-    }
-
-    void set_material(TLightMaterialSource* Material)
-    {
-        sphere -> MaterialSource = Material;
-        cone -> MaterialSource = Material;
-        cylin1 -> MaterialSource = Material;
-        cylin2 -> MaterialSource = Material;
-    }
-};
-
 void __fastcall TMainForm::ExecuteCommand(TLabel* CardLabel)
 {
     ShowMessage("Success");
@@ -289,9 +30,14 @@ void __fastcall TMainForm::ExecuteCommand(TLabel* CardLabel)
 
 vector <vector <InterfaceCell> > IBoard;
 LogicBoard *LBoard;
+DECK Deck;
 vector <InterfaceCard> CardsInHand;
-InterfaceRobot* IRobot;
-LogicRobot* LRobot;
+
+sct_ultimate_robot Players[2];
+
+int curr_turn;
+vector<string> RobotCommands;
+bool GameOver = false;
 
 //---------------------------------------------------------------------------
 /*эта функция переключает вид на страничку с правилами и заполняет текстовое поле
@@ -313,6 +59,97 @@ void __fastcall TMainForm::AuthorsRectButClick(TObject *Sender)
     AuthorsMemo -> Text = "()-()\n \\\"/  \n   `\n\t\t()-()\n\t\t \\\"/  \n\t\t   `\n\t()-()\n\t \\\"/  \n\t   `";
 }
 
+void create_robot(sct_ultimate_robot &Robot, TDummy *& PlayerDummy, int x, int y, TLightMaterialSource *Material)
+{
+    Robot.I = new InterfaceRobot(PlayerDummy);
+    Robot.I -> set_position(IBoard[x][y].cube->Position->X,
+    						IBoard[x][y].cube->Position->Y - 0.9 - IBoard[x][y].cube -> Height * 0.5,
+                            IBoard[x][y].cube->Position->Z);
+    Robot.I -> set_material(Material);
+
+    Robot.L = new LogicRobot;
+    Robot.L -> x = x;
+    Robot.L -> y = y;
+    Robot.L -> z = 0;
+    Robot.L -> rotation = 0;
+    Robot.L -> curr_score = 0;
+    Robot.L -> score = 0;
+    Robot.L -> board_computer_on_robot = LBoard;
+    Robot.L -> now_cell = LBoard -> field[x][y];
+}
+
+//---------------------------------------------------------------------------
+void DisplayRobotMovement()
+{
+    if (curr_turn == 0) {
+        MainForm -> StoreValueLabel1 -> Text = IntToStr(Players[curr_turn].L->curr_score) + "(" + IntToStr(Players[curr_turn].L->num_of_artefacts) + ")";
+	    MainForm -> ScoreValueLabel1 -> Text = IntToStr(Players[curr_turn].L->score);
+    }
+    else
+    {
+        MainForm -> StoreValueLabel2 -> Text = IntToStr(Players[curr_turn].L->curr_score) + "(" + IntToStr(Players[curr_turn].L->num_of_artefacts) + ")";
+	    MainForm -> ScoreValueLabel2 -> Text = IntToStr(Players[curr_turn].L->score);
+    }
+
+
+    Players[curr_turn].I -> set_position(IBoard[Players[curr_turn].L -> x][Players[curr_turn].L -> y].cube -> Position -> X,
+				      	   IBoard[Players[curr_turn].L -> x][Players[curr_turn].L -> y].cube -> Position -> Y - 0.9 - IBoard[Players[curr_turn].L -> x][Players[curr_turn].L -> y].cube->Height * 0.5,
+                           IBoard[Players[curr_turn].L -> x][Players[curr_turn].L -> y].cube -> Position -> Z);
+    Players[curr_turn].I -> rdummy -> RotationAngle -> Z = 90 * Players[curr_turn].L -> rotation;
+
+    if (Players[curr_turn].L->delete_inter_artef) {
+        delete IBoard[Players[curr_turn].L -> x][Players[curr_turn].L -> y].artefact->sphere;
+        Players[curr_turn].L->delete_inter_artef = false;
+    }
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TMainForm::TurnButtonClick(TObject *Sender)
+{
+    if (GameOver) {
+        return;
+    }
+
+    int j, i, num_of_cards = 7;
+    float sparse_coef, curr_x;
+    pair<string, int> new_card;
+
+    vector<InterfaceCard> MemoryDestVecCards;
+    for (j = 0; j < CardsInHand.size(); j++) {
+        delete CardsInHand[j].rorect;
+        CardsInHand[j].~InterfaceCard();
+    }
+    CardsInHand = MemoryDestVecCards;
+
+    curr_turn = curr_turn ^ 1;
+    if (curr_turn == 0)
+        TurnButton -> Text = "Ход первого";
+    else
+        TurnButton -> Text = "Ход второго";
+
+    CardsInHand.resize(num_of_cards);
+
+    sparse_coef = CardsRect -> Width * (1.0 / num_of_cards);
+    for (i = 0, curr_x = 5; i < CardsInHand.size(); i++, curr_x += sparse_coef) {
+        CardsInHand[i].create_rorect(CardsRect, StoreLabel1);
+        CardsInHand[i].set_position(curr_x, 0);
+        CardsInHand[i].rorect -> Align = TAlignLayout::Vertical;
+        CardsInHand[i].rorect -> Margins -> Bottom = 5;
+        CardsInHand[i].rorect -> Margins -> Top = 5;
+
+        CardsInHand[i].rorect -> OnClick = RoundRectForExecuteCommandFuncClick;
+    }
+
+    for (i = 0; i < CardsInHand.size(); i++){
+        new_card = Deck.takeCard();
+        if (new_card.first == "" && new_card.second == 0){
+            GameOver = true;
+            break;
+        }
+		CardsInHand[i].set_command(new_card);
+    }
+}
+
 //---------------------------------------------------------------------------
 /*функция переключает вид на страничку с главным игровым интерфейсом.
 Здесь будут вызываться все основные функции и создаваться компоненты
@@ -321,6 +158,11 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
 {
     //turn on game page
     MainTabControl -> ActiveTab = GameTab;
+    ScoreValueLabel1 -> Text = "0";
+    StoreValueLabel1 -> Text = "0";
+    ScoreValueLabel2 -> Text = "0";
+    StoreValueLabel2 -> Text = "0";
+    TurnButton -> Text = "Ход первого";
 
     int board_height = 20, board_width = 20;
     //интерфейс поля
@@ -395,17 +237,15 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
     IBoard[board_height - 1][board_width - 1].set_material(LightMaterialSourceBase);
 
     //создание карт
-    DECK Deck;
-    int num_of_cards;
-    num_of_cards = 7;
+    int num_of_cards = 7;
     Deck.formDeck(num_of_cards);
-    //Deck.shuffleDeck();
+    Deck.shuffleDeck();
 
     CardsInHand.resize(num_of_cards);
 
     sparse_coef = CardsRect -> Width * (1.0 / num_of_cards);
     for (i = 0, curr_x = 5; i < CardsInHand.size(); i++, curr_x += sparse_coef) {
-        CardsInHand[i].create_rorect(CardsRect, StoreLabel);
+        CardsInHand[i].create_rorect(CardsRect, StoreLabel1);
         CardsInHand[i].set_position(curr_x, 0);
         CardsInHand[i].rorect -> Align = TAlignLayout::Vertical;
         CardsInHand[i].rorect -> Margins -> Bottom = 5;
@@ -417,43 +257,24 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
     for (i = 0; i < CardsInHand.size(); i++)
 		CardsInHand[i].set_command(Deck.takeCard());
 
-    IRobot = new InterfaceRobot(Player1Dummy);
-    IRobot -> set_position(IBoard[19][0].cube->Position->X, IBoard[19][0].cube->Position->Y - 0.9 - IBoard[19][0].cube -> Height * 0.5, IBoard[19][0].cube->Position->Z);
-    IRobot -> set_material(LightMaterialSourceRobot1);
+    create_robot(Players[0], Player1Dummy, board_height - 1, 0, LightMaterialSourceRobot1);
+    create_robot(Players[1], Player2Dummy, board_height - 1, board_height - 1, LightMaterialSourceRobot2);
 
-    LRobot = new LogicRobot;
-    LRobot -> x = 19;
-    LRobot -> y = 0;
-    LRobot -> z = 0;
-    LRobot -> rotation = 0;
-    LRobot -> curr_score = 0;
-    LRobot -> score = 0;
-    LRobot -> board_computer_on_robot = LBoard;
-    LRobot -> now_cell = LBoard -> field[LRobot -> x][LRobot -> y];
+    Players[0].L -> enemy_pos.first = Players[1].L -> x;
+    Players[0].L -> enemy_pos.second = Players[1].L -> y;
 
-    ScoreValueLabel -> Text = "0";
-    StoreValueLabel -> Text = "0";
-}
+    Players[1].L -> enemy_pos.first = Players[0].L -> x;
+    Players[1].L -> enemy_pos.second = Players[0].L -> y;
 
-void DisplayRobotMovement()
-{
-  	MainForm -> StoreValueLabel -> Text = IntToStr(LRobot->curr_score) + "(" + IntToStr(LRobot->num_of_artefacts) + ")";
-    MainForm -> ScoreValueLabel -> Text = IntToStr(LRobot->score);
-
-    IRobot -> set_position(IBoard[LRobot -> x][LRobot -> y].cube -> Position -> X,
-				      	   IBoard[LRobot -> x][LRobot -> y].cube -> Position -> Y - 0.9 - IBoard[LRobot -> x][LRobot -> y].cube->Height * 0.5,
-                           IBoard[LRobot -> x][LRobot -> y].cube -> Position -> Z);
-    IRobot -> rdummy -> RotationAngle -> Z = 90 * LRobot -> rotation;
-
-    if (LRobot->delete_inter_artef) {
-        delete IBoard[LRobot -> x][LRobot -> y].artefact->sphere;
-        LRobot->delete_inter_artef = false;
-    }
+    curr_turn = 0;
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TMainForm::RoundRectForExecuteCommandFuncClick(TObject *Sender)
 {
+    if (GameOver)
+        return;
+
     AnsiString ansi_command_type;
 
     if (Sender->ClassNameIs("TRoundRect")) {
@@ -462,20 +283,30 @@ void __fastcall TMainForm::RoundRectForExecuteCommandFuncClick(TObject *Sender)
     else
         return;
 
-    //ShowMessage(ansi_command_type);
     string command_type = AnsiToStr(ansi_command_type);
-    while(command_type.size() > 0 && command_type.back() >= '1' && command_type.back() <= '9')
+    string number = "";
+
+    while(command_type.size() > 0 && command_type.back() >= '1' && command_type.back() <= '9'){
+        number += command_type.back();
         command_type.pop_back();
-    //ShowMessage(ToAnsiString(command_type));
+    }
+
+    AnsiString new_name = "shit" + ToAnsiString(number);
+
+    SetPropValue(Sender, "Name", new_name);
+    SetPropValue(Sender, "Visible", false);
 
     if (command_type == "stepOne")
-        LRobot -> make_step_forward();
+    	Players[curr_turn].L -> make_step_forward();
     if (command_type == "left")
-        LRobot -> command_to_turn(command_type);
+        Players[curr_turn].L -> command_to_turn(command_type);
     if (command_type == "right")
-        LRobot -> command_to_turn(command_type);
+        Players[curr_turn].L -> command_to_turn(command_type);
     if (command_type == "stepToStop")
-        LRobot -> move_until_stop();
+        Players[curr_turn].L -> move_until_stop();
+
+    Players[curr_turn ^ 1].L -> enemy_pos.first = Players[curr_turn].L -> x;
+    Players[curr_turn ^ 1].L -> enemy_pos.second = Players[curr_turn].L -> y;
 
     DisplayRobotMovement();
 }
@@ -492,12 +323,19 @@ void __fastcall TMainForm::FormResize(TObject *Sender)
 
     //меняются объекты на DeckRect
     //вывод параметров робота
-	ScoreTB -> Height = 0.3 * (DeckRect -> Height - BackButGame -> Height);
-    StoreTB -> Height = 0.7 * (DeckRect -> Height - BackButGame -> Height);
-    ScoreLabel -> Height = 0.48 * ScoreTB -> Height;
-    ScoreValueLabel -> Height = 0.48 * ScoreTB -> Height;
-    StoreLabel -> Height = 0.28 * StoreTB -> Height;
-    StoreValueRect -> Height = 0.68 * StoreTB -> Height;
+	ScoreTB1 -> Height = 0.37 * (DeckRect -> Height - BackButGame -> Height);
+    StoreTB1 -> Height = 0.37 * (DeckRect -> Height - BackButGame -> Height);
+    ScoreLabel1 -> Height = 0.48 * ScoreTB1 -> Height;
+    ScoreValueLabel1 -> Height = 0.48 * ScoreTB1 -> Height;
+    StoreLabel1 -> Height = 0.48 * StoreTB1 -> Height;
+    StoreValueRect1 -> Height = 0.48 * StoreTB1 -> Height;
+
+    ScoreTB2 -> Height = 0.37 * (DeckRect -> Height - BackButGame -> Height);
+    StoreTB2 -> Height = 0.37 * (DeckRect -> Height - BackButGame -> Height);
+    ScoreLabel2 -> Height = 0.48 * ScoreTB2 -> Height;
+    ScoreValueLabel2 -> Height = 0.48 * ScoreTB2 -> Height;
+    StoreLabel2 -> Height = 0.48 * StoreTB2 -> Height;
+    StoreValueRect2 -> Height = 0.48 * StoreTB2 -> Height;
 }
 
 //---------------------------------------------------------------------------
@@ -568,14 +406,19 @@ void __fastcall TMainForm::BackButGameClick(TObject *Sender)
     }
     CardsInHand = MemoryDestVecCards;
 
-    if (IRobot != NULL) {
-        if (IRobot -> rdummy != NULL)
-            delete IRobot -> rdummy;
-        delete IRobot;
+    if (Players[0].I != NULL) {
+        if (Players[0].I -> rdummy != NULL)
+            delete Players[0].I -> rdummy;
+        delete Players[0].I;
+    }
+
+    if (Players[1].I != NULL) {
+        if (Players[1].I -> rdummy != NULL)
+            delete Players[1].I -> rdummy;
+        delete Players[1].I;
     }
 
     MainTabControl -> ActiveTab = StartTab;
 }
 //---------------------------------------------------------------------------
-
 
