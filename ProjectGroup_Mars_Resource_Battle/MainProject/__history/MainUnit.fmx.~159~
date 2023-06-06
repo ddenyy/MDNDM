@@ -435,7 +435,7 @@ object MainForm: TMainForm
     Diffuse = claBurlywood
     Ambient = xFF202020
     Emissive = claNull
-    Specular = xFF606060
+    Specular = claBurlywood
     Shininess = 30
     Left = 8
     Top = 16

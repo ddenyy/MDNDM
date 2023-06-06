@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------
 
 #include <fmx.h>
 #pragma hdrstop
@@ -83,7 +83,7 @@ public:
 
     void set_hill(int height_value)
     {
-        float new_height = (height_value + 1) * .95;
+        float new_height = 0.9 * height_value + 0.25;
         cube -> Position -> Y -= (new_height * 0.5 - cube -> Height * 0.5);
         cube -> Height = new_height;
     }
@@ -215,28 +215,70 @@ public:
 class InterfaceRobot
 {
 public:
+    TDummy* rdummy;
+    TSphere* sphere;
     TCone* cone;
+    TCylinder* cylin1;
+    TCylinder* cylin2;
 
-    void create_robot(TDummy* RootDummy)
+    //InterfaceRobot() = default;
+
+    InterfaceRobot(TDummy* RootDummy)
     {
-        cone = new TCone(RootDummy);
-        cone -> Parent = RootDummy;
-        cone -> Height = 1.8;
-        cone -> Width = 1.8;
-        cone -> Depth = 1.8;
-        cone -> RotationAngle -> X = 270;
+        rdummy = new TDummy(RootDummy);
+        rdummy -> Parent = RootDummy;
+        rdummy -> RotationAngle -> X = 270;
+
+        sphere = new TSphere(rdummy);
+        sphere -> Parent = rdummy;
+        sphere -> Height = 1.5;
+        sphere -> Width = 0.65;
+        sphere -> Depth = 0.35;
+        sphere -> Position -> Y -= 0.27;
+        sphere -> SubdivisionsAxes = 36;
+
+        cone = new TCone(rdummy);
+        cone -> Parent = rdummy;
+        cone -> Height = 0.7;
+        cone -> Width = 0.5;
+        cone -> Depth = 0.4;
+        cone -> Position -> Y += 0.65;
+        cone -> SubdivisionsAxes = 36;
+
+        cylin1 = new TCylinder(rdummy);
+        cylin1 -> Parent = rdummy;
+        cylin1 -> RotationAngle -> X = -270;
+        cylin1 -> RotationAngle -> Z = 27;
+        cylin1 -> Position -> Y -= 0.27;
+        cylin1 -> Height = 0.035;
+        cylin1 -> Width = 1.3;
+        cylin1 -> Depth = 1.4;
+        cylin1 -> SubdivisionsAxes = 36;
+
+        cylin2 = new TCylinder(rdummy);
+        cylin2 -> Parent = rdummy;
+        cylin2 -> RotationAngle -> X = -270;
+        cylin2 -> RotationAngle -> Z = -27;
+        cylin2 -> Position -> Y -= 0.27;
+        cylin2 -> Height = 0.035;
+        cylin2 -> Width = 1.3;
+        cylin2 -> Depth = 1.4;
+        cylin2 -> SubdivisionsAxes = 36;
     }
 
     void set_position(float new_x, float new_y, float new_z)
     {
-        cone -> Position -> X = new_x;
-        cone -> Position -> Y = new_y;
-        cone -> Position -> Z = new_z;
+        rdummy -> Position -> X = new_x;
+        rdummy -> Position -> Y = new_y;
+        rdummy -> Position -> Z = new_z;
     }
 
     void set_material(TLightMaterialSource* Material)
     {
+        sphere -> MaterialSource = Material;
         cone -> MaterialSource = Material;
+        cylin1 -> MaterialSource = Material;
+        cylin2 -> MaterialSource = Material;
     }
 };
 
@@ -349,9 +391,8 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
     for (i = 0; i < CardsInHand.size(); i++)
 		CardsInHand[i].set_command(Deck.takeCard());
 
-    IRobot = new InterfaceRobot;
-    IRobot -> create_robot(Player1Dummy);
-    IRobot -> set_position(IBoard[19][0].cube->Position->X, IBoard[19][0].cube->Position->Y - 0.9 - IBoard[19][0].cube->Height, IBoard[19][0].cube->Position->Z);
+    IRobot = new InterfaceRobot(Player1Dummy);
+    IRobot -> set_position(IBoard[19][0].cube->Position->X, IBoard[19][0].cube->Position->Y - 0.9 - IBoard[19][0].cube -> Height * 0.5, IBoard[19][0].cube->Position->Z);
     IRobot -> set_material(LightMaterialSourceRobot1);
 
     LRobot = new LogicRobot;
@@ -374,9 +415,9 @@ void DisplayRobotMovement()
     MainForm -> ScoreValueLabel -> Text = IntToStr(LRobot->score);
 
     IRobot -> set_position(IBoard[LRobot -> x][LRobot -> y].cube -> Position -> X,
-				      	   IBoard[LRobot -> x][LRobot -> y].cube -> Position -> Y - 0.9 - IBoard[LRobot -> x][LRobot -> y].cube->Height,
+				      	   IBoard[LRobot -> x][LRobot -> y].cube -> Position -> Y - 0.9 - IBoard[LRobot -> x][LRobot -> y].cube->Height * 0.5,
                            IBoard[LRobot -> x][LRobot -> y].cube -> Position -> Z);
-    IRobot -> cone -> RotationAngle -> Z = 90 * LRobot -> rotation;
+    IRobot -> rdummy -> RotationAngle -> Z = 90 * LRobot -> rotation;
 
     if (LRobot->delete_inter_artef) {
         delete IBoard[LRobot -> x][LRobot -> y].artefact->sphere;
@@ -502,12 +543,13 @@ void __fastcall TMainForm::BackButGameClick(TObject *Sender)
     CardsInHand = MemoryDestVecCards;
 
     if (IRobot != NULL) {
-        if (IRobot -> cone != NULL)
-            delete IRobot -> cone;
+        if (IRobot -> rdummy != NULL)
+            delete IRobot -> rdummy;
         delete IRobot;
     }
 
     MainTabControl -> ActiveTab = StartTab;
 }
 //---------------------------------------------------------------------------
+
 

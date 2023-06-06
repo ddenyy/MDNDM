@@ -83,7 +83,7 @@ public:
 
     void set_hill(int height_value)
     {
-        float new_height = (height_value + 1) * .95;
+        float new_height = 0.75 * height_value + 0.25;
         cube -> Position -> Y -= (new_height * 0.5 - cube -> Height * 0.5);
         cube -> Height = new_height;
     }
@@ -235,6 +235,7 @@ public:
         sphere -> Width = 0.65;
         sphere -> Depth = 0.35;
         sphere -> Position -> Y -= 0.28;
+        sphere -> SubdivisionsAxes = 36;
 
         cone = new TCone(rdummy);
         cone -> Parent = rdummy;
@@ -251,7 +252,7 @@ public:
         cylin1 -> Position -> Y -= 0.28;
         cylin1 -> Height = 0.035;
         cylin1 -> Width = 1.3;
-        cylin1 -> Depth = 1.5;
+        cylin1 -> Depth = 1.4;
         cylin1 -> SubdivisionsAxes = 36;
 
         cylin2 = new TCylinder(rdummy);
@@ -261,7 +262,7 @@ public:
         cylin2 -> Position -> Y -= 0.28;
         cylin2 -> Height = 0.035;
         cylin2 -> Width = 1.3;
-        cylin2 -> Depth = 1.5;
+        cylin2 -> Depth = 1.4;
         cylin2 -> SubdivisionsAxes = 36;
     }
 

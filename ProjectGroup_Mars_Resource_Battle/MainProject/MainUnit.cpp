@@ -83,7 +83,7 @@ public:
 
     void set_hill(int height_value)
     {
-        float new_height = (height_value + 1) * .95;
+        float new_height = 0.9 * height_value + 0.25;
         cube -> Position -> Y -= (new_height * 0.5 - cube -> Height * 0.5);
         cube -> Height = new_height;
     }
@@ -234,7 +234,7 @@ public:
         sphere -> Height = 1.5;
         sphere -> Width = 0.65;
         sphere -> Depth = 0.35;
-        sphere -> Position -> Y -= 0.28;
+        sphere -> Position -> Y -= 0.27;
         sphere -> SubdivisionsAxes = 36;
 
         cone = new TCone(rdummy);
@@ -249,7 +249,7 @@ public:
         cylin1 -> Parent = rdummy;
         cylin1 -> RotationAngle -> X = -270;
         cylin1 -> RotationAngle -> Z = 27;
-        cylin1 -> Position -> Y -= 0.28;
+        cylin1 -> Position -> Y -= 0.27;
         cylin1 -> Height = 0.035;
         cylin1 -> Width = 1.3;
         cylin1 -> Depth = 1.4;
@@ -259,7 +259,7 @@ public:
         cylin2 -> Parent = rdummy;
         cylin2 -> RotationAngle -> X = -270;
         cylin2 -> RotationAngle -> Z = -27;
-        cylin2 -> Position -> Y -= 0.28;
+        cylin2 -> Position -> Y -= 0.27;
         cylin2 -> Height = 0.035;
         cylin2 -> Width = 1.3;
         cylin2 -> Depth = 1.4;
@@ -392,8 +392,7 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
 		CardsInHand[i].set_command(Deck.takeCard());
 
     IRobot = new InterfaceRobot(Player1Dummy);
-    //IRobot -> create_robot(Player1Dummy);
-    IRobot -> set_position(IBoard[19][0].cube->Position->X, IBoard[19][0].cube->Position->Y - 0.9 - IBoard[19][0].cube->Height, IBoard[19][0].cube->Position->Z);
+    IRobot -> set_position(IBoard[19][0].cube->Position->X, IBoard[19][0].cube->Position->Y - 0.9 - IBoard[19][0].cube -> Height * 0.5, IBoard[19][0].cube->Position->Z);
     IRobot -> set_material(LightMaterialSourceRobot1);
 
     LRobot = new LogicRobot;
@@ -416,7 +415,7 @@ void DisplayRobotMovement()
     MainForm -> ScoreValueLabel -> Text = IntToStr(LRobot->score);
 
     IRobot -> set_position(IBoard[LRobot -> x][LRobot -> y].cube -> Position -> X,
-				      	   IBoard[LRobot -> x][LRobot -> y].cube -> Position -> Y - 0.9 - IBoard[LRobot -> x][LRobot -> y].cube->Height,
+				      	   IBoard[LRobot -> x][LRobot -> y].cube -> Position -> Y - 0.9 - IBoard[LRobot -> x][LRobot -> y].cube->Height * 0.5,
                            IBoard[LRobot -> x][LRobot -> y].cube -> Position -> Z);
     IRobot -> rdummy -> RotationAngle -> Z = 90 * LRobot -> rotation;
 

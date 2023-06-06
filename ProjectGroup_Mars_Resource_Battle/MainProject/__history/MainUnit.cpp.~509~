@@ -83,7 +83,7 @@ public:
 
     void set_hill(int height_value)
     {
-        float new_height = (height_value + 1) * .95;
+        float new_height = 0.75 * height_value + 0.25;
         cube -> Position -> Y -= (new_height * 0.5 - cube -> Height * 0.5);
         cube -> Height = new_height;
     }
@@ -235,6 +235,7 @@ public:
         sphere -> Width = 0.65;
         sphere -> Depth = 0.35;
         sphere -> Position -> Y -= 0.28;
+        sphere -> SubdivisionsAxes = 36;
 
         cone = new TCone(rdummy);
         cone -> Parent = rdummy;
@@ -242,6 +243,7 @@ public:
         cone -> Width = 0.5;
         cone -> Depth = 0.4;
         cone -> Position -> Y += 0.65;
+        cone -> SubdivisionsAxes = 36;
 
         cylin1 = new TCylinder(rdummy);
         cylin1 -> Parent = rdummy;
@@ -250,7 +252,8 @@ public:
         cylin1 -> Position -> Y -= 0.28;
         cylin1 -> Height = 0.035;
         cylin1 -> Width = 1.3;
-        cylin1 -> Depth = 1.5;
+        cylin1 -> Depth = 1.4;
+        cylin1 -> SubdivisionsAxes = 36;
 
         cylin2 = new TCylinder(rdummy);
         cylin2 -> Parent = rdummy;
@@ -259,7 +262,8 @@ public:
         cylin2 -> Position -> Y -= 0.28;
         cylin2 -> Height = 0.035;
         cylin2 -> Width = 1.3;
-        cylin2 -> Depth = 1.5;
+        cylin2 -> Depth = 1.4;
+        cylin2 -> SubdivisionsAxes = 36;
     }
 
     void set_position(float new_x, float new_y, float new_z)
@@ -389,7 +393,7 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
 
     IRobot = new InterfaceRobot(Player1Dummy);
     //IRobot -> create_robot(Player1Dummy);
-    IRobot -> set_position(IBoard[19][0].cube->Position->X, IBoard[19][0].cube->Position->Y - 0.9 - IBoard[19][0].cube->Height, IBoard[19][0].cube->Position->Z);
+    IRobot -> set_position(IBoard[19][0].cube->Position->X, 0.0/*IBoard[19][0].cube->Position->Y - 0.9 - IBoard[19][0].cube->Height*/, IBoard[19][0].cube->Position->Z);
     IRobot -> set_material(LightMaterialSourceRobot1);
 
     LRobot = new LogicRobot;
