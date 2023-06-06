@@ -451,8 +451,10 @@ object MainForm: TMainForm
         object RulesMemo: TMemo
           Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
           DataDetectorTypes = []
+          ReadOnly = True
           StyledSettings = [Family, Style, FontColor]
           TextSettings.Font.Size = 30.000000000000000000
+          TextSettings.WordWrap = True
           Align = Client
           Margins.Left = 40.000000000000000000
           Margins.Top = 60.000000000000000000
@@ -500,8 +502,10 @@ object MainForm: TMainForm
         object AuthorsMemo: TMemo
           Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
           DataDetectorTypes = []
+          ReadOnly = True
           StyledSettings = [Family, Style, FontColor]
           TextSettings.Font.Size = 30.000000000000000000
+          TextSettings.WordWrap = True
           Align = Client
           Margins.Left = 40.000000000000000000
           Margins.Top = 60.000000000000000000

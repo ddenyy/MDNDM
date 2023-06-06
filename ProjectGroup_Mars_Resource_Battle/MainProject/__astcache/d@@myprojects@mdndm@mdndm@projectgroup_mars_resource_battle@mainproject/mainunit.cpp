@@ -13,6 +13,8 @@
 #include "Classes/Interfaces/InterfaceCard.h"
 #include "Classes/Interfaces/Interfacerobot.h"
 #include "Classes/Ultimate_Robot.h"
+#include "Texts/AuthorsInfoStr.h"
+#include "Texts/RulesStr.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.fmx"
@@ -46,7 +48,14 @@ bool GameOver = false;
 void __fastcall TMainForm::RulesRectButClick(TObject *Sender)
 {
     MainTabControl -> ActiveTab = RulesTab;
-    RulesMemo -> Text = "There is no rules!";
+
+    init_rules();
+
+    AnsiString RulesStr = "";
+    for (int i = 0; i < Rules.size(); i++)
+        RulesStr += Rules[i];
+
+    RulesMemo -> Text = RulesStr;
 }
 
 //---------------------------------------------------------------------------
@@ -56,7 +65,7 @@ void __fastcall TMainForm::RulesRectButClick(TObject *Sender)
 void __fastcall TMainForm::AuthorsRectButClick(TObject *Sender)
 {
     MainTabControl -> ActiveTab = AuthorsTab;
-    AuthorsMemo -> Text = "()-()\n \\\"/  \n   `\n\t\t()-()\n\t\t \\\"/  \n\t\t   `\n\t()-()\n\t \\\"/  \n\t   `";
+    AuthorsMemo -> Text = AuthorsInfo;
 }
 
 void create_robot(sct_ultimate_robot &Robot, TDummy *& PlayerDummy, int x, int y, TLightMaterialSource *Material)

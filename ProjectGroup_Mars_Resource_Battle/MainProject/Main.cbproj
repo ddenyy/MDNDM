@@ -106,8 +106,8 @@
         <_TCHARMapping>wchar_t</_TCHARMapping>
         <Multithreaded>true</Multithreaded>
         <SanitizedProjectName>Main</SanitizedProjectName>
-        <IncludePath>Classes\Interfaces\;Classes\Artefact_Classes\;Classes\;cell\;Board\;Artifact\;D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\;$(IncludePath)</IncludePath>
-        <ILINK_LibraryPath>Classes\Interfaces\;Classes\Artefact_Classes\;Classes\;cell\;Board\;Artifact\;D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <IncludePath>Texts\;Classes\Interfaces\;Classes\Artefact_Classes\;Classes\;cell\;Board\;Artifact\;D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\;$(IncludePath)</IncludePath>
+        <ILINK_LibraryPath>Texts\;Classes\Interfaces\;Classes\Artefact_Classes\;Classes\;cell\;Board\;Artifact\;D:\myPROJECTS\MDNDM\MDNDM\ProjectGroup_Mars_Resource_Battle\MainProject\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Android)'!=''">
         <PackageImports>bindcomp;bindcompdbx;bindcompfmx;bindengine;CloudService;CustomIPTransport;DataSnapClient;DataSnapCommon;DataSnapFireDAC;DataSnapNativeClient;DataSnapProviderClient;dbexpress;dbrtl;dbxcds;DbxClientDriver;DbxCommonDriver;DBXInterBaseDriver;DBXSqliteDriver;dsnap;dsnapxml;emsclient;emsclientfiredac;FireDAC;FireDACCommon;FireDACCommonDriver;FireDACDBXDriver;FireDACDSDriver;FireDACIBDriver;FireDACSqliteDriver;fmx;fmxFireDAC;FMXTee;FmxTeeUI;ibmonitor;ibxbindings;ibxpress;IndyCore;IndyIPClient;IndyIPCommon;IndyIPServer;IndyProtocols;IndySystem;inet;RESTBackendComponents;RESTComponents;rtl;soapmidas;soaprtl;soapserver;tethering;xmlrtl;$(PackageImports)</PackageImports>
@@ -303,6 +303,12 @@
             <DependentOn>MainUnit.h</DependentOn>
             <BuildOrder>1</BuildOrder>
         </CppCompile>
+        <None Include="Texts\AuthorsInfoStr.h">
+            <BuildOrder>19</BuildOrder>
+        </None>
+        <None Include="Texts\RulesStr.h">
+            <BuildOrder>20</BuildOrder>
+        </None>
         <FormResources Include="MainUnit.fmx"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

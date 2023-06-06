@@ -17,7 +17,7 @@ object MainForm: TMainForm
     Size.PlatformDefault = False
     StyleLookup = 'tabcontrolstyle'
     TabHeight = 49.000000000000000000
-    TabIndex = 1
+    TabIndex = 3
     TabOrder = 0
     TabPosition = None
     Sizes = (
@@ -131,7 +131,7 @@ object MainForm: TMainForm
       CustomIcon = <
         item
         end>
-      IsSelected = True
+      IsSelected = False
       Size.Width = 8.000000000000000000
       Size.Height = 8.000000000000000000
       Size.PlatformDefault = False
@@ -220,7 +220,7 @@ object MainForm: TMainForm
             Size.Height = 560.000000000000000000
             Size.PlatformDefault = False
             object DeckRect: TRectangle
-              Align = Client
+              Align = Center
               Fill.Color = claAntiquewhite
               Sides = []
               Size.Width = 200.000000000000000000
@@ -388,7 +388,7 @@ object MainForm: TMainForm
                   Size.PlatformDefault = False
                   TextSettings.Font.Size = 21.000000000000000000
                   TextSettings.HorzAlign = Center
-                  Text = #1053#1072' '#1073#1086#1088#1090#1091' '#1087#1077#1088#1074#1086#1075#1086':'
+                  Text = #1053#1072' '#1073#1086#1088#1090#1091' '#1074#1090#1086#1088#1086#1075#1086':'
                   TabOrder = 0
                 end
                 object StoreValueRect2: TRectangle
@@ -483,7 +483,7 @@ object MainForm: TMainForm
       CustomIcon = <
         item
         end>
-      IsSelected = False
+      IsSelected = True
       Size.Width = 8.000000000000000000
       Size.Height = 8.000000000000000000
       Size.PlatformDefault = False
@@ -502,6 +502,7 @@ object MainForm: TMainForm
           DataDetectorTypes = []
           StyledSettings = [Family, Style, FontColor]
           TextSettings.Font.Size = 30.000000000000000000
+          TextSettings.WordWrap = True
           Align = Client
           Margins.Left = 40.000000000000000000
           Margins.Top = 60.000000000000000000
@@ -556,14 +557,6 @@ object MainForm: TMainForm
     Left = 24
     Top = 136
   end
-  object MainActionList: TActionList
-    Left = 64
-    Top = 24
-    object GoToStartTabAction: TChangeTabAction
-      Category = 'Tab'
-      Tab = StartTab
-    end
-  end
   object LightMaterialSourceHill: TLightMaterialSource
     Diffuse = claPeru
     Ambient = xFF202020
@@ -608,5 +601,13 @@ object MainForm: TMainForm
     Shininess = 30
     Left = 16
     Top = 248
+  end
+  object MainActionList: TActionList
+    Left = 64
+    Top = 24
+    object GoToStartTabAction: TChangeTabAction
+      Category = 'Tab'
+      Tab = StartTab
+    end
   end
 end

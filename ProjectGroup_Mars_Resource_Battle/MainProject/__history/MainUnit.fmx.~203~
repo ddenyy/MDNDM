@@ -3,7 +3,7 @@ object MainForm: TMainForm
   Top = 0
   Caption = 'Mars resource battle'
   ClientHeight = 640
-  ClientWidth = 720
+  ClientWidth = 820
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
@@ -12,28 +12,28 @@ object MainForm: TMainForm
   DesignerMasterStyle = 0
   object MainTabControl: TTabControl
     Align = Client
-    Size.Width = 720.000000000000000000
+    Size.Width = 820.000000000000000000
     Size.Height = 640.000000000000000000
     Size.PlatformDefault = False
     StyleLookup = 'tabcontrolstyle'
     TabHeight = 49.000000000000000000
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
     TabPosition = None
     Sizes = (
-      720s
+      820s
       640s
-      720s
+      820s
       640s
-      720s
+      820s
       640s
-      720s
+      820s
       640s)
     object StartTab: TTabItem
       CustomIcon = <
         item
         end>
-      IsSelected = False
+      IsSelected = True
       Size.Width = 8.000000000000000000
       Size.Height = 8.000000000000000000
       Size.PlatformDefault = False
@@ -44,7 +44,7 @@ object MainForm: TMainForm
       object BackGroundStartTabRect: TRectangle
         Align = Client
         Fill.Color = claSkyblue
-        Size.Width = 720.000000000000000000
+        Size.Width = 820.000000000000000000
         Size.Height = 640.000000000000000000
         Size.PlatformDefault = False
         object GameRectBut: TRoundRect
@@ -131,7 +131,7 @@ object MainForm: TMainForm
       CustomIcon = <
         item
         end>
-      IsSelected = True
+      IsSelected = False
       Size.Width = 8.000000000000000000
       Size.Height = 8.000000000000000000
       Size.PlatformDefault = False
@@ -141,14 +141,14 @@ object MainForm: TMainForm
       ExplicitSize.cy = 8.000000000000000000
       object ViewPort3DToolBar: TToolBar
         Align = Client
-        Size.Width = 720.000000000000000000
+        Size.Width = 820.000000000000000000
         Size.Height = 640.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
         object GameBackGroundRect: TRectangle
           Align = Client
           Fill.Color = claSkyblue
-          Size.Width = 720.000000000000000000
+          Size.Width = 820.000000000000000000
           Size.Height = 640.000000000000000000
           Size.PlatformDefault = False
           object Viewport3D: TViewport3D
@@ -198,7 +198,7 @@ object MainForm: TMainForm
             Fill.Color = claSkyblue
             Position.Y = 560.000000000000000000
             Sides = [Top]
-            Size.Width = 720.000000000000000000
+            Size.Width = 820.000000000000000000
             Size.Height = 80.000000000000000000
             Size.PlatformDefault = False
             object CardsRect: TRectangle
@@ -216,32 +216,34 @@ object MainForm: TMainForm
             Fill.Color = claSkyblue
             Position.X = 620.000000000000000000
             Sides = [Left]
-            Size.Width = 100.000000000000000000
+            Size.Width = 200.000000000000000000
             Size.Height = 560.000000000000000000
             Size.PlatformDefault = False
             object DeckRect: TRectangle
               Align = Center
               Fill.Color = claAntiquewhite
               Sides = []
-              Size.Width = 100.000000000000000000
+              Size.Width = 200.000000000000000000
               Size.Height = 560.000000000000000000
               Size.PlatformDefault = False
               object BackButGame: TSpeedButton
                 Align = Top
-                Size.Width = 100.000000000000000000
+                Size.Width = 200.000000000000000000
                 Size.Height = 49.000000000000000000
                 Size.PlatformDefault = False
                 StyleLookup = 'replytoolbutton'
                 Text = 'Go to '
                 OnClick = BackButGameClick
               end
-              object ScoreTB: TToolBar
+              object ScoreTB1: TToolBar
+                Align = None
+                Anchors = [akLeft, akTop, akRight, akBottom]
                 Position.Y = 49.000000000000000000
                 Size.Width = 100.000000000000000000
                 Size.Height = 255.000000000000000000
                 Size.PlatformDefault = False
-                TabOrder = 1
-                object ScoreLabel: TLabel
+                TabOrder = 2
+                object ScoreLabel1: TLabel
                   Align = Bottom
                   StyledSettings = [Family, Style, FontColor]
                   Margins.Left = 5.000000000000000000
@@ -253,10 +255,10 @@ object MainForm: TMainForm
                   Size.PlatformDefault = False
                   TextSettings.Font.Size = 21.000000000000000000
                   TextSettings.HorzAlign = Center
-                  Text = #1042#1072#1096#1080' '#1086#1095#1082#1080':'
+                  Text = #1054#1095#1082#1080' '#1087#1077#1088#1074#1086#1075#1086':'
                   TabOrder = 0
                 end
-                object ScoreValueLabel: TLabel
+                object ScoreValueLabel1: TLabel
                   Align = MostBottom
                   StyledSettings = [Family, FontColor]
                   Margins.Left = 5.000000000000000000
@@ -272,14 +274,15 @@ object MainForm: TMainForm
                   TabOrder = 1
                 end
               end
-              object StoreTB: TToolBar
-                Align = Bottom
+              object StoreTB1: TToolBar
+                Align = None
+                Anchors = [akLeft, akTop, akRight, akBottom]
                 Position.Y = 312.000000000000000000
                 Size.Width = 100.000000000000000000
-                Size.Height = 248.000000000000000000
+                Size.Height = 192.000000000000000000
                 Size.PlatformDefault = False
-                TabOrder = 2
-                object StoreLabel: TLabel
+                TabOrder = 4
+                object StoreLabel1: TLabel
                   Align = MostTop
                   StyledSettings = [Family, Style, FontColor]
                   Margins.Left = 5.000000000000000000
@@ -290,10 +293,10 @@ object MainForm: TMainForm
                   Size.PlatformDefault = False
                   TextSettings.Font.Size = 21.000000000000000000
                   TextSettings.HorzAlign = Center
-                  Text = #1053#1072' '#1073#1086#1088#1090#1091' '#1088#1086#1073#1086#1090#1072':'
+                  Text = #1053#1072' '#1073#1086#1088#1090#1091' '#1087#1077#1088#1074#1086#1075#1086':'
                   TabOrder = 0
                 end
-                object StoreValueRect: TRectangle
+                object StoreValueRect1: TRectangle
                   Align = Top
                   Margins.Left = 5.000000000000000000
                   Margins.Right = 5.000000000000000000
@@ -302,7 +305,7 @@ object MainForm: TMainForm
                   Size.Width = 90.000000000000000000
                   Size.Height = 88.000000000000000000
                   Size.PlatformDefault = False
-                  object StoreValueLabel: TLabel
+                  object StoreValueLabel1: TLabel
                     Align = Client
                     StyledSettings = [Family, Style, FontColor]
                     Size.Width = 90.000000000000000000
@@ -313,17 +316,100 @@ object MainForm: TMainForm
                     TabOrder = 0
                   end
                 end
-                object TurnButton: TButton
+              end
+              object TurnButton: TButton
+                Align = MostBottom
+                StyledSettings = [Family, Style, FontColor]
+                Position.Y = 504.000000000000000000
+                Size.Width = 200.000000000000000000
+                Size.Height = 56.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 5
+                TextSettings.Font.Size = 21.000000000000000000
+                TextSettings.WordWrap = True
+                OnClick = TurnButtonClick
+              end
+              object ScoreTB2: TToolBar
+                Align = None
+                Position.X = 100.000000000000000000
+                Position.Y = 49.000000000000000000
+                Size.Width = 100.000000000000000000
+                Size.Height = 255.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 1
+                object ScoreLabel2: TLabel
                   Align = Bottom
                   StyledSettings = [Family, Style, FontColor]
-                  Position.Y = 192.000000000000000000
-                  Size.Width = 100.000000000000000000
-                  Size.Height = 56.000000000000000000
+                  Margins.Left = 5.000000000000000000
+                  Margins.Right = 5.000000000000000000
+                  Position.X = 5.000000000000000000
+                  Position.Y = 4.000000000000000000
+                  Size.Width = 90.000000000000000000
+                  Size.Height = 124.000000000000000000
                   Size.PlatformDefault = False
-                  TabOrder = 1
                   TextSettings.Font.Size = 21.000000000000000000
-                  TextSettings.WordWrap = True
-                  OnClick = TurnButtonClick
+                  TextSettings.HorzAlign = Center
+                  Text = #1054#1095#1082#1080' '#1074#1090#1086#1088#1086#1075#1086':'
+                  TabOrder = 0
+                end
+                object ScoreValueLabel2: TLabel
+                  Align = MostBottom
+                  StyledSettings = [Family, FontColor]
+                  Margins.Left = 5.000000000000000000
+                  Margins.Right = 5.000000000000000000
+                  Position.X = 5.000000000000000000
+                  Position.Y = 128.000000000000000000
+                  Size.Width = 90.000000000000000000
+                  Size.Height = 127.000000000000000000
+                  Size.PlatformDefault = False
+                  TextSettings.Font.Size = 26.000000000000000000
+                  TextSettings.HorzAlign = Center
+                  Text = '0'
+                  TabOrder = 1
+                end
+              end
+              object StoreTB2: TToolBar
+                Align = None
+                Anchors = [akLeft, akTop, akRight, akBottom]
+                Position.X = 100.000000000000000000
+                Position.Y = 312.000000000000000000
+                Size.Width = 100.000000000000000000
+                Size.Height = 192.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 3
+                object StoreLabel2: TLabel
+                  Align = MostTop
+                  StyledSettings = [Family, Style, FontColor]
+                  Margins.Left = 5.000000000000000000
+                  Margins.Right = 5.000000000000000000
+                  Position.X = 5.000000000000000000
+                  Size.Width = 90.000000000000000000
+                  Size.Height = 81.000000000000000000
+                  Size.PlatformDefault = False
+                  TextSettings.Font.Size = 21.000000000000000000
+                  TextSettings.HorzAlign = Center
+                  Text = #1053#1072' '#1073#1086#1088#1090#1091' '#1074#1090#1086#1088#1086#1075#1086':'
+                  TabOrder = 0
+                end
+                object StoreValueRect2: TRectangle
+                  Align = Top
+                  Margins.Left = 5.000000000000000000
+                  Margins.Right = 5.000000000000000000
+                  Position.X = 5.000000000000000000
+                  Position.Y = 81.000000000000000000
+                  Size.Width = 90.000000000000000000
+                  Size.Height = 88.000000000000000000
+                  Size.PlatformDefault = False
+                  object StoreValueLabel2: TLabel
+                    Align = Client
+                    StyledSettings = [Family, Style, FontColor]
+                    Size.Width = 90.000000000000000000
+                    Size.Height = 88.000000000000000000
+                    Size.PlatformDefault = False
+                    TextSettings.Font.Size = 21.000000000000000000
+                    TextSettings.HorzAlign = Center
+                    TabOrder = 0
+                  end
                 end
               end
             end
@@ -359,7 +445,7 @@ object MainForm: TMainForm
       object BackGroundRulesTabRect: TRectangle
         Align = Client
         Fill.Color = claSkyblue
-        Size.Width = 720.000000000000000000
+        Size.Width = 820.000000000000000000
         Size.Height = 640.000000000000000000
         Size.PlatformDefault = False
         object RulesMemo: TMemo
@@ -372,11 +458,11 @@ object MainForm: TMainForm
           Margins.Top = 60.000000000000000000
           Margins.Right = 40.000000000000000000
           Margins.Bottom = 35.000000000000000000
-          Size.Width = 640.000000000000000000
+          Size.Width = 740.000000000000000000
           Size.Height = 545.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
-          Viewport.Width = 636.000000000000000000
+          Viewport.Width = 736.000000000000000000
           Viewport.Height = 541.000000000000000000
         end
       end
@@ -385,7 +471,7 @@ object MainForm: TMainForm
         Anchors = [akTop, akRight]
         Enabled = True
         ImageIndex = -1
-        Position.X = 648.000000000000000000
+        Position.X = 748.000000000000000000
         Position.Y = 16.000000000000000000
         Size.Width = 56.000000000000000000
         Size.Height = 33.000000000000000000
@@ -408,7 +494,7 @@ object MainForm: TMainForm
       object BackGroundAuthorsTabRect: TRectangle
         Align = Client
         Fill.Color = claSkyblue
-        Size.Width = 720.000000000000000000
+        Size.Width = 820.000000000000000000
         Size.Height = 640.000000000000000000
         Size.PlatformDefault = False
         object AuthorsMemo: TMemo
@@ -416,16 +502,17 @@ object MainForm: TMainForm
           DataDetectorTypes = []
           StyledSettings = [Family, Style, FontColor]
           TextSettings.Font.Size = 30.000000000000000000
+          TextSettings.WordWrap = True
           Align = Client
           Margins.Left = 40.000000000000000000
           Margins.Top = 60.000000000000000000
           Margins.Right = 40.000000000000000000
           Margins.Bottom = 35.000000000000000000
-          Size.Width = 640.000000000000000000
+          Size.Width = 740.000000000000000000
           Size.Height = 545.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
-          Viewport.Width = 636.000000000000000000
+          Viewport.Width = 736.000000000000000000
           Viewport.Height = 541.000000000000000000
         end
       end
@@ -434,7 +521,7 @@ object MainForm: TMainForm
         Anchors = [akTop, akRight]
         Enabled = True
         ImageIndex = -1
-        Position.X = 648.000000000000000000
+        Position.X = 748.000000000000000000
         Position.Y = 16.000000000000000000
         Size.Width = 56.000000000000000000
         Size.Height = 33.000000000000000000
@@ -469,14 +556,6 @@ object MainForm: TMainForm
     Shininess = 30
     Left = 24
     Top = 136
-  end
-  object MainActionList: TActionList
-    Left = 64
-    Top = 24
-    object GoToStartTabAction: TChangeTabAction
-      Category = 'Tab'
-      Tab = StartTab
-    end
   end
   object LightMaterialSourceHill: TLightMaterialSource
     Diffuse = claPeru
@@ -522,5 +601,13 @@ object MainForm: TMainForm
     Shininess = 30
     Left = 16
     Top = 248
+  end
+  object MainActionList: TActionList
+    Left = 64
+    Top = 24
+    object GoToStartTabAction: TChangeTabAction
+      Category = 'Tab'
+      Tab = StartTab
+    end
   end
 end
