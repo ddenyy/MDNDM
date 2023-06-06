@@ -205,7 +205,7 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
 
             type_of_cell = LBoard -> field[i][j].getTypeOfArtefact();
             if (type_of_cell != "no") {
-                IBoard[i][j].set_artefact(type_of_cell);
+                IBoard[i][j].set_artefact(type_of_cell, LBoard -> field[i][j].get_form());
             }
         }
     }

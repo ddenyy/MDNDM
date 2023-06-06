@@ -556,14 +556,6 @@ object MainForm: TMainForm
     Left = 24
     Top = 136
   end
-  object MainActionList: TActionList
-    Left = 64
-    Top = 24
-    object GoToStartTabAction: TChangeTabAction
-      Category = 'Tab'
-      Tab = StartTab
-    end
-  end
   object LightMaterialSourceHill: TLightMaterialSource
     Diffuse = claPeru
     Ambient = xFF202020
@@ -608,5 +600,13 @@ object MainForm: TMainForm
     Shininess = 30
     Left = 16
     Top = 248
+  end
+  object MainActionList: TActionList
+    Left = 64
+    Top = 24
+    object GoToStartTabAction: TChangeTabAction
+      Category = 'Tab'
+      Tab = StartTab
+    end
   end
 end

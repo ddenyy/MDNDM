@@ -158,8 +158,10 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
 {
     //turn on game page
     MainTabControl -> ActiveTab = GameTab;
-    ScoreValueLabel -> Text = "0";
-    StoreValueLabel -> Text = "0";
+    ScoreValueLabel1 -> Text = "0";
+    StoreValueLabel1 -> Text = "0";
+    ScoreValueLabel2 -> Text = "0";
+    StoreValueLabel2 -> Text = "0";
     TurnButton -> Text = "Ход первого";
 
     int board_height = 20, board_width = 20;
@@ -243,7 +245,7 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
 
     sparse_coef = CardsRect -> Width * (1.0 / num_of_cards);
     for (i = 0, curr_x = 5; i < CardsInHand.size(); i++, curr_x += sparse_coef) {
-        CardsInHand[i].create_rorect(CardsRect, StoreLabel);
+        CardsInHand[i].create_rorect(CardsRect, StoreLabel1);
         CardsInHand[i].set_position(curr_x, 0);
         CardsInHand[i].rorect -> Align = TAlignLayout::Vertical;
         CardsInHand[i].rorect -> Margins -> Bottom = 5;
@@ -257,6 +259,12 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
 
     create_robot(Players[0], Player1Dummy, board_height - 1, 0, LightMaterialSourceRobot1);
     create_robot(Players[1], Player2Dummy, board_height - 1, board_height - 1, LightMaterialSourceRobot2);
+
+    Players[0].L -> enemy_pos.first = Players[1].L -> x;
+    Players[0].L -> enemy_pos.second = Players[1].L -> y;
+
+    Players[1].L -> enemy_pos.first = Players[0].L -> x;
+    Players[1].L -> enemy_pos.second = Players[0].L -> y;
 
     curr_turn = 0;
 }
@@ -289,13 +297,16 @@ void __fastcall TMainForm::RoundRectForExecuteCommandFuncClick(TObject *Sender)
     SetPropValue(Sender, "Visible", false);
 
     if (command_type == "stepOne")
-            Players[curr_turn].L -> make_step_forward();
+    	Players[curr_turn].L -> make_step_forward();
     if (command_type == "left")
         Players[curr_turn].L -> command_to_turn(command_type);
     if (command_type == "right")
         Players[curr_turn].L -> command_to_turn(command_type);
     if (command_type == "stepToStop")
         Players[curr_turn].L -> move_until_stop();
+
+    Players[curr_turn ^ 1].L -> enemy_pos.first = Players[curr_turn].L -> x;
+    Players[curr_turn ^ 1].L -> enemy_pos.second = Players[curr_turn].L -> y;
 
     DisplayRobotMovement();
 }
@@ -312,19 +323,19 @@ void __fastcall TMainForm::FormResize(TObject *Sender)
 
     //меняются объекты на DeckRect
     //вывод параметров робота
-	ScoreTB1 -> Height = 0.3 * (DeckRect -> Height - BackButGame -> Height);
-    StoreTB1 -> Height = 0.7 * (DeckRect -> Height - BackButGame -> Height);
+	ScoreTB1 -> Height = 0.37 * (DeckRect -> Height - BackButGame -> Height);
+    StoreTB1 -> Height = 0.37 * (DeckRect -> Height - BackButGame -> Height);
     ScoreLabel1 -> Height = 0.48 * ScoreTB1 -> Height;
     ScoreValueLabel1 -> Height = 0.48 * ScoreTB1 -> Height;
-    StoreLabel1 -> Height = 0.28 * StoreTB1 -> Height;
-    StoreValueRect1 -> Height = 0.6 * StoreTB1 -> Height;
+    StoreLabel1 -> Height = 0.48 * StoreTB1 -> Height;
+    StoreValueRect1 -> Height = 0.48 * StoreTB1 -> Height;
 
-    ScoreTB2 -> Height = 0.3 * (DeckRect -> Height - BackButGame -> Height);
-    StoreTB2 -> Height = 0.7 * (DeckRect -> Height - BackButGame -> Height);
+    ScoreTB2 -> Height = 0.37 * (DeckRect -> Height - BackButGame -> Height);
+    StoreTB2 -> Height = 0.37 * (DeckRect -> Height - BackButGame -> Height);
     ScoreLabel2 -> Height = 0.48 * ScoreTB2 -> Height;
     ScoreValueLabel2 -> Height = 0.48 * ScoreTB2 -> Height;
-    StoreLabel2 -> Height = 0.28 * StoreTB2 -> Height;
-    StoreValueRect2 -> Height = 0.6 * StoreTB2 -> Height;
+    StoreLabel2 -> Height = 0.48 * StoreTB2 -> Height;
+    StoreValueRect2 -> Height = 0.48 * StoreTB2 -> Height;
 }
 
 //---------------------------------------------------------------------------

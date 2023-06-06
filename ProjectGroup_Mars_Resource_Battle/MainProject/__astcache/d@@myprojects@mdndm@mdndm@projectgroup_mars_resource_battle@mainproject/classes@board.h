@@ -46,11 +46,14 @@ public:
 			 else if (ability == "usually")
 			 {
 				  field[x][y].setUsuallyArtifact(*Vector_Random_Artefacts[i]);
+
 			 }
 			 else if (ability == "frequent")
 			 {
 				  field[x][y].setFrequentArtifact(*Vector_Random_Artefacts[i]);
 			 }
+
+             field[x][y].set_form(Vector_Random_Artefacts[i]->get_form());
 		}
 	}
 

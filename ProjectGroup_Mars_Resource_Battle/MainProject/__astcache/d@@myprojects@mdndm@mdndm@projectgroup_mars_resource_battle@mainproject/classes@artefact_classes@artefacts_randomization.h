@@ -17,6 +17,13 @@ vector <artefact*> get_list_of_artefacts(int cnt, int size) {
     vector <int> Data = {1, 2, 3};
     // вектор для рандомизации видов артефактов 1, 2, 3
     vector <int> Random_pos (cnt, 0);
+
+    ////////////////////// Аналогично как сверху
+    // 1 = "TCube", 2 = "TSphere", 3 = "TCylinder"
+    vector <int> Form = {1, 2, 3};
+    vector <int> Random_form (cnt, 0);
+    ///////////////////////////////////////////
+
     // заполняю массив только ширпотребом и обычными
     for (int i = 0; i < cnt; ++i) {
         Random_pos[i] = rand() % 2 + 1;
@@ -25,6 +32,13 @@ vector <artefact*> get_list_of_artefacts(int cnt, int size) {
     for (int i = 0; i < cnt / 10 + 1; ++i) {
         Random_pos[rand() % cnt - 1] = 3;
     }
+
+    ////////////////////// добавляю рандомные чиселки для формы
+    for (int i = 0; i < cnt; ++i) {
+        Random_form[i] = rand() % 3 + 1;
+    }
+    /////////////////////////////
+
     // вектор ставящий каждому артефакту пару координат х и у
     vector <pair<int, pair<int, int>>> Random_cords (cnt);
     // начальная инициализация
@@ -35,18 +49,51 @@ vector <artefact*> get_list_of_artefacts(int cnt, int size) {
         rare_artefact = new rare();
         rare_artefact->set_cord_x(Random_cords[0].second.first);
         rare_artefact->set_cord_y(Random_cords[0].second.second);
+        /////////////////////////////
+        if (Random_form[0] == 1) {
+            rare_artefact->set_form("TCube");
+        }
+        else if (Random_form[0] == 2) {
+            rare_artefact->set_form("TSphere");
+        }
+        else if (Random_form[0] == 3) {
+            rare_artefact->set_form("TCylinder");
+        }
+        //////////////////////////////
         Artefacts.push_back(rare_artefact);
     }
     else if (Random_pos[0] == 2) {
         usually_artefact = new usually();
         usually_artefact->set_cord_x(Random_cords[0].second.first);
         usually_artefact->set_cord_y(Random_cords[0].second.second);
+        /////////////////////////////
+        if (Random_form[0] == 1) {
+            rare_artefact->set_form("TCube");
+        }
+        else if (Random_form[0] == 2) {
+            rare_artefact->set_form("TSphere");
+        }
+        else if (Random_form[0] == 3) {
+            rare_artefact->set_form("TCylinder");
+        }
+        //////////////////////////////
         Artefacts.push_back(usually_artefact);
     }
     else {
         frequent_artefact = new frequent();
         frequent_artefact->set_cord_x(Random_cords[0].second.first);
         frequent_artefact->set_cord_y(Random_cords[0].second.second);
+        /////////////////////////////
+        if (Random_form[0] == 1) {
+            rare_artefact->set_form("TCube");
+        }
+        else if (Random_form[0] == 2) {
+            rare_artefact->set_form("TSphere");
+        }
+        else if (Random_form[0] == 3) {
+            rare_artefact->set_form("TCylinder");
+        }
+        //////////////////////////////
         Artefacts.push_back(frequent_artefact);
     }
 
@@ -71,18 +118,51 @@ vector <artefact*> get_list_of_artefacts(int cnt, int size) {
 				rare_artefact = new rare();
                 rare_artefact->set_cord_x(Random_cords[i].second.first);
                 rare_artefact->set_cord_y(Random_cords[i].second.second);
+                /////////////////////////////
+                if (Random_form[0] == 1) {
+                    rare_artefact->set_form("TCube");
+                }
+                else if (Random_form[0] == 2) {
+                    rare_artefact->set_form("TSphere");
+                }
+                else if (Random_form[0] == 3) {
+                    rare_artefact->set_form("TCylinder");
+                }
+                //////////////////////////////
                 Artefacts.push_back(rare_artefact);
             }
             else if (Random_pos[i] == 2) {
                 usually_artefact = new usually();
                 usually_artefact->set_cord_x(Random_cords[i].second.first);
                 usually_artefact->set_cord_y(Random_cords[i].second.second);
+                /////////////////////////////
+                if (Random_form[0] == 1) {
+                    rare_artefact->set_form("TCube");
+                }
+                else if (Random_form[0] == 2) {
+                    rare_artefact->set_form("TSphere");
+                }
+                else if (Random_form[0] == 3) {
+                    rare_artefact->set_form("TCylinder");
+                }
+                //////////////////////////////
                 Artefacts.push_back(usually_artefact);
             }
             else {
                 frequent_artefact = new frequent();
                 frequent_artefact->set_cord_x(Random_cords[i].second.first);
                 frequent_artefact->set_cord_y(Random_cords[i].second.second);
+                /////////////////////////////
+                if (Random_form[0] == 1) {
+                    rare_artefact->set_form("TCube");
+                }
+                else if (Random_form[0] == 2) {
+                    rare_artefact->set_form("TSphere");
+                }
+                else if (Random_form[0] == 3) {
+                    rare_artefact->set_form("TCylinder");
+                }
+                //////////////////////////////
                 Artefacts.push_back(frequent_artefact);
             }
         }

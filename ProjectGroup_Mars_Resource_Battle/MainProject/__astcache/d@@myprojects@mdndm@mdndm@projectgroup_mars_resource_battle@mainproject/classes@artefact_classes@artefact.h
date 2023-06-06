@@ -16,6 +16,8 @@ protected:
     string _availability;
     // цвет
 	string _colour ;
+    //форма
+    string form;
 public:
     virtual ~artefact() = default;
 
@@ -26,6 +28,7 @@ public:
     int cost() { return _cost; }
     string availability() { return _availability; }
     string colour() { return _colour; }
+    string get_form() { return form; }
 
     // сетеры
     void set_cord_x(int cord_x) { _cord_x = cord_x; }
@@ -34,6 +37,7 @@ public:
     void set_cost(int cost) { _cost = cost; }
     void set_availability(string availability) { _availability = availability; }
     void set_colour(string colour) { _colour = colour; }
+    void set_form(string new_form){ form = new_form; }
 
     // печать (для проверки)
     virtual void print() = 0;

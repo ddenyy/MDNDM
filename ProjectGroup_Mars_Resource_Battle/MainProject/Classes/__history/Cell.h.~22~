@@ -10,6 +10,7 @@ public:
 
 	Cell() {
 		type_cell = "earth";
+	    height_hill = 0;
 	}
 
 
@@ -34,6 +35,8 @@ public:
 		  if (is_frequent_artefact) {
 				return "frequent";
 		  }
+
+          return "no";
 	}
 
 	void setRareArtifact(rare new_artifact) {
@@ -57,24 +60,29 @@ public:
 		is_frequent_artefact = true;
 	}
 
+    void get_artefact_in_hell()
+    {
+        is_rare_artefact = false;
+		is_usually_artefact = false;
+		is_frequent_artefact = false;
+    }
+
 	void setType(string type_cell)
 	{
 		this->type_cell = type_cell;
 	}
 
-	void setHeight(int height_hill)
+	void setHeight(float height_hill)
 	{
-		if (this->type_cell == "hill")
-		{
+//		if (this->type_cell == "hill")
+//		{
 			this->height_hill = height_hill;
-		}
-		else
-		{
-			this->height_hill = 0;
-		}
+//		}
+//		else
+//		{
+//			this->height_hill = 0;
+//		}
 	}
-
-	TCube *ground;
 
 private:
 	string type_cell;

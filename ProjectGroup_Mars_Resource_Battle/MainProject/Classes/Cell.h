@@ -72,6 +72,16 @@ public:
 		this->type_cell = type_cell;
 	}
 
+    void set_form(string new_form)
+    {
+        form = new_form;
+    }
+
+    string get_form()
+    {
+        return form;
+    }
+
 	void setHeight(float height_hill)
 	{
 //		if (this->type_cell == "hill")
@@ -87,6 +97,7 @@ public:
 private:
 	string type_cell;
 	int height_hill;
+    string form;
 
 	rare rare_artefact;
 	usually usually_artefact;

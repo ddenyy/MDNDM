@@ -43,10 +43,10 @@ public:
         cube -> MaterialSource = Material;
     }
 
-    void set_artefact(string & artefact_type)
+    void set_artefact(string & artefact_type, string form)
     {
         artefact = new InterfaceArtefact;
-        artefact -> create_sphere(cube, artefact_type);
+        artefact -> create_sphere(cube, artefact_type, form);
     }
 
 };
