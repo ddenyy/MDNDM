@@ -30,8 +30,8 @@ public:
     {
         rorect = new TRoundRect (RootRect);
         rorect -> Parent = RootRect;
-        rorect -> Height = RootRect -> Height * 0.8;
-        rorect -> Width = RootRect -> Width * 0.125 * 0.85;
+        rorect -> Width = RootRect -> Width * 0.8;
+        rorect -> Height = RootRect -> Height * 0.125 * 0.85;
         rorect -> Fill -> Kind = TBrushKind::Solid;
 
         sign = new TLabel (rorect);
@@ -54,7 +54,7 @@ public:
 
     void set_command(pair<string, int> command)
     {
-        rorect -> Name = ToAnsiString(command.first) + IntToStr(command.second);
+        rorect -> Name = String(ToAnsiString(command.first) + IntToStr(command.second));
 
         if (command.first == "stepOne") {
             sign -> Text = "S";

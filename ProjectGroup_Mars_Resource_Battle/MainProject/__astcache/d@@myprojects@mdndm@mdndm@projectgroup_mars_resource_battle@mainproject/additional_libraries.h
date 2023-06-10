@@ -23,8 +23,7 @@
 #include <bitset>
 #include <complex>
 #include <iterator>
-#include <windows.h>
-
+//#include <windows.h>
 #define pb push_back
 #define mp make_pair
 #define mt make_tuple

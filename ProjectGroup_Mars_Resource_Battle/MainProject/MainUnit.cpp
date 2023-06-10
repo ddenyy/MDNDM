@@ -133,17 +133,17 @@ void __fastcall TMainForm::TurnButtonClick(TObject *Sender)
 
     curr_turn = curr_turn ^ 1;
     if (curr_turn == 0)
-        TurnButton -> Text = "Ход первого";
+        TurnButton -> Text = "I";
     else
-        TurnButton -> Text = "Ход второго";
+        TurnButton -> Text = "II";
 
     CardsInHand.resize(num_of_cards);
 
-    sparse_coef = CardsRect -> Width * (1.0 / num_of_cards);
+    sparse_coef = CardsRect -> Width * (1.0 / num_of_cards) + CardsRect -> Height * 0.125 * 0.85;
     for (i = 0, curr_x = 5; i < CardsInHand.size(); i++, curr_x += sparse_coef) {
         CardsInHand[i].create_rorect(CardsRect, StoreLabel1);
-        CardsInHand[i].set_position(curr_x, 0);
-        CardsInHand[i].rorect -> Align = TAlignLayout::Vertical;
+        CardsInHand[i].set_position(0, curr_x);
+        CardsInHand[i].rorect -> Align = TAlignLayout::Horizontal;
         CardsInHand[i].rorect -> Margins -> Bottom = 5;
         CardsInHand[i].rorect -> Margins -> Top = 5;
 
@@ -172,7 +172,7 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
     StoreValueLabel1 -> Text = "0";
     ScoreValueLabel2 -> Text = "0";
     StoreValueLabel2 -> Text = "0";
-    TurnButton -> Text = "Ход первого";
+    TurnButton -> Text = "I";
 
     int board_height = 20, board_width = 20;
     //интерфейс поля
@@ -253,11 +253,11 @@ void __fastcall TMainForm::GameRectButClick(TObject *Sender)
 
     CardsInHand.resize(num_of_cards);
 
-    sparse_coef = CardsRect -> Width * (1.0 / num_of_cards);
+    sparse_coef = CardsRect -> Width * (1.0 / num_of_cards) + CardsRect -> Height * 0.125 * 0.85;
     for (i = 0, curr_x = 5; i < CardsInHand.size(); i++, curr_x += sparse_coef) {
         CardsInHand[i].create_rorect(CardsRect, StoreLabel1);
-        CardsInHand[i].set_position(curr_x, 0);
-        CardsInHand[i].rorect -> Align = TAlignLayout::Vertical;
+        CardsInHand[i].set_position(0, curr_x);
+        CardsInHand[i].rorect -> Align = TAlignLayout::Horizontal;
         CardsInHand[i].rorect -> Margins -> Bottom = 5;
         CardsInHand[i].rorect -> Margins -> Top = 5;
 
@@ -327,9 +327,9 @@ void __fastcall TMainForm::RoundRectForExecuteCommandFuncClick(TObject *Sender)
 функция выполняется автоматически при изменении размеров окна*/
 void __fastcall TMainForm::FormResize(TObject *Sender)
 {
-	CardsBackGroundRect -> Height = MainForm -> Height * (1.0 / 6);
-    CardsBackGroundRect -> Width = MainForm -> Height * (1.0 / 6);
-    DeckBackGroundRect -> Width = MainForm -> Width * (1.0 / 6);
+	//CardsBackGroundRect -> Height = MainForm -> Height * (1.0 / 6);
+    //CardsBackGroundRect -> Width = MainForm -> Height * (1.0 / 6);
+    //DeckBackGroundRect -> Width = MainForm -> Width * (1.0 / 6);
 
     //меняются объекты на DeckRect
     //вывод параметров робота
@@ -429,6 +429,56 @@ void __fastcall TMainForm::BackButGameClick(TObject *Sender)
     }
 
     MainTabControl -> ActiveTab = StartTab;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TMainForm::ShowScoreButtonClick(TObject *Sender)
+{
+    if (!DeckBackGroundRect -> Enabled) {
+        DeckBackGroundRect -> Enabled = true;
+	    DeckBackGroundRect -> Visible = true;
+    }
+    else
+    {
+        DeckBackGroundRect -> Enabled = false;
+	    DeckBackGroundRect -> Visible = false;
+    }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TMainForm::WButtonClick(TObject *Sender)
+{
+    GroundXRotationDummy -> RotationAngle -> X -= 5.0;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TMainForm::SButtonClick(TObject *Sender)
+{
+    GroundXRotationDummy -> RotationAngle -> X += 5.0;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TMainForm::AButtonClick(TObject *Sender)
+{
+    GroundMainDummy -> Position -> X -= 0.6;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TMainForm::DButtonClick(TObject *Sender)
+{
+    GroundMainDummy -> Position -> X += 0.6;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TMainForm::QButtonClick(TObject *Sender)
+{
+    GroundMainDummy -> RotationAngle -> Y += 5.0;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TMainForm::EButtonClick(TObject *Sender)
+{
+    GroundMainDummy -> RotationAngle -> Y -= 5.0;
 }
 //---------------------------------------------------------------------------
 

@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------
 
 #ifndef MainUnitH
 #define MainUnitH
@@ -87,7 +87,6 @@ __published:	// IDE-managed Components
 	TLightMaterialSource *LightMaterialSourcePike;
 	TLightMaterialSource *LightMaterialSourceGrass;
 	TLightMaterialSource *LightMaterialSourceLowGrass;
-	TButton *TurnButton;
 	TLightMaterialSource *LightMaterialSourceRobot2;
 	TToolBar *ScoreTB2;
 	TLabel *ScoreLabel2;
@@ -96,6 +95,17 @@ __published:	// IDE-managed Components
 	TLabel *StoreLabel2;
 	TRectangle *StoreValueRect2;
 	TLabel *StoreValueLabel2;
+	TButton *TurnButton;
+	TToolBar *ToolBar1;
+	TToolBar *ToolBar2;
+	TButton *ShowScoreButton;
+	TToolBar *MoveMapTB;
+	TButton *WButton;
+	TButton *SButton;
+	TButton *AButton;
+	TButton *DButton;
+	TButton *QButton;
+	TButton *EButton;
 
 
 //комменты по функциям в спп файле
@@ -109,7 +119,15 @@ __published:	// IDE-managed Components
           TShiftState Shift);
 	void __fastcall BackButGameClick(TObject *Sender);
 	void __fastcall RoundRectForExecuteCommandFuncClick(TObject *Sender);
+	//void __fastcall PrevTurnButtonClick(TObject *Sender);
 	void __fastcall TurnButtonClick(TObject *Sender);
+	void __fastcall ShowScoreButtonClick(TObject *Sender);
+	void __fastcall WButtonClick(TObject *Sender);
+	void __fastcall SButtonClick(TObject *Sender);
+	void __fastcall AButtonClick(TObject *Sender);
+	void __fastcall DButtonClick(TObject *Sender);
+	void __fastcall QButtonClick(TObject *Sender);
+	void __fastcall EButtonClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
     void __fastcall ExecuteCommand(TLabel* CardLabel);
