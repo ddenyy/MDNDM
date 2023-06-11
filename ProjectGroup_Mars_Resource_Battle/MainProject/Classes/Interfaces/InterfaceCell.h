@@ -3,8 +3,8 @@
 class InterfaceCell
 {
 public:
-    TCube* cube;
-    InterfaceArtefact * artefact;
+    TCube* cube = nullptr;
+    InterfaceArtefact * artefact = nullptr;
 
     ~InterfaceCell() = default;
 

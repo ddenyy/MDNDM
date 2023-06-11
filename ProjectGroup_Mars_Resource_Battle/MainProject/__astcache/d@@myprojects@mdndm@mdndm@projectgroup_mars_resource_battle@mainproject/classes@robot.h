@@ -21,7 +21,7 @@ public:
     pair<int, int> enemy_pos;
     bool delete_inter_artef = false;
     Cell now_cell;
-    LogicBoard *board_computer_on_robot;
+    LogicBoard *board_computer_on_robot = nullptr;
     //Пустой конструктор
      LogicRobot() : x(0), y(0), z(0), rotation(0), hasArtifact(false), score(2), numArtifacts(0), health(100), load_capacity(100),
      counter_frequent_Artifacts(0), counter_rare_Aritfacts(0), counter_usually_Artifacts(0){}

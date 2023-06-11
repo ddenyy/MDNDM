@@ -21,8 +21,8 @@ string AnsiToStr(AnsiString NewRoute)
 class InterfaceCard
 {
 public:
-    TRoundRect* rorect;
-    TLabel* sign;
+    TRoundRect* rorect = nullptr;
+    TLabel* sign = nullptr;
 
     ~InterfaceCard() = default;
 

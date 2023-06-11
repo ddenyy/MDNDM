@@ -3,11 +3,11 @@
 class InterfaceRobot
 {
 public:
-    TDummy* rdummy;
-    TSphere* sphere;
-    TCone* cone;
-    TCylinder* cylin1;
-    TCylinder* cylin2;
+    TDummy* rdummy = nullptr;
+    TSphere* sphere = nullptr;
+    TCone* cone = nullptr;
+    TCylinder* cylin1 = nullptr;
+    TCylinder* cylin2 = nullptr;
 
     //InterfaceRobot() = default;
 

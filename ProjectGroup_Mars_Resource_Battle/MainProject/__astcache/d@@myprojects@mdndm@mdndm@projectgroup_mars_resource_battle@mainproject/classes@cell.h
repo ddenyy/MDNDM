@@ -1,4 +1,4 @@
-﻿#include "Artefact_Classes/rare.h"
+#include "Artefact_Classes/rare.h"
 #include "Artefact_Classes/usually.h"
 #include "Artefact_Classes/frequent.h"
 #include "Artefact_Classes/artefact.h"

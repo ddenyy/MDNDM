@@ -1,4 +1,4 @@
-﻿#include "Cell.h"
+#include "Cell.h"
 #include "Classes/Artefact_Classes/artefacts_randomization.h"
 
 class LogicBoard

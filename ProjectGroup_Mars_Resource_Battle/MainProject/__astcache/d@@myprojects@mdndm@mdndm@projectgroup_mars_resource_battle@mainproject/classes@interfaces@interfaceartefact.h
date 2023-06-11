@@ -3,10 +3,10 @@
 class InterfaceArtefact
 {
 public:
-    TCube * cube;
-    TSphere * sphere;
-    TCylinder * cylin;
-    TLightMaterialSource * material;
+    TCube * cube = nullptr;
+    TSphere * sphere = nullptr;
+    TCylinder * cylin = nullptr;
+    TLightMaterialSource * material = nullptr;
 
     string art_form;
 

@@ -1,4 +1,4 @@
-﻿#include "../Additional_Libraries.h"
+#include "../Additional_Libraries.h"
 
 // базовый класс для артефакта. Сделал как заглушку пока что
 class LogicArtifact

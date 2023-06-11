@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 struct sct_ultimate_robot
 {
